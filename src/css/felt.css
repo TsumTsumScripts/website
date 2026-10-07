@@ -1,0 +1,182 @@
+/*
+ * The "Midnight felt" design (designs/website). Applies only inside .felt, so
+ * the docs keep the default Docusaurus theme. Stitching is a ::before on every
+ * .patch; content sits above it because children are positioned.
+ */
+
+body.felt-body {
+  --ground: #1c1b2b;
+  --ground-ink: #f4efe6;
+  --ground-ink-soft: #d8d2e4;
+  --surface: #2e2d45;
+  --surface-edge: #14131f;
+  --surface-thread: #8e89b0;
+  --surface-thread-dim: #6c6890;
+  --surface-rule: #4a4766;
+  --font-display: 'Caprasimo', Georgia, serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
+  background: var(--ground);
+}
+
+body.felt-body .navbar {
+  background: var(--ground);
+  box-shadow: 0 2px 0 var(--surface-edge);
+  --ifm-navbar-link-color: var(--ground-ink);
+  --ifm-navbar-link-hover-color: #ffb454;
+  --ifm-color-primary: #ffb454;
+}
+body.felt-body .navbar__title,
+body.felt-body .navbar__link { color: var(--ground-ink); font-family: var(--font-body); font-weight: 700; }
+body.felt-body .navbar__title { font-family: var(--font-display); font-weight: 400; font-size: 22px; }
+body.felt-body .navbar__link--active { color: #ffb454; }
+body.felt-body .navbar-sidebar { background: var(--ground); }
+
+.felt {
+  --marigold-fill: #ffb454; --marigold-edge: #a5651a; --marigold-thread: #7a4a12; --marigold-chip: #fff3e0; --marigold-ink: #2e1a03;
+  --jade-fill: #5cc9a7; --jade-edge: #23785f; --jade-thread: #1a5c48; --jade-chip: #d9fff2; --jade-ink: #08261d;
+  --rose-fill: #ff8fab; --rose-edge: #a83d5c; --rose-thread: #80293f; --rose-chip: #ffe8ee; --rose-ink: #33101b;
+  --periwinkle-fill: #9db4ff; --periwinkle-edge: #4a5fb3; --periwinkle-thread: #34458c; --periwinkle-chip: #eef1ff; --periwinkle-ink: #141d40;
+  --grape-fill: #5b3f9e; --grape-edge: #36246b; --grape-thread: #e3d8ff; --grape-chip: #e3d8ff; --grape-ink: #ffffff;
+  --surface-fill: #2e2d45; --surface-edge2: #14131f; --surface-thread2: #8e89b0; --surface-chip: #2e2d45; --surface-ink: #f4efe6;
+
+  position: relative;
+  min-height: 70vh;
+  color: var(--ground-ink);
+  font-family: var(--font-body);
+  background-color: var(--ground);
+  background-image:
+    repeating-linear-gradient(31deg, rgba(255,255,255,.12) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-57deg, rgba(0,0,0,.05) 0 1px, transparent 1px 5px);
+  overflow-x: clip;
+}
+.felt h1, .felt h2, .felt h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; color: inherit; line-height: 1.1; }
+.felt p { margin: 0; text-wrap: pretty; }
+.felt a { color: inherit; }
+.felt :focus-visible { outline: 3px solid #ffb454; outline-offset: 3px; }
+
+.felt-wrap { max-width: 1140px; margin: 0 auto; padding: 24px 24px 96px; display: flex; flex-direction: column; gap: 88px; }
+.felt-wrap--wide { max-width: 1220px; gap: 44px; }
+
+/* A felt patch: fill, hard bottom edge, stitched border. */
+.patch {
+  --fill: var(--surface-fill); --edge: var(--surface-edge2); --thread: var(--surface-thread2);
+  --chip: var(--surface-chip); --ink: var(--surface-ink);
+  --r: 32px; --inset: 9px; --stitch: 3px; --lift: 6px; --tilt: 0deg;
+  position: relative;
+  border-radius: var(--r);
+  color: var(--ink);
+  background-color: var(--fill);
+  background-image:
+    repeating-linear-gradient(31deg, rgba(255,255,255,.15) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-57deg, rgba(0,0,0,.045) 0 1px, transparent 1px 5px);
+  box-shadow: 0 var(--lift) 0 var(--edge), 0 12px 28px rgba(0,0,0,.3);
+  transform: rotate(var(--tilt));
+  transition: transform .2s;
+}
+.patch::before {
+  content: '';
+  position: absolute;
+  inset: var(--inset);
+  border: var(--stitch) dashed var(--thread);
+  border-radius: calc(var(--r) - var(--inset));
+  pointer-events: none;
+}
+.patch > * { position: relative; }
+.patch--marigold { --fill: var(--marigold-fill); --edge: var(--marigold-edge); --thread: var(--marigold-thread); --chip: var(--marigold-chip); --ink: var(--marigold-ink); }
+.patch--jade { --fill: var(--jade-fill); --edge: var(--jade-edge); --thread: var(--jade-thread); --chip: var(--jade-chip); --ink: var(--jade-ink); }
+.patch--rose { --fill: var(--rose-fill); --edge: var(--rose-edge); --thread: var(--rose-thread); --chip: var(--rose-chip); --ink: var(--rose-ink); }
+.patch--periwinkle { --fill: var(--periwinkle-fill); --edge: var(--periwinkle-edge); --thread: var(--periwinkle-thread); --chip: var(--periwinkle-chip); --ink: var(--periwinkle-ink); }
+.patch--grape { --fill: var(--grape-fill); --edge: var(--grape-edge); --thread: var(--grape-thread); --chip: var(--grape-chip); --ink: var(--grape-ink); background-image:
+    repeating-linear-gradient(31deg, rgba(255,255,255,.08) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-57deg, rgba(0,0,0,.06) 0 1px, transparent 1px 5px); }
+.patch--flat { box-shadow: 0 var(--lift) 0 var(--edge); }
+.patch--hover:hover { transform: rotate(0) translateY(-4px); }
+
+.pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-weight: 700; }
+.kicker {
+  display: inline-block; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  border-radius: 999px; padding: 6px 14px; background: var(--fill, #2e2d45); color: var(--ink, #f4efe6);
+}
+.kicker--surface { background: var(--surface-fill); color: var(--ground-ink); }
+
+/* Buttons: a patch pill with a hard edge that presses in. */
+.fbtn {
+  --r: 999px; --inset: 5px; --stitch: 2.5px; --lift: 5px;
+  display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px;
+  font-weight: 800; font-size: 19px; text-decoration: none !important; cursor: pointer; border: 0; font-family: var(--font-body);
+  transition: transform .15s, box-shadow .15s;
+}
+.fbtn:hover { transform: translateY(-2px) rotate(-2deg); color: var(--ink); }
+.fbtn:active { transform: translateY(3px); --lift: 2px; }
+.fbtn--sm { font-size: 15px; padding: 9px 18px; --lift: 4px; }
+
+.felt-sticker { position: absolute; z-index: 2; pointer-events: none; }
+
+/* Phone frame around a screenshot. */
+.phone { --r: 40px; --inset: 6px; padding: 14px; aspect-ratio: 9 / 19; }
+.phone > .media { height: 100%; border-radius: 28px; overflow: hidden; }
+
+/* Media: the real thing or a labelled felt-edged placeholder. */
+.media { position: relative; border-radius: 22px; overflow: hidden; background: #141318; }
+.media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.media--missing {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 14px; text-align: center; background: #2a2730; color: #d8d2e4; border: 2px dashed #8e89b0;
+}
+.media--missing b { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.media--missing code { background: rgba(0,0,0,.35); color: #f4efe6; padding: 1px 6px; border-radius: 6px; font-size: 12px; }
+.media--missing span { font-size: 13px; line-height: 1.35; opacity: .9; }
+
+.felt-grid { display: grid; gap: 30px; }
+.felt-tilt-a { --tilt: -1.6deg; } .felt-tilt-b { --tilt: 1.2deg; } .felt-tilt-c { --tilt: -.8deg; }
+.felt-tilt-d { --tilt: 1.8deg; } .felt-tilt-e { --tilt: -1.3deg; } .felt-tilt-f { --tilt: .9deg; }
+
+@media (prefers-reduced-motion: reduce) {
+  .felt *, .felt *::before { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  .patch, .fbtn { transform: none !important; }
+}
+@media (max-width: 600px) {
+  .felt-wrap { padding: 16px 16px 72px; gap: 64px; }
+}
+
+.patch > .media { height: 100%; }
+
+/* Features guide */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fg-side { flex: 1 1 260px; max-width: 100%; position: sticky; top: 76px; display: flex; flex-direction: column; gap: 14px; align-self: flex-start; }
+@media (max-width: 900px) { .fg-side { position: static; flex-basis: 100%; } }
+.fg-search { width: 100%; box-sizing: border-box; background: var(--surface); color: var(--ground-ink); border: 2px dashed var(--surface-thread); border-radius: 999px; padding: 11px 18px; font: 600 16px var(--font-body); }
+.fg-search::placeholder { color: #bdb7cc; }
+.fg-search:focus { outline: 3px solid #ffb454; border-color: #ffb454; }
+.fg-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none !important; transition: transform .15s; }
+.fg-item:hover { transform: translateX(4px); color: var(--ink); }
+.fg-num { flex: none; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 19px; }
+.fg-num--big { width: 44px; height: 44px; }
+.chip { display: inline-block; border-radius: 999px; padding: 4px 14px; font-weight: 700; font-size: 14px; background: var(--chip); color: var(--ink); border: 2px dashed var(--thread); }
+.chip--pw { background: var(--periwinkle-fill); color: #1c1b2b; border: 0; margin-left: 10px; font-size: 13px; padding: 2px 12px; }
+.fg-tab { border-radius: 999px; padding: 10px 20px; font: 700 16px var(--font-body); background: var(--surface); color: var(--ground-ink); border: 2px dashed var(--surface-thread); cursor: pointer; }
+.fg-tab--on { background: #f4efe6; color: #1c1b2b; border-color: #f4efe6; }
+.fg-step { padding: 24px; display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+.fg-setting { padding: 16px 0; display: flex; flex-direction: column; gap: 6px; }
+.fg-setting:first-child { padding-top: 0; } .fg-setting:last-child { padding-bottom: 0; }
+.fg-setting dt { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.fg-pager { display: flex; flex-direction: column; gap: 2px; padding: 12px 26px; border-radius: 999px; --r: 999px; --inset: 5px; --lift: 4px; text-decoration: none !important; transition: transform .15s; }
+.fg-pager b { font: 400 18px var(--font-display); }
+.fg-pager:hover { transform: translateY(-2px); color: var(--ink); }
+
+/* Changelog */
+.cl-details > summary { list-style: none; cursor: pointer; }
+.cl-details > summary::-webkit-details-marker { display: none; }
+.cl-summary { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cl-summary::after { content: '▾'; margin-left: auto; font-size: 22px; }
+.cl-details[open] .cl-summary::after { content: '▴'; }
+.cl-h { font: 400 22px var(--font-display) !important; margin-bottom: 8px !important; color: #ffb454 !important; }
+.cl-area { margin: 12px 0 6px; font: 800 14px var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--ground-ink-soft); }
+.cl-list { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; line-height: 1.55; }
+.cl-line { color: var(--ground-ink); }
+.cl-link { margin-left: 10px; white-space: nowrap; font-size: 13.5px; font-weight: 700; color: #1c1b2b; background: var(--periwinkle-fill); border-radius: 999px; padding: 1px 10px; text-decoration: none; }
+.cl-link:hover { color: #1c1b2b; background: var(--marigold-fill); }
+
+/* Links styled as patches keep the patch's own ink, not the page link colour. */
+.felt a.patch, .felt a.patch:hover { color: var(--ink); }
+.felt a.patch small { opacity: .85; }
