@@ -1,7 +1,21 @@
-# Contributor documentation site
+# Tsum Tsum website
 
-The Docusaurus site published at https://scripts.gapapp.app/ by
-`.github/workflows/docs.yml` on every push to `main` that touches it.
+The public site for the Tsum Tsum script: a felt-styled landing page, a features guide
+(`/features/<key>`), a changelog that links each line to its feature, the starter tool
+page, and the contributor docs under `/docs`. Built with Docusaurus; the script repo
+(`tsum-tsum-script`) is expected beside this one, or set `TSUM_SCRIPT_REPO`.
+
+- **Content:** `src/data/features.js` (every feature, step, setting) and `landing.js`.
+- **Changelog:** `npm run sync` reads `CHANGELOG.md`'s `### Summary` blocks;
+  `src/data/featureLinks.js` decides which feature a line links to.
+- **Media:** `MEDIA_PLAN.md` lists every screenshot and clip (and the Remotion plan).
+  Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.
+- **Discord:** the invite is one constant, `discordUrl` in `docusaurus.config.ts`.
+
+## Contributor docs
+
+
+The docs are served under `/docs`.
 
 ```bash
 cd website

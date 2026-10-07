@@ -11,7 +11,7 @@ game-automation-scripts/
 ├── CONTRIBUTING.md        the short version of this site
 ├── LICENSE · NOTICE       Apache-2.0, and what was inherited from where
 ├── .github/workflows/     builds and publishes this site
-├── website/               this site (Docusaurus)
+├── starter/               the service starter tool
 └── app.gap.Tsum/          the only package: the Disney Tsum Tsum script
     ├── src/               the script -- concatenated into one bundle, no imports
     │   └── skills/        one file per skill, plus the shared core
