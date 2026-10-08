@@ -6,6 +6,7 @@
     "footage": "node scripts/footage.mjs",
     "studio": "npm run footage && remotion studio src/index.ts",
     "render": "node scripts/render.mjs",
+    "thumbs": "node scripts/thumbs.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -51,6 +51,7 @@ Remotion project, one composition per `vid-*` id, 1080x1920 at 30 fps. It has it
 
 - `npm run video:studio` previews; `npm run video:render -- <id> ...` renders to `video/out/<id>.mp4`
   (git-ignored). `--publish` also copies it to `static/media/<id>.mp4`; run `npm run media:plan` after.
+- `npm --prefix video run thumbs` renders the YouTube thumbnails (1280x720 JPEG) to `video/out/thumbs/`.
 - Inputs are the trimmed cuts in `capture/raw/cuts/` (git-ignored; `cuts.json` there has tap and
   event times). `video/scripts/footage.mjs` copies them into `video/public/footage/` first.
 - Shared elements live in `video/src/shared/` (felt `Patch`, lower-third, ring pulse, callout,
