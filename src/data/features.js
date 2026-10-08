@@ -12,7 +12,9 @@
 /**
  * @typedef {{id: string, alt: string, capture: string}} Shot
  * @typedef {{id: string, kind: 'capture'|'remotion', seconds: number, brief: string, note: string, youtube?: string}} Video
- * @typedef {{title: string, body: string, shot?: Shot}} Step
+ * @typedef {{x: number, label: string, desc: string}} BarButton  x: the button's centre, as a share of the image width (0-1)
+ * @typedef {{shot: Shot, buttons: BarButton[]}} Annotated  a screenshot with a numbered marker under each button
+ * @typedef {{title: string, body: string, shot?: Shot, annotated?: Annotated}} Step
  * @typedef {{name: string, desc: string, group?: string}} SettingOption
  * @typedef {{name: string, def?: string, desc: string, options?: SettingOption[]}} Setting
  * @typedef {{key: string, title: string, category: string, summary: string, card: string,
@@ -46,7 +48,18 @@ const features = [
       },
       {
         title: 'Press Play',
-        body: 'Tap Play on the floating bar from the Tsum Tsum home screen. The script starts a round, plays it and carries on.',
+        body: 'Tap Play on the floating bar from the Tsum Tsum home screen. The script starts a round, plays it and carries on. Every button on the bar is explained below.',
+        annotated: {
+          shot: {id: 'shot-floating-bar', alt: 'The floating bar with six numbered buttons: Pause, Stop, Log, Quick Bar, Settings and Close', capture: 'Floating bar close up, running.'},
+          buttons: [
+            {x: 0.094, label: 'Pause / Play', desc: 'Pauses the script, and presses the game\'s Pause too. Tap again to carry on. Shows Play while the script is not running.'},
+            {x: 0.252, label: 'Stop', desc: 'Ends the run.'},
+            {x: 0.409, label: 'Log', desc: 'Opens the live log. Long-press to send a problem report.'},
+            {x: 0.567, label: 'Quick Bar', desc: 'Shows or hides the Quick Bar along the bottom of the screen.'},
+            {x: 0.724, label: 'Settings', desc: 'Opens the settings page over the game.'},
+            {x: 0.882, label: 'Close', desc: 'Hides the floating bar.'},
+          ],
+        },
       },
     ],
     settings: [

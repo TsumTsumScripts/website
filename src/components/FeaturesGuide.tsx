@@ -28,6 +28,32 @@ const groupOptions = (options: SettingOption[]) =>
     return runs;
   }, []);
 
+type BarButton = {x: number; label: string; desc: string};
+
+/** A screenshot of the floating bar with a numbered marker under each button and the legend beside it. */
+function AnnotatedBar({shot, buttons}: {shot: {id: string; alt: string; capture: string}; buttons: BarButton[]}): React.JSX.Element {
+  return (
+    <figure className="fg-annot">
+      <div className="fg-annot-bar">
+        <Media id={shot.id} alt={shot.alt} hint={shot.capture} zoom={false} />
+        <div className="fg-annot-marks" aria-hidden="true">
+          {buttons.map((b, i) => (
+            <span key={b.label} style={{left: `${b.x * 100}%`}}>{i + 1}</span>
+          ))}
+        </div>
+      </div>
+      <ol className="fg-annot-list">
+        {buttons.map((b, i) => (
+          <li key={b.label}>
+            <span className="fg-num" aria-hidden="true">{i + 1}</span>
+            <span><b>{b.label}.</b> {b.desc}</span>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  );
+}
+
 export default function FeaturesGuide(): React.JSX.Element {
   const {pathname, search} = useLocation();
   const history = useHistory();
@@ -156,6 +182,7 @@ export default function FeaturesGuide(): React.JSX.Element {
                           <p style={{fontSize: 16, lineHeight: 1.6, color: 'var(--ground-ink-soft)'}}>{s.body}</p>
                         </div>
                       </div>
+                      {s.annotated && <AnnotatedBar {...s.annotated} />}
                       {s.shot && (
                         <div style={{flex: '1 1 240px', maxWidth: 320}}>
                           <Media id={s.shot.id} alt={s.shot.alt} hint={s.shot.capture} aspect="16 / 10" />

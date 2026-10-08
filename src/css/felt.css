@@ -192,6 +192,17 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .chip--pw { background: var(--periwinkle-fill); color: #1c1b2b; border: 0; margin-left: 10px; font-size: 13px; padding: 2px 12px; }
 .fg-tab { border-radius: 999px; padding: 10px 20px; font: 700 16px var(--font-body); background: var(--surface); color: var(--ground-ink); border: 2px dashed var(--surface-thread); cursor: pointer; }
 .fg-tab--on { background: #f4efe6; color: #1c1b2b; border-color: #f4efe6; }
+.fg-annot { flex: 1 1 100%; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.fg-annot-bar { position: relative; width: min(100%, 508px); margin-inline: auto; padding-bottom: 38px; }
+.fg-annot-bar .media--shot img { width: 100%; max-height: none; }
+.fg-annot-bar .media--shot { width: 100%; }
+.fg-annot-marks { position: absolute; left: 0; right: 0; bottom: 0; height: 32px; }
+.fg-annot-marks span { position: absolute; top: 0; transform: translateX(-50%); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 16px; background: #1c1b2b; color: #f4efe6; }
+.fg-annot-marks span::before { content: ''; position: absolute; top: -8px; left: 50%; width: 2px; height: 8px; background: #1c1b2b; transform: translateX(-50%); }
+.fg-annot-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px 22px; font-size: 16px; line-height: 1.5; color: var(--ground-ink-soft); }
+.fg-annot-list li { display: flex; gap: 12px; align-items: flex-start; }
+.fg-annot-list b { color: inherit; }
+.fg-annot-list .fg-num { width: 30px; height: 30px; font-size: 16px; background: #1c1b2b; color: #f4efe6; }
 .fg-step { padding: 24px; display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
 .fg-setting { padding: 16px 0; display: flex; flex-direction: column; gap: 6px; }
 .fg-setting:first-child { padding-top: 0; } .fg-setting:last-child { padding-bottom: 0; }
