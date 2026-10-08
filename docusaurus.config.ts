@@ -17,6 +17,7 @@ const config: Config = {
 
   future: {
     v4: true,
+    faster: true,
   },
 
   // GitHub Pages on a custom domain, so the site is served from the root.
