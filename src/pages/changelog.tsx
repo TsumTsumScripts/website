@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import FeltPage from '@site/src/components/felt/FeltPage';
+import PageHead from '@site/src/components/felt/PageHead';
 import Patch, {type Tone} from '@site/src/components/felt/Patch';
 import {features} from '@site/src/data/features';
 import releases from '@site/src/data/changelog.generated.json';
@@ -71,13 +72,9 @@ export default function Changelog(): React.JSX.Element {
   const list = releases as Release[];
   return (
     <FeltPage wide title="Changelog" description="What changed in each version of the Tsum Tsum script.">
-      <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start'}}>
-        <span className="kicker patch--periwinkle" style={{background: 'var(--periwinkle-fill)', color: 'var(--periwinkle-ink)'}}>Changelog</span>
-        <h1 style={{fontSize: 'clamp(40px, 5.6vw, 60px)'}}>What's new, version by version.</h1>
-        <p style={{fontSize: 18, lineHeight: 1.6, maxWidth: 760, color: 'var(--ground-ink-soft)'}}>
-          One line per feature. Follow a link to read how that part of the script works.
-        </p>
-      </div>
+      <PageHead tone="periwinkle" kicker="Changelog" title="What's new," accent="version by version.">
+        <p>One line per feature. Follow a link to read how that part of the script works.</p>
+      </PageHead>
       <div style={{display: 'flex', flexDirection: 'column', gap: 26, maxWidth: 900}}>
         {list.map((r, i) => (
           <ReleaseCard key={r.version} r={r} open={i === 0} tone={channelTone[r.channel]} />

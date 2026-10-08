@@ -16,7 +16,8 @@
     "typecheck": "tsc",
     "media:plan": "node scripts/media-plan.js",
     "media:check": "node scripts/media-plan.js --check",
-    "capture": "node capture/run.mjs"
+    "capture": "node capture/run.mjs",
+    "contrast": "node scripts/contrast-check.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",

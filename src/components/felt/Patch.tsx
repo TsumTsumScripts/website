@@ -29,7 +29,12 @@ export default function Patch({
   children?: React.ReactNode;
 } & Record<string, unknown>): React.JSX.Element {
   const vars: Record<string, string | number> = {};
-  if (radius) vars['--r'] = radius;
+  if (radius) {
+    vars['--r'] = radius;
+    // Expand CSS shorthand (1-4 values) so the stitch can inset each corner separately.
+    const [a, b = a, c = a, d = b] = radius.split(/\s+/);
+    vars['--r1'] = a; vars['--r2'] = b; vars['--r3'] = c; vars['--r4'] = d;
+  }
   if (inset !== undefined) vars['--inset'] = `${inset}px`;
   if (tilt !== undefined) vars['--tilt'] = `${tilt}deg`;
   if (lift !== undefined) vars['--lift'] = `${lift}px`;

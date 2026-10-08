@@ -12,6 +12,8 @@ page, and the contributor docs under `/docs`. Built with Docusaurus; the script 
   Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.
   `npm run capture` renders the settings and Quick Bar screenshots without a device
   (see `capture/README.md`).
+- **Contrast:** `CONTRAST.md` is the colour rule (AAA text, 3:1 focus and fields);
+  `npm run contrast` checks the built site in both colour modes.
 - **Discord:** the invite is one constant, `discordUrl` in `docusaurus.config.ts`.
 
 ## Contributor docs

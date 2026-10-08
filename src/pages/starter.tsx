@@ -1,6 +1,7 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import FeltPage from '@site/src/components/felt/FeltPage';
+import PageHead from '@site/src/components/felt/PageHead';
 import Patch from '@site/src/components/felt/Patch';
 import Media from '@site/src/components/felt/Media';
 import landing from '@site/src/data/landing';
@@ -11,10 +12,8 @@ export default function Starter(): React.JSX.Element {
   const discord = siteConfig.customFields!.discordUrl as string;
   return (
     <FeltPage title="Starter tool" description="A small menu-driven tool that starts the GAP service on your phone or emulator.">
-      <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start', maxWidth: 760}}>
-        <span className="kicker patch--jade" style={{background: 'var(--jade-fill)', color: 'var(--jade-ink)'}}>Starter tool</span>
-        <h1 style={{fontSize: 'clamp(40px, 5.6vw, 60px)'}}>Start the service in a few taps.</h1>
-        <p style={{fontSize: 18, lineHeight: 1.6, color: 'var(--ground-ink-soft)'}}>
+      <PageHead tone="jade" kicker="Starter tool" title="Start the service" accent="in a few taps.">
+        <p>
           GAP needs a helper service on the phone or emulator. Android only lets a computer start it, and it stops when
           the device restarts. The starter tool is a small numbered menu that does it, and can also install the app and
           copy your round stats and Tsum list off the device. Rooted emulators do not need it.
@@ -23,7 +22,7 @@ export default function Starter(): React.JSX.Element {
           <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download</Patch>
           <Patch as="a" href={`${repo}/tree/main/starter`} tone="surface" className="fbtn">Read the source</Patch>
         </div>
-      </div>
+      </PageHead>
 
       <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))'}}>
         {landing.starterShots.map((s, i) => (

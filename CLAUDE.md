@@ -11,6 +11,8 @@ Docusaurus site for the Tsum Tsum script: felt-styled landing page, features gui
 - `npm run typecheck` (tsc), `npm run refs:check` (code references resolve, media ids declared).
 - `npm run media:plan`: regenerate `MEDIA_PLAN.md` and the id-to-file index. Run it after
   adding or removing anything in `static/media/`.
+- `npm run contrast`: colour-contrast gate over the built site (run `npm run build` first). The rule
+  is in `CONTRAST.md`: text 7:1 (large 4.5:1), focus rings and field edges 3:1. Run it after any colour change.
 - `npm run capture`: render screenshots from the script's real pages (see below).
 
 ## Sibling repo
@@ -44,6 +46,8 @@ Renders the settings page and Quick Bar in headless Chrome at the emulator's 540
 
 ## Conventions
 
+- Colours: follow `CONTRAST.md`. Use a patch's `var(--ink)` on its fill, no `opacity` on text, and
+  docs colours via the Infima variables in `custom.css` and `src/prism/themes.ts`.
 - Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
   `capture/out/`, `capture/.cache/`. Never edit them.
 - Public tree: nothing may name the private toolkit repository or copy host-app code.

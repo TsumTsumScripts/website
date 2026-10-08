@@ -1,6 +1,7 @@
 import React, {useMemo, useRef, useState} from 'react';
 import {useHistory, useLocation} from '@docusaurus/router';
 import FeltPage from '@site/src/components/felt/FeltPage';
+import PageHead from '@site/src/components/felt/PageHead';
 import Patch, {type Tone} from '@site/src/components/felt/Patch';
 import FeltAccent from '@site/src/components/felt/FeltAccent';
 import Media from '@site/src/components/felt/Media';
@@ -72,13 +73,9 @@ export default function FeaturesGuide(): React.JSX.Element {
       wide
       title={`${f.title} · Features`}
       description={f.summary}>
-      <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start'}}>
-        <span className="kicker patch--jade" style={{background: 'var(--jade-fill)', color: 'var(--jade-ink)'}}>Feature guide</span>
-        <h1 style={{fontSize: 'clamp(40px, 5.6vw, 60px)'}}>Every feature, stitch by stitch.</h1>
-        <p style={{fontSize: 18, lineHeight: 1.6, maxWidth: 760, color: 'var(--ground-ink-soft)'}}>
-          Pick a feature to see what it does, how to set it up, and what it looks like in the app.
-        </p>
-      </div>
+      <PageHead tone="jade" kicker="Feature guide" title="Every feature," accent="stitch by stitch.">
+        <p>Pick a feature to see what it does, how to set it up, and what it looks like in the app.</p>
+      </PageHead>
 
       <div style={{display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-start'}}>
         <aside className="fg-side">
@@ -107,7 +104,7 @@ export default function FeaturesGuide(): React.JSX.Element {
                   <span className="fg-num" style={on ? {background: '#1c1b2b', color: '#f4efe6'} : {background: `var(--${x.tone}-fill)`, color: `var(--${x.tone}-ink)`}}>{i + 1}</span>
                   <span style={{display: 'flex', flexDirection: 'column'}}>
                     <b style={{fontSize: 16}}>{x.title}</b>
-                    <small style={{fontSize: 13.5, opacity: 0.92}}>{x.category}</small>
+                    <small style={{fontSize: 14}}>{x.category}</small>
                   </span>
                 </Patch>
               );

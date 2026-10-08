@@ -3,27 +3,44 @@
  */
 
 :root {
-  --ifm-color-primary: #2e6bc4;
-  --ifm-color-primary-dark: #2960b0;
-  --ifm-color-primary-darker: #275ba6;
-  --ifm-color-primary-darkest: #204b89;
-  --ifm-color-primary-light: #3f79ca;
-  --ifm-color-primary-lighter: #4a81cd;
-  --ifm-color-primary-lightest: #6a98d7;
+  /* Link and accent blue: 7:1 or better on white and on every light panel Infima uses. */
+  --ifm-color-primary: #1a4a94;
+  --ifm-color-primary-dark: #174384;
+  --ifm-color-primary-darker: #154080;
+  --ifm-color-primary-darkest: #113268;
+  --ifm-color-primary-light: #1d4f9f;
+  --ifm-color-primary-lighter: #2255a8;
+  --ifm-color-primary-lightest: #2d63bd;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.05);
+  /* Secondary text: Infima's greys (#606770, #525860) sit at 5 to 6.7:1. */
+  --ifm-color-content-secondary: #3b424c;
+  --ifm-color-emphasis-600: #3b424c;
+  --ifm-color-emphasis-700: #343a42;
+  --ifm-menu-color: #343a42;
+  --ifm-toc-link-color: #343a42;
+  --ifm-breadcrumb-color-active: var(--ifm-color-primary);
+  --ifm-footer-link-hover-color: #ffffff;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #7fb2f0;
-  --ifm-color-primary-dark: #5f9eec;
-  --ifm-color-primary-darker: #4f94ea;
-  --ifm-color-primary-darkest: #2077e3;
-  --ifm-color-primary-light: #9fc6f4;
-  --ifm-color-primary-lighter: #afd0f6;
+  --ifm-color-primary: #b4d3f7;
+  --ifm-color-primary-dark: #a9ccf6;
+  --ifm-color-primary-darker: #9fc6f4;
+  --ifm-color-primary-darkest: #8fbaf0;
+  --ifm-color-primary-light: #c2dcf9;
+  --ifm-color-primary-lighter: #cfe3fa;
   --ifm-color-primary-lightest: #dfecfb;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-content-secondary: #d0d4da;
+  --ifm-color-emphasis-600: #d0d4da;
+  --ifm-color-emphasis-700: #dfe2e6;
+  --ifm-menu-color: #dfe2e6;
+  --ifm-toc-link-color: #dfe2e6;
 }
+
+/* Footer links sit on a dark panel in both modes; underline them on hover so the cue isn't colour alone. */
+.footer__link-item:hover { text-decoration: underline; }
 
 /* Wide tables scroll inside the page rather than pushing it sideways. */
 .markdown table {
@@ -36,3 +53,8 @@
 .docusaurus-mermaid-container {
   margin: 1.5rem 0;
 }
+
+/* Mermaid edge labels: the dark theme's grey-on-grey label is under 7:1. */
+[data-theme='dark'] .docusaurus-mermaid-container .edgeLabel,
+[data-theme='dark'] .docusaurus-mermaid-container .edgeLabel p,
+[data-theme='dark'] .docusaurus-mermaid-container .labelBkg { color: #ffffff !important; }

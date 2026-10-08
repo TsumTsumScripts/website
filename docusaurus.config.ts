@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import {lightCode, darkCode} from './src/prism/themes';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -126,8 +126,8 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Thi Nguyen. Apache-2.0.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: lightCode,
+      darkTheme: darkCode,
       additionalLanguages: ['bash', 'powershell', 'json'],
     },
     mermaid: {
