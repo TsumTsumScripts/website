@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import FeltPage from '@site/src/components/felt/FeltPage';
 import PageHead from '@site/src/components/felt/PageHead';
@@ -18,7 +19,7 @@ export default function Starter(): React.JSX.Element {
           GAP needs a helper service on the phone or emulator. Android only lets a computer start it, and it stops when
           the device restarts. The starter tool opens a page in your browser: pick your device and press Start service. The
           same page installs the app, exports your logs and round stats as one zip, clears them off the device, and runs
-          Tsum Tsum Stats beside it. Rooted devices start the service themselves.
+          {' '}<Link to="/stats-site">Tsum Tsum Stats</Link> beside it. Rooted devices start the service themselves.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
           <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download</Patch>
