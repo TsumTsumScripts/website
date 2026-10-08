@@ -8,7 +8,7 @@ const repoUrl = 'https://github.com/TsumTsumScripts/tsum-tsum-script';
 
 // The GAP community server: support and discussion for the script live there.
 // One place to change if the invite is ever reissued.
-const discordUrl = 'https://discord.gg/REPLACE-WITH-GAP-INVITE';
+const discordUrl = 'https://discord.gg/KH3MZWxaMU';
 
 const config: Config = {
   title: 'Tsum Tsum Script',
