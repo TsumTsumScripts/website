@@ -131,7 +131,7 @@ const EndCard: React.FC = () => {
           discord.gg/KH3MZWxaMU
         </Chip>
         <Chip tone="jade" size={44}>
-          tsumtsum.gapapp.app
+          tsumtsum.gapscripts.app
         </Chip>
       </div>
     </AbsoluteFill>

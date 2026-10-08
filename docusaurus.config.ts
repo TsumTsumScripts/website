@@ -21,7 +21,7 @@ const config: Config = {
   },
 
   // GitHub Pages on a custom domain, so the site is served from the root.
-  url: 'https://tsumtsum.gapapp.app',
+  url: 'https://tsumtsum.gapscripts.app',
   baseUrl: '/',
   organizationName: 'TsumTsumScripts',
   projectName: 'tsum-tsum-website',
