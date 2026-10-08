@@ -16,6 +16,7 @@ export default function Media({
   loop = true,
   zoom = true,
   youtube,
+  poster = false,
 }: {
   id: string;
   alt: string;
@@ -27,6 +28,8 @@ export default function Media({
   zoom?: boolean;
   /** A YouTube video id. Shown as a click-to-load player; nothing is requested from YouTube before the click. */
   youtube?: string;
+  /** Show static/img/video-posters/<id>.jpg on a local video until it plays. */
+  poster?: boolean;
 }): React.JSX.Element {
   const file = index[id];
   const [playing, setPlaying] = useState(false);
@@ -68,7 +71,7 @@ export default function Media({
   return (
     <div className={isVideo ? 'media' : 'media media--shot'} style={isVideo ? style : undefined} data-media-id={id}>
       {isVideo ? (
-        <video src={src} aria-label={alt} controls={id.startsWith('vid')} autoPlay={!id.startsWith('vid')} muted={!id.startsWith('vid')} loop={loop && !id.startsWith('vid')} playsInline preload="metadata" />
+        <video src={src} aria-label={alt} controls={id.startsWith('vid')} autoPlay={!id.startsWith('vid')} muted={!id.startsWith('vid')} loop={loop && !id.startsWith('vid')} playsInline preload="metadata" poster={poster ? posterSrc : undefined} />
       ) : zoom ? (
         <button type="button" className="media-zoom" aria-label={`Enlarge screenshot: ${alt}`} aria-haspopup="dialog" onClick={() => setOpen(true)}>
           <img src={src} alt="" loading="lazy" />

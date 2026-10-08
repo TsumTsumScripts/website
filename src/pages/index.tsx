@@ -84,6 +84,13 @@ export default function Home(): React.JSX.Element {
         <FeltAccent kind="medal" width={118} top={-10} right={-6} rotate={12} />
       </section>
 
+      <section id="video" style={section}>
+        <Heading tone="grape" kicker="Trailer" title="The script in under 40 seconds" />
+        <Patch tone="grape" radius="48px" inset={9} style={{padding: 22}}>
+          <Media id={landing.trailer.id} alt="The Tsum Tsum script trailer" hint={landing.trailer.brief} aspect="16 / 9" poster />
+        </Patch>
+      </section>
+
       <Patch
         as="section"
         tone="jade"
@@ -149,13 +156,6 @@ export default function Home(): React.JSX.Element {
         <div>
           <Patch as={Link} to="/features" tone="surface" className="fbtn">All {features.length} features</Patch>
         </div>
-      </section>
-
-      <section id="video" style={section}>
-        <Heading tone="grape" kicker="Trailer" title="The script in under 40 seconds" />
-        <Patch tone="grape" radius="48px" inset={9} style={{padding: 22}}>
-          <Media id={landing.trailer.id} alt="The Tsum Tsum script trailer" hint={landing.trailer.brief} aspect="16 / 9" />
-        </Patch>
       </section>
 
       <Patch
