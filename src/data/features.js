@@ -5,14 +5,16 @@
 // to build. `npm run media:plan` reads this file (and landing.js) and writes
 // MEDIA_PLAN.md, so the shopping list cannot drift from the pages.
 //
-// Copy follows app.gap.Tsum/README.md. A default is left out when the README
-// does not state one -- better a missing pill than a wrong one.
+// Copy follows app.gap.Tsum/README.md and the settings page's own help text.
+// Defaults come from app.gap.Tsum/src/settingDefaults.ts. Every visible row on
+// the settings page appears under some feature; a dropdown lists its options.
 
 /**
  * @typedef {{id: string, alt: string, capture: string}} Shot
  * @typedef {{id: string, kind: 'capture'|'remotion', seconds: number, brief: string, note: string}} Video
  * @typedef {{title: string, body: string, shot?: Shot}} Step
- * @typedef {{name: string, def?: string, desc: string}} Setting
+ * @typedef {{name: string, desc: string, group?: string}} SettingOption
+ * @typedef {{name: string, def?: string, desc: string, options?: SettingOption[]}} Setting
  * @typedef {{key: string, title: string, category: string, summary: string, card: string,
  *   tone: string, hero: Shot, steps: Step[], settings: Setting[], tip: string, shots: Shot[], video: Video}} Feature
  */
@@ -48,10 +50,13 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Auto Play Game', desc: 'Plays rounds whenever no other chore is due. Turn it off to run chores only.' },
-      { name: 'Maximum Chain Number', def: '4', desc: 'Caps how many Tsums are linked in one chain (3 to 15). It also makes each board scan cheaper.' },
-      { name: 'Use Fan?', desc: 'Shakes the remaining Tsums with the fan after some removals. Try it and compare your results.' },
-      { name: 'Max round duration (min)', def: '0 (no limit)', desc: 'Gives up on a round that never ends, such as a stuck skill or an unrecognised screen.' },
+      { name: 'Auto Play Game', def: 'On', desc: 'Plays rounds whenever no other chore is due. Hearts and mailbox chores go first, so very frequent chores can leave no time for rounds. Turn it off to run chores only.' },
+      { name: 'Chains per board scan', def: '6', desc: 'How many chains are drawn before the board is read again (1 to 12). Fewer keeps each chain fresh; more plays faster.' },
+      { name: 'Maximum Chain Number', def: '4', desc: 'Caps how many Tsums are linked in one chain (3 to 15). A low cap plays more, shorter chains, which suits Tsums that score on chain count. It also makes each board scan cheaper.' },
+      { name: 'Link reach (% of a tsum)', def: '190', desc: 'The largest gap allowed between two linked Tsums, as a share of one Tsum\'s width (150 to 350). Too low and chains come out short; too high and the game refuses the drag.' },
+      { name: 'Link MyTsum first', def: 'On', desc: 'Prefers chains of your own Tsum, so the skill gauge fills faster.' },
+      { name: 'Use Fan?', def: 'Off', desc: 'Shakes the board with the fan every few scans. Opinions differ on whether it helps, so try it and compare your results.' },
+      { name: 'Max round duration (min)', def: '0 (no limit)', desc: 'Gives up on a round that never ends, such as a stuck skill or an unrecognised screen. Set what happens next under Schedules and limits.' },
     ],
     tip: 'Low-cap, many-chain play is the usual choice for Roxas, Maleficent and other count-scoring Tsums.',
     shots: [
@@ -94,13 +99,47 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Skill Type', desc: 'Which skill the script performs. Grouped as Burst, Bubble (turns Tsums into bubbles it then sweeps) and Unique (changes how the board is played).' },
-      { name: 'Skill Level', desc: 'Read only by Cinderella, Cpt. Lightyear and Coronation Day Elsa (her freeze window is 5s at level 1, 10s at level 6).' },
-      { name: 'Skill Waiting time', desc: 'The longest the board is left alone after an activation. Play resumes as soon as the tsums stop falling.' },
+      {
+        name: 'Skill Type',
+        def: 'Burst',
+        desc: 'Which skill the script performs. Grouped by what the skill leaves behind. Pick the entry named after your Tsum if there is one, otherwise Burst or Burst + clear bubbles.',
+        options: [
+          { group: 'Burst', name: 'Burst', desc: 'The general-purpose entry. Fires, waits for the board to settle (up to Skill Waiting time), then plays on.' },
+          { group: 'Burst', name: 'Cabbage Mickey', desc: 'Searches the cabbages for Mickey and taps him. If he is never found, it sweeps the bubbles instead.' },
+          { group: 'Burst', name: 'Cpt. Lightyear', desc: 'Randomises, lands timed aiming taps (more at a higher Skill Level), then sweeps the bubbles.' },
+          { group: 'Burst', name: 'Cpt. Lightyear 120', desc: 'The same as Cpt. Lightyear, timed for an emulator running at 120 fps.' },
+          { group: 'Burst', name: 'Donald', desc: 'Taps the whole play area on a grid, three times over, to hit the targets the skill scatters.' },
+          { group: 'Burst', name: 'Holiday Donald', desc: 'The same choreography as Donald.' },
+          { group: 'Burst', name: 'Jedi Luke', desc: 'Taps four spots before and after the skill, and flies it with five upward drags.' },
+          { group: 'Burst', name: 'Lightning McQueen+', desc: 'Waits for the car to reach top speed before the follow-up tap, so it clears the most.' },
+          { group: 'Burst', name: 'Nightmare Before Christmas (Set)', desc: 'Plays through each character\'s cut-in, and keeps reading the board as Oogie Boogie\'s rolls shrink the tsums.' },
+          { group: 'Burst', name: 'Disney Villains (Set) (Beta)', desc: 'Fires like Burst, and reads the neon villain tsums by colour so more of them can be chained.' },
+          { group: 'Burst', name: 'Pair Tsum', desc: 'Like Burst, but watches both skill buttons and fires whichever is ready the moment it is.' },
+          { group: 'Burst', name: 'Sheriff Woody', desc: 'Swings the lasso with three left-and-right drags across the board.' },
+          { group: 'Bubble', name: 'Burst + clear bubbles', desc: 'Burst, then a sweep of the whole play area for a skill that leaves the board covered in bubbles. The rest of the round still follows Bubble Strategy.' },
+          { group: 'Bubble', name: 'Cinderella', desc: 'Draws serpentine passes over the whole board, then clears the bubbles left behind.' },
+          { group: 'Bubble', name: 'Horn Hat Mickey', desc: 'Sweeps the bubbles the skill makes, after the shortest intro of the bubble skills.' },
+          { group: 'Bubble', name: 'Marie', desc: 'Sweeps the bubbles the skill turns tsums into.' },
+          { group: 'Bubble', name: 'Miss Bunny', desc: 'The same sweep as Marie.' },
+          { group: 'Bubble', name: 'Moana', desc: 'Sweeps the bubbles, after a slightly longer intro than Marie\'s.' },
+          { group: 'Bubble', name: 'Rabbit', desc: 'The same sweep as Marie.' },
+          { group: 'Bubble', name: 'Snow White', desc: 'Sweeps once the animation ends, then again from halfway down for bubbles that drifted.' },
+          { group: 'Unique', name: 'Coronation Day Elsa', desc: 'Freezes parallel bands from the bottom of the board up while her window is open, then breaks the pile before it closes. Skill Level sets the window\'s length.' },
+          { group: 'Unique', name: 'Formal Beast', desc: 'Fires like Burst, then picks chains by colour so the Beast and Belle halves of the gauge fill evenly.' },
+          { group: 'Unique', name: 'Gaston', desc: 'Chains the Gaston tsums through his window, cancels with bubbles, and times the closing chain off his antlers.' },
+          { group: 'Unique', name: 'Lorcana Aurora', desc: 'Plays as Burst + clear bubbles until she transforms, then chains every bubble on the board the long way round. Turns Lorcana Card on.' },
+          { group: 'Unique', name: 'Rapunzel+', desc: 'Draws one chain through tsums of any colour while the board is colour-blind. Skill Level sets how many it may take (9 to 24).' },
+          { group: 'Unique', name: 'Tiara Minnie+', desc: 'Finds the present shown in Minnie\'s thought bubble and taps its match.' },
+          { name: 'No Skill', desc: 'Never fires the skill, so you can tap it yourself.' },
+        ],
+      },
+      { name: 'Skill Level', def: '6', desc: 'Read only by Cinderella, Cpt. Lightyear, Coronation Day Elsa (her freeze window is 5s at level 1, 10s at level 6) and Rapunzel+. Every other skill ignores it.' },
+      { name: 'Lorcana Card', def: 'Off', desc: 'For Lorcana Tsums: pops the ink-stone bubble after each skill and taps the transformation card when it appears. Works with any Skill Type.' },
+      { name: 'Auto Tap Skill', def: 'On', desc: 'Fires the skill the moment the gauge fills, even in the middle of a chain.' },
       { name: 'Wait for Settle (s)', def: '0.0', desc: 'Holds the tap until the board settles (0.0 to 3.0 s). A generous value costs nothing on a board that has already refilled.' },
-      { name: 'Delay Skill ReActivation (sec)', def: '0 (never hold)', desc: 'Holds a full gauge for this long after a skill fires. Set it to the skill\'s duration.' },
-      { name: 'No skill last fever seconds', desc: 'Skips the skill when a fever ends within this many seconds, to make the most of fever time.' },
-      { name: 'Lorcana Card', desc: 'For Lorcana Tsums: pops the ink-stone bubble after each skill and taps the transformation card when it appears.' },
+      { name: 'No skill last fever seconds', def: '0 (off)', desc: 'Holds the skill when a fever ends within this many seconds (0 to 10), so it starts the next fever instead.' },
+      { name: 'Skill Waiting time (sec)', def: '0', desc: 'The longest the board is left alone after an activation (0 to 15). Play resumes as soon as the tsums stop falling.' },
+      { name: 'Delay Skill ReActivation (sec)', def: '0 (never hold)', desc: 'Holds a full gauge for this long after a skill fires (0 to 30). Set it to the skill\'s duration so a second tap does not restart it.' },
     ],
     tip: 'If a skill leaves bubbles behind, set Skill Waiting time long enough to cover its effect.',
     shots: [
@@ -144,8 +183,19 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Bubble Strategy', def: 'One Bubble Mid Chain', desc: 'Options: One Bubble Mid Chain, All Bubbles Mid Chain, Save One Mid Chain, Save One, All Bubbles ASAP.' },
-      { name: 'Hold bubbles last fever seconds', def: '0 (never hold)', desc: 'Leaves every bubble alone while a fever has at most this many seconds left.' },
+      {
+        name: 'Bubble Strategy',
+        def: 'One Bubble Mid Chain',
+        desc: 'What to do with the bubbles on the board. A bubble popped as a chain lands clears a bigger area, so each option is a trade between that and clearing bubbles quickly. Skills that make bubbles themselves clear up after their own, whatever this says.',
+        options: [
+          { name: 'One Bubble Mid Chain', desc: 'Pops exactly one bubble as each chain lands, keeping the rest for later chains.' },
+          { name: 'All Bubbles Mid Chain', desc: 'Pops every bubble the last scan found, still only as a chain lands.' },
+          { name: 'Save One Mid Chain', desc: 'Pops every bubble but the best-placed one as a chain lands, so one is always left on the board.' },
+          { name: 'Save One', desc: 'Pops bubbles as soon as they are seen except the best-placed one, which is saved for the next long chain.' },
+          { name: 'All Bubbles ASAP', desc: 'Pops every bubble as soon as it is seen, without waiting for a chain, and taps across the bottom of the board when a pile builds up.' },
+        ],
+      },
+      { name: 'Hold bubbles last fever seconds', def: '0 (never hold)', desc: 'Leaves every bubble alone while a fever has at most this many seconds left (0 to 10), so they start the next fever fastest.' },
     ],
     tip: 'Skills that turn Tsums into bubbles (Marie, Moana, Snow White and others) clear up after themselves whatever this is set to.',
     shots: [],
@@ -184,13 +234,13 @@ const features = [
       },
     ],
     settings: [
-      { name: '+Score', desc: 'Play with the +Score bonus active.' },
-      { name: '+Coin', desc: 'Play with the +Coin bonus active.' },
-      { name: '+Exp', desc: 'Play with the +Exp bonus active.' },
-      { name: '+Time', desc: 'Play with the +Time bonus active.' },
-      { name: '+Bubble', desc: 'Play with the +Bubble bonus active.' },
-      { name: '5>4', desc: 'Play with the 5>4 bonus active.' },
-      { name: '+Combo', desc: 'Play with the +Combo bonus active.' },
+      { name: '+Score', def: 'Off', desc: 'Buys the score bonus before each round.' },
+      { name: '+Coin', def: 'Off', desc: 'Buys the bonus that earns more Coins from the round.' },
+      { name: '+Exp', def: 'Off', desc: 'Buys the bonus that earns more experience from the round.' },
+      { name: '+Time', def: 'Off', desc: 'Buys a few more seconds of play.' },
+      { name: '+Bubble', def: 'Off', desc: 'Buys more bubbles on the board.' },
+      { name: '5>4', def: 'Off', desc: 'Buys one Tsum colour fewer, so chains come easier.' },
+      { name: '+Combo', def: 'Off', desc: 'Buys more time to keep a combo going.' },
     ],
     tip: 'The round already committed to its items on the screen before, so a mid-round change lands on the next round.',
     shots: [],
@@ -229,10 +279,10 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Auto Send Hearts', desc: 'Regularly sends hearts to your friends list.' },
-      { name: 'Send to 0 score', desc: 'Also sends to players with no score. Useful for auto-senders, wasted on friends who have really stopped.' },
-      { name: 'Max run time', desc: 'Limits how long a sweep runs, so you do not miss coins on incoming heart messages.' },
-      { name: 'Waiting time (min) before repeat', desc: 'How long to wait before the next sweep.' },
+      { name: 'Auto Send Hearts', def: 'Off', desc: 'Regularly works down your friends list sending hearts.' },
+      { name: 'Send to 0 score', def: 'Off', desc: 'Also sends to players with no score. Useful for auto-senders, wasted on friends who have really stopped.' },
+      { name: 'Max run time (min)', def: '0 (no limit)', desc: 'Limits how long one pass down the list runs (0 to 80), so you do not miss coins on incoming heart mail. With a limit, the next pass carries on where this one stopped; at 0 every pass starts from the top.' },
+      { name: 'Waiting time (min) before repeat', def: '26', desc: 'How long to wait before the next pass down the friends list (1 to 60).' },
     ],
     tip: 'The Quick Bar\'s Send chip adds or drops the heart chore straight away, mid-run.',
     shots: [],
@@ -271,12 +321,14 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Receive All Hearts', desc: 'Uses Claim All. Fast, but unknown senders do not get a heart back.' },
-      { name: 'Receive Hearts One By One', desc: 'Opens each message so every sender gets a heart back. The pinned ad mail is always skipped.' },
-      { name: 'Skip ruby', desc: 'Does not open messages containing rubies.' },
-      { name: 'Claim All old mails', desc: 'Collects coin-bearing heart mails one by one, then finishes with Claim All.' },
-      { name: 'Max Times to Open Mailbox', desc: 'Most consecutive openings before the next task starts. Ends early when the mailbox is empty.' },
-      { name: 'Waiting time before repeat', desc: 'Minutes before the mailbox is opened again.' },
+      { name: 'Receive All Hearts', def: 'Off', desc: 'Uses Claim All. Fast, but unknown senders do not get a heart back.' },
+      { name: 'Waiting time (min) before repeat', def: '25', desc: 'How long to wait before the next Claim All (5 to 60).' },
+      { name: 'Receive Hearts One By One', def: 'Off', desc: 'Opens each message so every sender gets a heart back. Slower than Claim All. The pinned ad mail is always skipped.' },
+      { name: 'Skip Ruby', def: 'Off', desc: 'Leaves messages containing rubies in the mailbox. Useful when your main device is on iOS and your sender on Android, since rubies do not carry across.' },
+      { name: 'Skip Medals', def: 'Off', desc: 'Leaves Mission Clear medals in the mailbox.' },
+      { name: 'Claim All old mails', def: 'Off', desc: 'Collects coin-bearing heart mails one by one, then finishes with Claim All.' },
+      { name: 'Max Times to Open Mailbox', def: '5', desc: 'Most consecutive openings before the next task starts (1 to 20). Ends early when the mailbox is empty.' },
+      { name: 'Waiting time (min) before repeat', def: '5', desc: 'Minutes before the mailbox is opened again, once it is empty or the limit above is reached (1 to 60).' },
     ],
     tip: 'One By One is slower but encourages unknown players to send you hearts and coins later.',
     shots: [],
@@ -315,10 +367,30 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Buy boxes every (hours)', def: '0 (off)', desc: 'Schedule for a sweep. The Now button runs one whatever the schedule says.' },
-      { name: 'Box to buy', desc: 'Which box. Select Box and Pick-Up Capsule share a limited-time slot, so most of the time neither is on sale.' },
-      { name: 'Boxes per purchase', desc: 'One at a time, Ten at a time, or Ten then one until sold out.' },
-      { name: 'Purchases per sweep', desc: 'Safety limit, 1 to 50. A 10-Time purchase counts as one.' },
+      { name: 'Buy boxes every hours', def: '0 (off)', desc: 'Hours between sweeps (0 to 24). A sweep buys until the box sells out or you run out of Coins. The Now button runs one whatever the schedule says. Rubies are never spent.' },
+      {
+        name: 'Box to buy',
+        def: 'Premium Box',
+        desc: 'Only ever this box: the script never falls back to another one.',
+        options: [
+          { name: 'Premium Box+', desc: 'The Premium Box+ in the store.' },
+          { name: 'Premium Box', desc: 'The standard Premium Box.' },
+          { name: 'Select Box', desc: 'Shares the limited-time slot with Pick-Up Capsule, so most of the time it is not on sale and the sweep buys nothing.' },
+          { name: 'Pick-Up Capsule', desc: 'Shares the limited-time slot with Select Box, with the same caveat.' },
+          { name: 'Happiness Box', desc: 'Always bought one at a time, since it has no 10-Time button.' },
+        ],
+      },
+      {
+        name: 'Boxes per purchase',
+        def: 'One at a time',
+        desc: 'Which purchase button the sweep presses.',
+        options: [
+          { name: 'One at a time', desc: 'Never presses 10-Time.' },
+          { name: 'Ten at a time', desc: 'Uses 10-Time Purchase where the box offers it, and ends the sweep when the store refuses ten because the box is almost sold out.' },
+          { name: 'Ten, then one until sold out', desc: 'The same until that refusal, then carries on one at a time until the box sells out, emptying it in one sweep.' },
+        ],
+      },
+      { name: 'Purchases per sweep', def: '10', desc: 'Safety limit, 1 to 50. A 10-Time purchase counts as one.' },
     ],
     tip: 'Rubies are never spent: if the game offers to trade them for coins, the script cancels and ends the sweep.',
     shots: [],
@@ -357,8 +429,8 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Unlock Level every (hours)', def: '0 (off)', desc: 'Schedule for the sweep. Consumes coins. Your sort order is put back afterwards.' },
-      { name: 'Auto Unlock MyTsum Level', desc: 'Raises the selected Tsum right after a round shows it capped. Retries after half an hour if it cannot afford it.' },
+      { name: 'Unlock Level every hours', def: '0 (off)', desc: 'Hours between sweeps (0 to 24). Consumes coins. The Now button runs one whatever the schedule says. Your sort order is put back afterwards.' },
+      { name: 'Auto Unlock MyTsum Level', def: 'Off', desc: 'Raises the selected Tsum right after a round shows it capped. Retries after half an hour if it cannot afford it.' },
     ],
     tip: 'Both options consume coins. Keep a reserve if you also buy boxes.',
     shots: [],
@@ -437,7 +509,7 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Record round stats', desc: 'Appends a row per round: id, UTC time, skill, seconds, score, coins, medals and the gameplay settings used.' },
+      { name: 'Record round stats', def: 'On', desc: 'Appends a row per round: id, UTC time, skill, seconds, score, coins, medals and the gameplay settings used.' },
       { name: 'Share round stats (Beta)', def: 'Off', desc: 'Sends new rows at most once a minute. Needs Record round stats and a stats server set in GAP.' },
     ],
     tip: 'Each round has a unique id, so files from different devices can be merged without double counting.',
@@ -571,13 +643,31 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Auto Launch Tsum App', desc: 'Starts the game when the script starts.' },
+      { name: 'Special Screen Ratio (Long Screen)', def: 'Off', desc: 'For long screens with uneven black bars above and below the game. Try it if hearts or the mailbox misbehave. Start the game yourself first: it does not work with Auto Launch.' },
+      { name: 'Tsum app restart frequency (min)', def: '0 (off)', desc: 'Restarts the game this often on long runs (0 to 7200). Needs Auto Launch Tsum App.' },
+      { name: 'Auto Launch Tsum App', def: 'Off', desc: 'Starts the game when the script starts. Leave it off with Special Screen Ratio.' },
       { name: 'Delay between rounds (min)', def: '0', desc: 'How long to rest after a round (0 to 120). Chores keep their own clocks. Now ends a rest.' },
       { name: 'Max round duration (min)', def: '0 (no limit)', desc: 'Gives up on a round that never ends (0 to 60).' },
-      { name: 'When a round runs long', desc: 'Stop playing and let the clock run out, or stop the script.' },
-      { name: 'Stop after games', def: '0 (never)', desc: 'Rounds to play before the action below (0 to 999).' },
-      { name: 'When the games are played', desc: 'Turn off Auto Play, Pause the script, or Stop the script.' },
-      { name: 'Device frame rate', def: '60', desc: 'Set to your emulator\'s frame rate; some screens dismiss after a fixed number of frames.' },
+      {
+        name: 'When a round runs long',
+        def: 'Stop playing, let the clock run out',
+        desc: 'What happens when Max round duration is up. Either way the script stops playing and never presses the game\'s Pause.',
+        options: [
+          { name: 'Stop playing, let the clock run out', desc: 'Waits for the round to time out, then carries on as normal with the score screen, stats and the next round.' },
+          { name: 'Stop the script', desc: 'Stops at once, like the Stop button. The round times out unwatched and is not recorded.' },
+        ],
+      },
+      { name: 'Stop after games', def: '0 (never)', desc: 'Rounds to play before the action below (0 to 999). The last round is always played out.' },
+      {
+        name: 'When the games are played',
+        def: 'Turn off Auto Play',
+        desc: 'What happens once Stop after games is reached.',
+        options: [
+          { name: 'Turn off Auto Play', desc: 'Stops starting rounds; mailbox, hearts and other chores carry on.' },
+          { name: 'Pause the script', desc: 'Pauses like the overlay\'s Pause button. Resume plays that many rounds again.' },
+          { name: 'Stop the script', desc: 'Stops like the Stop button.' },
+        ],
+      },
     ],
     tip: 'Changing Stop after games mid-run starts the count again from there.',
     shots: [],
@@ -657,6 +747,11 @@ const features = [
     ],
     settings: [
       { name: 'Report', desc: 'Writes the report folder, including debug records the normal log never gets.' },
+      { name: 'Debug logs', def: 'Off', desc: 'Adds more detail to the log file. A report carries those lines either way.' },
+      { name: 'Debug game', def: 'Off', desc: 'Saves working screenshots while playing, and a picture of every screen visited. For development.' },
+      { name: 'Walkthrough recorder', def: 'Off', desc: 'Records instead of playing: you drive the game by hand and each screen and tap is written to walkthrough/. Nothing else runs. Turn it off again to play.' },
+      { name: 'Collect unknown screens', def: 'Off', desc: 'Saves screens the script cannot recognise to corpus/, so they can be sent in for a fix.' },
+      { name: 'Page history depth', def: '20', desc: 'How many recent screens are remembered for a report (0 to 100). 0 turns the history off.' },
     ],
     tip: 'A screen that will not capture is itself useful, so reports record that too.',
     shots: [],

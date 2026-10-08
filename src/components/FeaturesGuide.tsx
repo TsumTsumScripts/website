@@ -16,6 +16,17 @@ type TabId = (typeof tabs)[number]['id'];
 
 const isTab = (v: string | null): v is TabId => tabs.some((t) => t.id === v);
 
+type SettingOption = {name: string; desc: string; group?: string};
+
+// A dropdown's options in runs under their group heading, in the page's order.
+const groupOptions = (options: SettingOption[]) =>
+  options.reduce<{group?: string; items: SettingOption[]}[]>((runs, o) => {
+    const last = runs[runs.length - 1];
+    if (last && last.group === o.group) last.items.push(o);
+    else runs.push({group: o.group, items: [o]});
+    return runs;
+  }, []);
+
 export default function FeaturesGuide(): React.JSX.Element {
   const {pathname, search} = useLocation();
   const history = useHistory();
@@ -167,12 +178,32 @@ export default function FeaturesGuide(): React.JSX.Element {
               <Patch tone="surface" radius="30px" inset={7} style={{padding: '28px 30px', ['--thread' as string]: '#6c6890'}}>
                 <dl style={{margin: 0, display: 'flex', flexDirection: 'column'}}>
                   {f.settings.map((s, i) => (
-                    <div key={s.name} className="fg-setting" style={i ? {borderTop: '2px dashed #4a4766'} : undefined}>
+                    <div key={`${i}-${s.name}`} className="fg-setting" style={i ? {borderTop: '2px dashed #4a4766'} : undefined}>
                       <dt>
                         <b style={{fontSize: 17}}>{s.name}</b>
                         {s.def && <span className="chip chip--pw">Default: {s.def}</span>}
                       </dt>
-                      <dd style={{margin: 0, color: 'var(--ground-ink-soft)', lineHeight: 1.6}}>{s.desc}</dd>
+                      <dd style={{margin: 0, color: 'var(--ground-ink-soft)', lineHeight: 1.6}}>
+                        {s.desc}
+                        {s.options && (
+                          <div className="fg-opts">
+                            {groupOptions(s.options).map((g, j) => (
+                              <div key={j}>
+                                {g.group && <p className="fg-opts-group">{g.group}</p>}
+                                <ul>
+                                  {g.items.map((o) => (
+                                    <li key={o.name}>
+                                      <b>{o.name}</b>
+                                      {o.name === s.def && <span className="fg-opts-def">default</span>}
+                                      <span>{o.desc}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </dd>
                     </div>
                   ))}
                 </dl>
