@@ -39,14 +39,14 @@ a GitHub URL, and `@saucelabs/theme-github-codeblock` fetches those lines from
 `main` when the page is viewed:
 
     ```ts reference title="app.gap.Tsum/src/skills/moana.ts"
-    https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/skills/moana.ts#L1-L9
+    https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/skills/moana.ts#L1-L9
     ```
 
 No range means the whole file. Ranges drift as the code moves, so
 `scripts/check-refs.js` resolves every reference against the checkout beside
 the site and fails on a missing file, a range past the end, or a whole-file
 reference over 200 lines. References into the catalogue repository are
-checked when `../../game-automation-catalogue` exists and skipped otherwise.
+checked when `../tsum-tsum-catalogue` exists and skipped otherwise.
 Run it before a pull request and keep ranges short and anchored to small,
 stable files.
 

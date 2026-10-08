@@ -5,6 +5,11 @@ description: The words the code and the docs use, in one place.
 
 # Glossary
 
+**Access screen** — a script's page of switches in the app, reached from its
+Library card: environment variables, network requests, shell commands. All off
+by default, each the player's own decision for that one script.
+[Trust and access](../architecture/trust-and-access).
+
 **Anchor** — a named button position on a `Page` entry (`back`, `next`,
 `tsums`, `store`, `mail`, `home`). A subscription taps an anchor of the entry
 that matched, never a coordinate, because variants of a page put the same
@@ -23,8 +28,8 @@ stripped): every `src/*.ts` concatenated in `tsconfig.json` order into one
 classic script with one global scope.
 
 **Catalogue** — a JSON index of scripts the app can download, and the public
-repository that builds the official one. A **source** is a catalogue URL added
-in the app.
+`tsum-tsum-catalogue` repository that builds this script's. A **source** is a
+catalogue URL added in the app; the player confirms every one.
 
 **Chain** — a run of adjacent same-colour tsums drawn as one drag. Its length
 is capped by the *Maximum Chain Number* setting or the skill's own limits.
@@ -35,6 +40,9 @@ offers.
 
 **Chore** — a scheduled task other than the round: the mailbox, the hearts,
 the level-cap sweep, the box buying.
+
+**`env:KEY`** — how a script names a network destination: by the key of a
+value the player entered (declared in `gap-env.json`), never by a literal URL.
 
 **Fever** — a mode of the board (lights down, the gauge turned into a timer),
 not a page. Read off its own probes by `fever.ts` and broadcast through
@@ -50,7 +58,8 @@ recognised when enough of them read the expected colour within threshold.
 passes one, and only a look with a goal lets the `navigate` band act.
 
 **Host** — the General Automation Platform app: the natives (capture, colour
-reads, taps, shell), the WebViews, the floating bar, the installer.
+reads, taps, named device calls), the WebViews, the floating bar, the
+installer, and the gates on what a script may reach.
 
 **Look** — one detection: capture, sweep, broadcast. `detect` runs the queue
 over it; `peek` does not.
@@ -74,7 +83,7 @@ threshold.
 
 **Report** — the folder the script writes when something goes wrong: the
 screen, the screens before it, the settings and the last few hundred log
-records. Sent in from the app's Run History.
+records. Kept in the device folder's `reports/` until the player sends it.
 
 **Ring** — the last few hundred log records held in memory whether or not they
 were written out; what a report carries.
@@ -83,6 +92,10 @@ were written out; what a report carries.
 and a frozen copy of the settings it was played under.
 
 **Run** — one `start()`…`stop()`. Has its own `runId` and owns a world.
+
+**Signature** — `gap-signature.json`, written by a release build: every shipped
+file's hash, signed with a key only the maintainers hold. Tells the app the
+build is the published one, unedited.
 
 **Settle** — wait for the screen (or the play square) to stop moving, up to a
 budget. The alternative to a fixed sleep, because the game animates in
@@ -98,7 +111,11 @@ choreography, one file per skill under `src/skills/`.
 a fever (`gFever.subscribe`): an id, a sentence saying what it does, the
 pages it fires on, and a list of steps.
 
-**Toolkit** — a separate, private maintainers' repository. Source comments
+**Starter** — the PC tool in `starter/`. It opens a page in the browser that
+starts the app's helper service, installs the app, offers the Tsum Tsum
+library and exports logs and stats.
+
+**Toolkit** — the development toolkit, which is private. Source comments
 occasionally cite one of its commands; none is a script in this package, and
 nothing here needs it.
 

@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
         'architecture/page-router',
         'architecture/play-loop',
         'architecture/settings-model',
+        'architecture/trust-and-access',
         'architecture/build-and-release',
       ],
     },

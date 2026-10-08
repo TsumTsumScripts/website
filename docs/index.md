@@ -35,6 +35,7 @@ what you read is what is on `main`.
 | run code when a round starts, a fever ends, a skill fires… | [Lifecycle hooks](./guides/lifecycle-hooks.md) |
 | test a change without a device | [Test without a device](./guides/test-without-a-device.md) |
 | publish a release, or host scripts the app can install | [Publishing](./publishing/build-and-deploy.md) |
+| know what the app lets a script do, and why releases are signed | [Trust and access](./architecture/trust-and-access.md) |
 | know what a setting means | [Settings reference](./reference/settings.md) |
 | know the rules before opening a pull request | [Contributing](./contributing/workflow.md) |
 
@@ -43,25 +44,28 @@ what you read is what is on `main`.
 ```mermaid
 flowchart LR
   app["<b>General Automation Platform</b><br/>the Android host app<br/>(private)"]
-  scripts["<b>game-automation-scripts</b><br/>this script and its build<br/>(public)"]
-  catalogue["<b>game-automation-catalogue</b><br/>the libraries the app downloads<br/>(public)"]
+  scripts["<b>tsum-tsum-script</b><br/>this script and its build<br/>(public)"]
+  catalogue["<b>tsum-tsum-catalogue</b><br/>the library the app downloads<br/>(public)"]
   scripts -- "npm run release" --> catalogue
-  catalogue -- "official.json" --> app
+  catalogue -- "catalogue.json" --> app
   app -- "runs index.js" --> scripts
 ```
 
 - **The host app** loads a script folder, runs its `index.js` on an embedded
   JavaScript engine, shows its `index.html` as a settings page, and provides the
-  natives the script calls: screenshots, colour reads, taps, shell commands.
+  natives the script calls: screenshots, colour reads, taps, named device calls.
+  It also decides what a script may reach beyond that —
+  [Trust and access](./architecture/trust-and-access.md).
 - **This repository** is the Tsum Tsum script: TypeScript under
   `app.gap.Tsum/src/`, compiled into one bundle, plus the tooling that builds,
   checks and releases it.
-- **The catalogue** is where releases land. The app reads its `official.json`
-  and offers each entry for download. [Your own library source](./publishing/your-own-library-source.md)
+- **The catalogue** is where releases land. Its `catalogue.json` is a library
+  source: the starter offers to add it, the player confirms, and the app then
+  offers each entry for download. [Your own library source](./publishing/your-own-library-source.md)
   shows how to publish one of your own.
 
 Comments in the source sometimes cite a command that `package.json` does not
-define. Those belong to a separate, private maintainers' repository. Nothing on
+define. Those belong to the development toolkit, which is private. Nothing on
 this site needs it.
 
 :::note Images

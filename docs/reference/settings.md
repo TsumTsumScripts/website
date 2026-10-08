@@ -104,7 +104,7 @@ settings". Close the panel instead and the run carries on where it left off.
 | Max round duration (min) | How long one round may last before the script gives up on it (0–60, default 0 = no limit). Timed from the board coming up. |
 | When a round runs long | What happens at that limit. `Stop playing, let the clock run out` (default) stops playing and lets the round finish on its own, so the score screen, the stats and the next round follow as normal. `Stop the script` stops where it stands; the round is not recorded. The game's Pause is never pressed — it would stop the very clock the round has to run down. |
 | Record round stats | One CSV row per played round in `stats/stats_<YYYYMMDD>.csv`: a unique round id, UTC time, skill, duration, score, coins, medals, and the gameplay settings it was played under. Figures that could not be read are left empty and the screen saved beside the CSV. |
-| Share round stats | Alpha, off by default. Sends new rows of those CSVs to the stats server about once a minute; needs Record round stats, and a stats server set with network access allowed on this script's Library card in GAP (`ROUND_STATS_URL`). |
+| Share round stats | Alpha, off by default. Sends new rows of those CSVs to the stats server about once a minute; needs Record round stats, and a stats server set with environment variables and network access allowed on this script's access screen in GAP (`ROUND_STATS_URL`). |
 | Stop after games | Rounds to play before the action below (0–999, default 0 = never). Counted at each round's end; never shared in a code. |
 | When the games are played | What happens at that count: `Auto Play off`, `Pause` or `Stop`. |
 | Tsum app restart frequency (min) | Close and reopen the game this often to clear out a long run, in 30-minute steps. 0 is off; needs Auto Launch. |
@@ -115,7 +115,7 @@ settings". Close the panel instead and the run carries on where it left off.
 
 | Setting | What it does |
 |:--|:--|
-| Report a problem | Save what is on screen, the screens before it, the settings and this run's recent log to `reports/`, then share it from Run History in the app. The one row here meant for everybody — see [Reporting a problem](#reporting-a-problem). |
+| Report a problem | Save what is on screen, the screens before it, the settings and this run's recent log to `reports/` in the device's folder. The one row here meant for everybody — see [Reporting a problem](#reporting-a-problem). |
 | Debug logs | Write `debug` records to the log file. A report carries them whether or not this is on. |
 | Debug game | Save annotated screenshots while playing, keep a frame of *every* screen visited in `history/`, and log the recent screens with how long each was up. |
 | Walkthrough recorder | Record instead of play: you drive the game by hand and the script writes down every screen it recognises, where you tapped, and what followed, into `walkthrough/`. |
@@ -214,10 +214,10 @@ the last few hundred log lines. It also writes one by itself whenever it gives
 up on a screen, a chore throws repeatedly, a round ends without the script
 seeing the score, or it finds itself somewhere with no way off.
 
-Then open **Run History** in the app: a run that saved a report has **Share
-report** (packs everything into one zip for a chat app, mail, a drive) and
-**Save to device** (writes the zip to `Download/GameAutomationPlatform/reports`).
-Nothing leaves the device unless you send it.
+The report stays in `reports/` inside the device's own folder
+([Files on the device](../guides/files-on-the-device)) until you copy it off
+and send it. Nothing leaves the device by itself; the script has no route to
+send a report anywhere.
 
 Opening the settings panel pauses the run and presses the game's Pause, so a
 report taken from there shows the pause menu — the screens *before* it are
@@ -225,5 +225,3 @@ saved too. To catch the live screen, hold the Log button on the floating bar whi
 script is still playing.
 
 Reports live in `reports/`; the newest eight are kept.
-
-<ImagePlaceholder id="run-history-report-buttons" alt="Run History in the app, with a reported run's card showing Share report and Save to device" />

@@ -22,13 +22,12 @@ const siteDir = path.resolve(__dirname, '..');
 const docsDir = path.join(siteDir, 'docs');
 // The script repository is checked out beside this one.
 const repoRoot = process.env.TSUM_SCRIPT_REPO || path.resolve(siteDir, '..', 'tsum-tsum-script');
-const catalogueRoot = path.resolve(repoRoot, '..', 'game-automation-catalogue');
+const catalogueRoot = path.resolve(repoRoot, '..', 'tsum-tsum-catalogue');
 
 /** Where a reference URL's repository is checked out, or null to skip it. */
 const repos = {
   'TsumTsumScripts/tsum-tsum-script': repoRoot,
-  'game-automation-platform/game-automation-scripts': repoRoot,
-  'game-automation-platform/game-automation-catalogue': fs.existsSync(catalogueRoot) ? catalogueRoot : null,
+  'TsumTsumScripts/tsum-tsum-catalogue': fs.existsSync(catalogueRoot) ? catalogueRoot : null,
 };
 
 const WholeFileMax = 200;

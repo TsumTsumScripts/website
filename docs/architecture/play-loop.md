@@ -37,7 +37,7 @@ calls `openRound()`, which mints the round's id, freezes a copy of the settings
 it is played under (`roundSettings`) and broadcasts `round.start`.
 
 ```ts reference title="app.gap.Tsum/src/play.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/play.ts#L492-L551
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/play.ts#L492-L551
 ```
 
 ## One turn of the loop

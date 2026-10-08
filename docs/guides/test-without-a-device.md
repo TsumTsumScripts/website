@@ -19,7 +19,7 @@ matching, taps that record rather than tap — faithful to the app's own
 semantics. Every offline tool goes through this pair.
 
 ```js reference title="app.gap.Tsum/tools/runtime/load.js"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tools/runtime/load.js#L82-L143
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tools/runtime/load.js#L82-L143
 ```
 
 Driving anything is a few lines: `createRuntime()` gives you the context and

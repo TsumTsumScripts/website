@@ -6,12 +6,13 @@ description: What is where, in one read.
 # Repository tour
 
 ```
-game-automation-scripts/
+tsum-tsum-script/
 ├── CODEMAP.md             the index: which file owns what, which document answers what
 ├── CONTRIBUTING.md        the short version of this site
 ├── LICENSE · NOTICE       Apache-2.0, and what was inherited from where
-├── .github/workflows/     builds and publishes this site
-├── starter/               the service starter tool
+├── starter/               the service starter: opens a page in the browser that
+│                          starts GAP's helper service, installs the app, adds
+│                          the Tsum Tsum library and exports logs and stats
 └── app.gap.Tsum/          the only package: the Disney Tsum Tsum script
     ├── src/               the script -- concatenated into one bundle, no imports
     │   └── skills/        one file per skill, plus the shared core
@@ -44,13 +45,13 @@ rather than by what they import (they import nothing). In load order:
 | **Types and vocabularies** | `shared.d.ts`, `globals.d.ts`, `settings.d.ts`, `strings.d.ts`, `logEvents.ts`, `scriptEvents.ts` | The host API declarations, `interface Tsum`, and every `const enum` the code names things by: `SettingKey`, `SkillType`, `PageName`, `Log`, `Emit`. |
 | **The run** | `index.ts`, `runPlan.ts`, `taskController.ts`, `state.ts` | `start()` / `stop()`, the table of scheduled jobs, the cooperative scheduler, the two globals `ts` and `gTaskController`. |
 | **Seeing the screen** | `data.ts`, `pages.ts`, `pageHandlers.ts`, `forecast.ts`, `dialogs.ts`, `corpus.ts`, `walkthrough.ts` | Every coordinate and fingerprint (`data.ts`), the router that decides which screen is up (`pages.ts`), every reaction to one (`pageHandlers.ts`), and the odd cases: system dialogs, unknown screens, the recorder. |
-| **Playing** | `tsum.ts`, `waits.ts`, `appLifecycle.ts`, `board.ts`, `pathfinding.ts`, `play.ts`, `fever.ts`, `lorcana.ts`, `skills/`, `clickAssist.ts`, `roundStats.ts`, `mail.ts`, `hearts.ts`, `levelCap.ts`, `boxes.ts` | The `Tsum` object (the world one run is played in), the waits, reading the board and drawing chains, one round start to finish, the skills, and the chores. |
+| **Playing** | `tsum.ts`, `waits.ts`, `appLifecycle.ts`, `board.ts`, `pathfinding.ts`, `play.ts`, `fever.ts`, `lorcana.ts`, `skills/`, `clickAssist.ts`, `roundStats.ts`, `roundShare.ts`, `mail.ts`, `hearts.ts`, `levelCap.ts`, `boxes.ts` | The `Tsum` object (the world one run is played in), the waits, reading the board and drawing chains, one round start to finish, the skills, and the chores. |
 | **The two pages** | `settings.ts`, `index.html`, `index.css`, `quickbar.ts`, `quickbarPage.ts`, `quickbar.html`, `quickbar.css`, `presets.ts`, `skillOptions.ts`, `bubbleOptions.ts`, `releaseStatus.ts`, `i18n.ts`, `uiEn.ts`, `uiZhTw.ts`, `qrCode.ts`, `logs.ts`, `logsEn.ts`, `logsZhTw.ts`, `logging.ts`, `report.ts`, `utils.ts` | The settings page and the Quick Bar (separate compilations), the lists both share, translations, the logger, and the issue report. |
 
 The entry point is deliberately thin. Its header comment says why:
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L1-L22
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L1-L22
 ```
 
 ## `tools/`

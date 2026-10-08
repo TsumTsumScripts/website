@@ -57,7 +57,7 @@ So every live setting declares, once, when it reaches a run:
 | `Restart` | Decides which tasks a run registers, so only a fresh `start()` can move it. |
 
 ```ts reference title="app.gap.Tsum/src/quickbar.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/quickbar.ts#L409-L425
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/quickbar.ts#L409-L425
 ```
 
 The pages still draw the new value straight away, and the engine banners
@@ -114,7 +114,7 @@ from `SHARE_SLOTS` in `settings.ts` — the fixed list of settings a code
 carries, each at its own position. It is short enough to paste into a chat.
 
 ```ts reference title="app.gap.Tsum/src/settings.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/settings.ts#L1308-L1336
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/settings.ts#L1308-L1336
 ```
 
 Four rules keep it honest:

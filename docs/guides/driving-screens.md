@@ -106,7 +106,7 @@ ceiling, not a cost. Four caveats:
   site.
 
 ```ts reference title="app.gap.Tsum/src/waits.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/waits.ts#L1-L19
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/waits.ts#L1-L19
 ```
 
 ### 6. Re-read a list you are changing

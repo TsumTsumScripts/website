@@ -34,14 +34,14 @@ expected there and how far a reading may drift before the probe fails — and
 the anchors that locate its buttons:
 
 ```ts reference title="app.gap.Tsum/src/data.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/data.ts#L690-L699
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/data.ts#L690-L699
 ```
 
 Coordinates are in the table's own space (a 1080 × 1920 portrait); `Tsum`
 converts to the device. The entry's shape is `PageDef`:
 
 ```ts reference title="app.gap.Tsum/src/globals.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/globals.d.ts#L191-L259
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/globals.d.ts#L191-L259
 ```
 
 A screen drawn two ways — five tsums or four on the level-up panel — gets a
@@ -72,7 +72,7 @@ is a build error. Say whether the page **waits for input** (`Permanent`) or
 on, an interruption — because the narrowed sweeps are drawn from those roles:
 
 ```ts reference title="app.gap.Tsum/src/data.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/data.ts#L1968-L2001
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/data.ts#L1968-L2001
 ```
 
 To measure a transient page's duration: turn on *Debug game* and *Page history
@@ -88,7 +88,7 @@ which anchor leads where; a row with `via: PageAnchor.Back` and no `to` means
 `navigate()` logs `nav.noRoute` once and the stall guard takes over.
 
 ```ts reference title="app.gap.Tsum/src/data.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/data.ts#L2735-L2762
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/data.ts#L2735-L2762
 ```
 
 The hub is the page that must never have the row — its `back` is Play, and a
@@ -101,7 +101,7 @@ that file top to bottom is reading the dispatch order, so put the new
 subscription with its band.
 
 ```ts reference title="app.gap.Tsum/src/globals.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/globals.d.ts#L399-L470
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/globals.d.ts#L399-L470
 ```
 
 ### Pick the band
@@ -140,25 +140,25 @@ breaks the promise the band makes to everything below it.
 An `observe` that sets a flag:
 
 ```ts reference title="app.gap.Tsum/src/pageHandlers.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pageHandlers.ts#L81-L93
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pageHandlers.ts#L81-L93
 ```
 
 A `dismiss` that logs, taps and waits:
 
 ```ts reference title="app.gap.Tsum/src/pageHandlers.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pageHandlers.ts#L226-L244
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pageHandlers.ts#L226-L244
 ```
 
 A `dismiss` that can decline, through `acts`:
 
 ```ts reference title="app.gap.Tsum/src/pageHandlers.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pageHandlers.ts#L372-L398
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pageHandlers.ts#L372-L398
 ```
 
 A `navigate` mover with a goal and a settle:
 
 ```ts reference title="app.gap.Tsum/src/pageHandlers.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pageHandlers.ts#L518-L532
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pageHandlers.ts#L518-L532
 ```
 
 If the first tap presses a button no `PageRoutes` row declares yet, add the

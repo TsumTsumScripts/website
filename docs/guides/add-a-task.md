@@ -30,7 +30,7 @@ dispatch:update`, and read the scheduler diff.
 ## 1. The table
 
 ```ts reference title="app.gap.Tsum/src/runPlan.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/runPlan.ts#L15-L60
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/runPlan.ts#L15-L60
 ```
 
 A `TaskSpec` is a name, a priority, an interval and whether it is due on the
@@ -38,7 +38,7 @@ loop's first pass or only after a whole interval. The rows are built from the
 settings, so a job that has a switch registers only when it is on:
 
 ```ts reference title="app.gap.Tsum/src/runPlan.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/runPlan.ts#L88-L133
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/runPlan.ts#L88-L133
 ```
 
 **Priorities are distinct on purpose.** When several jobs are due at once the
@@ -55,7 +55,7 @@ ask where it is, `this.tap`, `this.settleScreen`, the loggers. The mailbox
 chore is a short one:
 
 ```ts reference title="app.gap.Tsum/src/mail.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/mail.ts#L19-L46
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/mail.ts#L19-L46
 ```
 
 Three habits every chore keeps:
@@ -81,7 +81,7 @@ implementing file; the compiler tells you immediately when you forget.
 ## 4. The binding
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L308-L320
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L308-L320
 ```
 
 ## 5. The Run order card

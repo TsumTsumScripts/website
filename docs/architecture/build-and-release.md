@@ -48,11 +48,18 @@ is *not* optional, because what it catches is a setting that silently does
 nothing on a running script.
 
 ```js reference title="app.gap.Tsum/tools/build/build.js"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tools/build/build.js#L184-L227
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tools/build/build.js#L184-L227
 ```
 
 `build.sh` and `build.ps1` translate flags into this and do nothing else. They
 used to hold the same recipe twice, in two dialects, and had drifted.
+
+The `sign` step runs only when the build is given the maintainers' signing key.
+It comes after every `dist:` step and before the archive and the adb push, so
+the signature covers exactly the files that ship. Without the key the build is
+complete and unsigned, and the release tool warns loudly, because an unsigned
+release gets no GAP Companion and no network on a linked device. Why that is
+the right trade is [Trust and access](trust-and-access#why-a-release-is-signed).
 
 ## Channels
 
@@ -63,7 +70,7 @@ appended to every release message, and a `Status`: the lowest
 listed on Alpha builds only; promoting it later is a one-word edit.
 
 ```json reference title="app.gap.Tsum/config.json"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/config.json
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/config.json
 ```
 
 The **version is not there**. It is `package.json`'s `version`, so `npm
@@ -94,8 +101,8 @@ flowchart LR
   cl["CHANGELOG.md<br/>## [5.0a2] › ### Summary"]
   review["review.js<br/>approve · edit · deny"]
   build["build the channel"]
-  cat["catalogue repo<br/>Official/LineTsumTsum/&lt;Channel&gt;/<br/>zip · metadata.json · CHANGELOG.md"]
-  official["build-official<br/>official.json"]
+  cat["tsum-tsum-catalogue<br/>LineTsumTsum/&lt;Channel&gt;/<br/>zip · metadata.json · CHANGELOG.md"]
+  official["build-catalogue<br/>catalogue.json"]
   pages["GitHub Pages"]
   app["the app's Library"]
   cl --> review --> build --> cat --> official --> pages --> app
@@ -118,11 +125,11 @@ flowchart LR
    roll back; and a per-channel `CHANGELOG.md`. Archives past the limit are
    deleted. The hash is taken from the bytes just written, so an entry can
    never describe a build other than the one beside it.
-5. Prints what to do next: run the catalogue's own `build-official` script
-   there and commit.
+5. Prints what to do next: check the entry with the catalogue's own
+   `build-catalogue` script, then commit and push there.
 
 ```js reference title="app.gap.Tsum/tools/release/release.js"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tools/release/release.js#L2-L28
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tools/release/release.js#L2-L28
 ```
 
 [Release to the catalogue](../publishing/release-to-catalogue) is the

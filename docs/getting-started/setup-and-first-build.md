@@ -18,16 +18,16 @@ description: Clone, install, type-check, build, and push to a device.
   the game installed, to see a change work for real.
 
 You do **not** need anything beyond the above. A command the source comments
-mention but `package.json` does not define belongs to a separate, private
-repository, and nothing here runs it.
+mention but `package.json` does not define belongs to the development toolkit,
+which is private, and nothing here runs it.
 
 ## Clone and install
 
 The repository has one package, `app.gap.Tsum/`. Everything runs from there.
 
 ```bash
-git clone https://github.com/game-automation-platform/game-automation-scripts.git
-cd game-automation-scripts/app.gap.Tsum
+git clone https://github.com/TsumTsumScripts/tsum-tsum-script.git
+cd tsum-tsum-script/app.gap.Tsum
 npm install
 ```
 
@@ -60,6 +60,7 @@ The build is a dependency graph of steps that run concurrently
 | `dist/tsums.dat`, `tsumsCollection.dat`, `tsumNames.dat` | The tsum libraries, copied without their headers. |
 | `dist/gap-env.json`, `gap-backup.json` | What the app reads beside the script: env vars and backed-up page keys. |
 | `dist/LICENSE`, `dist/NOTICE` | Travel with the archive. |
+| `dist/gap-signature.json` | Only when a maintainer builds with the signing key. Your builds are unsigned, which is fine for development ([Trust and access](../architecture/trust-and-access#why-a-release-is-signed)). |
 | `TsumTsum-Alpha-5.0a2.zip` + `.sha256` | The release archive, named from `config.json` (channel) and `package.json` (version), and its digest. |
 
 The build also regenerates `PAGE_DISPATCH.md` and `EVENTS.md`, runs the
@@ -73,17 +74,18 @@ decides which unfinished skills and settings the build offers.
 The package's scripts, as they are on `main`:
 
 ```json reference title="app.gap.Tsum/package.json"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/package.json#L6-L30
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/package.json#L6-L30
 ```
 
 ## Put it on a device
 
 Three ways, from quickest to most official:
 
-1. **`npm run adb`** pushes an existing `dist/` to the folder the app reads:
-   `/sdcard/Download/GameAutomationPlatform/scripts/Official GAP/Tsum Tsum/`.
-   `npm run buildAndAdb` builds first, then pushes to its own `scripts/DEV`
+1. **`npm run buildAndAdb`** builds, then pushes to its own `scripts/DEV`
    folder ("Tsum Tsum DEV" in the app), leaving the installed script alone.
+   This is the everyday loop. `npm run adb` pushes an existing `dist/` over
+   the installed copy instead:
+   `/sdcard/Download/GameAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/`.
 2. **`debug_deploy.ps1`** builds and pushes over the *installed* script's
    folder, which it derives from `config.json`, so your build lands on top of
    the release the app already has rather than beside it. This is the debug
@@ -91,7 +93,9 @@ Three ways, from quickest to most official:
 3. **`npm run release:<channel>`** publishes to the catalogue, which is what a
    user installs from — [Release to the catalogue](../publishing/release-to-catalogue).
 
-Then press Play in the app. The Log panel shows the script's output; the
+Then press Play in the app. A development copy starts with every access
+switch off, like any script; turn on environment variables and network access
+on its Library card only if you are working on Share round stats. The Log panel shows the script's output; the
 [Debug tab](../reference/settings#debug) of the settings page
 turns on more.
 

@@ -61,7 +61,7 @@ run **one at a time**, and the first one to touch the screen ends the queue —
 everything below would be acting on a frame that no longer exists.
 
 ```ts reference title="app.gap.Tsum/src/pages.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pages.ts#L144-L166
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pages.ts#L144-L166
 ```
 
 Whether a subscription touched the screen is its **band's** answer, not a
@@ -105,7 +105,7 @@ pin them. Reading `pageHandlers.ts` top to bottom is reading the dispatch
 order:
 
 ```ts reference title="app.gap.Tsum/src/pageHandlers.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/pageHandlers.ts#L1-L45
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/pageHandlers.ts#L1-L45
 ```
 
 [Handle a page](../guides/handle-a-page) walks through adding one.

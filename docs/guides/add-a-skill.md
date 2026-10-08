@@ -34,7 +34,7 @@ member name is the dropdown label in PascalCase; the value is the id that
 crosses the `start({...})` bridge.
 
 ```ts reference title="app.gap.Tsum/src/shared.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/shared.d.ts#L34-L44
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/shared.d.ts#L34-L44
 ```
 
 ## 2. The handler
@@ -43,7 +43,7 @@ The smallest complete skill in the tree is Moana: bubbles again, behind a
 slightly longer intro than Marie's.
 
 ```ts reference title="app.gap.Tsum/src/skills/moana.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/skills/moana.ts
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/skills/moana.ts
 ```
 
 `registerSkill` files the handler under each id in `types`, so one handler can
@@ -51,7 +51,7 @@ drive two dropdown entries (Donald and Holiday Donald share one). Burst shows
 that, plus `bareTapActivates`:
 
 ```ts reference title="app.gap.Tsum/src/skills/burst.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/skills/burst.ts
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/skills/burst.ts
 ```
 
 Every field except `types` is optional. The interface is documented field by
@@ -72,7 +72,7 @@ field in `skillCore.ts`; the short version:
 | `overloadProbe` | Experimental: the choreography is anchored to the activation instant, so it can be fired mid-chain by the auto-tap. |
 
 ```ts reference title="app.gap.Tsum/src/skills/skillCore.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/skills/skillCore.ts#L19-L142
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/skills/skillCore.ts#L19-L142
 ```
 
 A skill with no `afterActivate` falls back to `skillRandomizeAndWait`: tap the
@@ -103,7 +103,7 @@ Files are concatenated in this order and `registerSkill` runs at load time, so
 the new file must come after `skillCore.ts` and before `clickAssist.ts`:
 
 ```jsonc reference title="app.gap.Tsum/tsconfig.json"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tsconfig.json#L95-L117
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tsconfig.json#L95-L117
 ```
 
 ## 4. The label
@@ -113,7 +113,7 @@ its English in `uiEn.ts`; the build fails until the English exists, and other
 languages fall back to it until translated ([UI text and languages](ui-text-and-languages)).
 
 ```ts reference title="app.gap.Tsum/src/uiEn.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/uiEn.ts#L170-L186
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/uiEn.ts#L170-L186
 ```
 
 ## 5. The dropdown entry
@@ -123,7 +123,7 @@ Quick Bar list the same skills. Insert the entry under its group, at its
 alphabetical position:
 
 ```ts reference title="app.gap.Tsum/src/skillOptions.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/skillOptions.ts#L112-L129
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/skillOptions.ts#L112-L129
 ```
 
 - **`group`** is what the activation leaves behind: `SkillGroupBurst` (fires

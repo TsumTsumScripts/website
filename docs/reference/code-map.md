@@ -5,7 +5,7 @@ description: Which file owns what, condensed from the repository's CODEMAP.md.
 
 # Code map
 
-A condensed copy of [`CODEMAP.md`](https://github.com/game-automation-platform/game-automation-scripts/blob/main/CODEMAP.md),
+A condensed copy of [`CODEMAP.md`](https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/CODEMAP.md),
 which is the authority: it is checked against the tree by `npm run map:check`
 and also carries the "what a change has to touch" table and the rules the
 [conventions page](../contributing/conventions) summarises. Paths are under

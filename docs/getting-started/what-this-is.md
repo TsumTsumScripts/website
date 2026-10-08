@@ -9,8 +9,10 @@ description: The host app, the script, and what the script does.
 
 **General Automation Platform** is an Android app that runs automation scripts
 against games. It owns everything that touches the device: taking screenshots,
-reading pixel colours, tapping and dragging, running shell commands, launching
-apps. A script is a folder the app loads:
+reading pixel colours, tapping and dragging, launching apps. Anything that
+could send data off the device or act out of sight is off until the player
+allows it for that script ([Trust and access](../architecture/trust-and-access)).
+A script is a folder the app loads:
 
 | File | What it is |
 |:--|:--|
@@ -18,9 +20,12 @@ apps. A script is a folder the app loads:
 | `index.html` | The settings page, shown in a floating window over the game. It builds the settings object and calls `start(...)` when you press Play. |
 | `quickbar.html` | Optional. A strip of live controls the app draws along the bottom of the screen. |
 | `tsums.dat` | This script's own data files (`tsums.dat` and two more libraries): tsum portraits, deployed beside the bundle. |
+| `gap-env.json`, `gap-backup.json` | Optional. The values a script asks the player for, and which page settings the app may back up. |
+| `gap-signature.json` | Release builds only. The signature that tells the app this is the published build, unedited. |
 
 The app installs scripts from **sources** — catalogues it downloads — or from a
-folder copied in by hand. Its floating bar has Play, Stop, a Log panel, a
+folder copied in by hand. It lists no third-party source by itself: the
+starter offers to add the Tsum Tsum library, and the player confirms. Its floating bar has Play, Stop, a Log panel, a
 settings button and, for scripts that ship one, the Quick Bar.
 
 <ImagePlaceholder id="app-library-tab" alt="The app's Library tab showing the Tsum Tsum script card with its Download / Play controls" />

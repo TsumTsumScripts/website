@@ -6,10 +6,9 @@ description: Host a catalogue of scripts that anyone can add to the app by URL.
 # Your own library source
 
 The app installs scripts from **sources**: URLs that return a JSON catalogue.
-The official one is built by the public `game-automation-catalogue`
-repository and served from GitHub Pages; you can publish one exactly the same
-way, and anyone can add it under the app's **Sources** tab. This page is the
-whole recipe.
+The Tsum Tsum library is built by the public `tsum-tsum-catalogue`
+repository and served from GitHub Pages; you can publish one the same way, and
+anyone can add it under the app's **Sources** tab.
 
 ```mermaid
 flowchart LR
@@ -17,12 +16,12 @@ flowchart LR
   meta["metadata.json<br/>beside the zip"]
   script["build script<br/>folds every metadata.json<br/>into one index"]
   action["GitHub Actions<br/>on push"]
-  pages["GitHub Pages<br/>https://&lt;you&gt;.github.io/&lt;repo&gt;/official.json"]
+  pages["GitHub Pages<br/>https://&lt;you&gt;.github.io/&lt;repo&gt;/catalogue.json"]
   app["the app's Sources tab<br/>→ Library"]
   zip --> meta --> script --> action --> pages --> app
 ```
 
-<ImagePlaceholder id="app-sources-tab" alt="The app's Sources tab: the built-in Official GAP source with its OFFICIAL badge, and the field to add a source URL" />
+<ImagePlaceholder id="app-sources-tab" alt="The app's Sources tab: the official source with its OFFICIAL badge, and the field to add a source URL" />
 
 ## 1. What a script archive must contain
 
@@ -89,7 +88,7 @@ A source URL returns one JSON object:
 
 | Field | Required | Meaning |
 |:--|:--|:--|
-| `Name` | yes | The source's display name. **`Official GAP` is reserved** for the source built into the app; a user source claiming it is shown struck through, marked unsafe and refused. |
+| `Name` | yes | The source's display name, and the first segment of every install folder, so never change it once published. **`Official GAP` is reserved** for the app's own source; a user source claiming it is shown struck through, marked unsafe and refused. |
 | `Updated` | no | When the index was built. Informational. |
 | `Scripts[]` | yes | One entry per script. May be empty. |
 | `Scripts[].Game` | yes | The game. Becomes a segment of the install folder: `scripts/<Source>/<Game>/<Name>/`. |
@@ -107,18 +106,18 @@ which is why a history row carries no `Message`.
 
 ## 4. Host it on GitHub Pages
 
-The official catalogue is the worked example, and copying its layout gets you
+The Tsum Tsum catalogue is the worked example, and copying its layout gets you
 its build script and workflow for free.
 
 ### The layout
 
 ```
 my-scripts/
-├── .github/workflows/build-official.yml   builds the index and publishes it
-├── build-official.sh                      folds every metadata.json into official.json
-├── build-official.ps1                     the same, for PowerShell
-├── .gitignore                             official.json  (generated, never committed)
-└── <Publisher>/<Game>/<Channel>/
+├── .github/workflows/build-catalogue.yml  builds the index and publishes it
+├── build-catalogue.sh                     folds every metadata.json into catalogue.json
+├── build-catalogue.ps1                    the same, for PowerShell
+├── .gitignore                             catalogue.json  (generated, never committed)
+└── <Game>/<Channel>/
     ├── MyTsum-1.0.zip                     the archive(s)
     ├── metadata.json                      one entry, File relative to this folder
     └── CHANGELOG.md                       optional, for people
@@ -129,36 +128,38 @@ Per-script `metadata.json` files are the entries above with one difference:
 and the build script rewrites it into the raw download URL for that file,
 derived from the repository's own `origin` remote and current branch:
 
-```json reference title="game-automation-catalogue/Official/LineTsumTsum/Beta/metadata.json"
-https://github.com/game-automation-platform/game-automation-catalogue/blob/master/Official/LineTsumTsum/Beta/metadata.json
+```json reference title="tsum-tsum-catalogue/LineTsumTsum/Production/metadata.json"
+https://github.com/TsumTsumScripts/tsum-tsum-catalogue/blob/main/LineTsumTsum/Production/metadata.json
 ```
 
 ### The build script
 
 Reads every `metadata.json` under the repository, rewrites each `File` to
 `https://github.com/<owner>/<repo>/raw/<branch>/<path>`, and writes
-`official.json`. It needs `jq`. **Change the default `Name`** near the end —
-`Official GAP` is the one name the app refuses:
+`catalogue.json`. It needs `jq`. **Change the `Name`** near the end to your
+own — it becomes your players' install folder, and `Official GAP` is the one
+name the app refuses:
 
-```bash reference title="game-automation-catalogue/build-official.sh"
-https://github.com/game-automation-platform/game-automation-catalogue/blob/master/build-official.sh
+```bash reference title="tsum-tsum-catalogue/build-catalogue.sh"
+https://github.com/TsumTsumScripts/tsum-tsum-catalogue/blob/main/build-catalogue.sh
 ```
 
 ### The workflow
 
-On every push that touches a `metadata.json`, the workflow runs the script and
-publishes `official.json` to GitHub Pages. `official.json` is never committed.
+On every push to `main`, the workflow runs the script and publishes
+`catalogue.json` to GitHub Pages. `catalogue.json` is never committed. Its
+Discord step does nothing unless you add a webhook secret.
 
-```yaml reference title="game-automation-catalogue/.github/workflows/build-official.yml"
-https://github.com/game-automation-platform/game-automation-catalogue/blob/master/.github/workflows/build-official.yml
+```yaml reference title="tsum-tsum-catalogue/.github/workflows/build-catalogue.yml"
+https://github.com/TsumTsumScripts/tsum-tsum-catalogue/blob/main/.github/workflows/build-catalogue.yml
 ```
 
 ### Turn on Pages
 
 In the repository on GitHub: **Settings → Pages → Build and deployment →
-Source: GitHub Actions**. Push, wait for the *Build official.json* workflow to
+Source: GitHub Actions**. Push, wait for the *Build catalogue.json* workflow to
 go green, and the index is at
-`https://<owner>.github.io/<repo>/official.json`.
+`https://<owner>.github.io/<repo>/catalogue.json`.
 
 <ImagePlaceholder id="github-pages-settings" alt="A repository's Settings → Pages screen with Source set to GitHub Actions" />
 
@@ -179,7 +180,11 @@ whose published hash differs from the installed one gets an **UPDATE** badge.
 
 Anything added here is unverified: a source can publish any archive under any
 name, which is why the hash check exists and why the app's own dialog says to
-add only sources you trust.
+add only sources you trust. A website or tool can hand the app a
+`gap://add-source?url=…` link to offer your source; the app still asks the
+player before adding it. A script installed from your source gets no special
+access either: every switch on its access screen starts off
+([Trust and access](../architecture/trust-and-access)).
 
 ## 6. Publishing an update
 
@@ -191,6 +196,6 @@ add only sources you trust.
 4. Commit the zip and the metadata, push, and let the workflow publish.
 
 This repository's `npm run release:<channel>` does exactly these steps for
-the official catalogue — [Release to the catalogue](release-to-catalogue) —
+the Tsum Tsum catalogue — [Release to the catalogue](release-to-catalogue) —
 and `tools/release/release.js` is a reasonable starting point for a release
 script of your own.

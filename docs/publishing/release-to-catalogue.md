@@ -6,7 +6,7 @@ description: Cut a channel release and publish it where the app downloads from.
 # Release to the catalogue
 
 A release is a build of one channel, written into the sibling
-`game-automation-catalogue` checkout as the files the app's index is built
+`tsum-tsum-catalogue` checkout as the files the library's index is built
 from. Three commands, one per channel:
 
 ```bash
@@ -30,14 +30,18 @@ npm run release:alpha -- --yes       # skip the note review (for scripts; needs 
    `**Additions**` (bullets under an italic `*Area*` line each), then `**Fixes**`,
    and ships — and is announced on Discord — exactly so.
 3. The catalogue checkout is beside this repository, at the path
-   `config.json`'s `Catalogue` names (`../../game-automation-catalogue/Official/LineTsumTsum`).
+   `config.json`'s `Catalogue` names (`../../tsum-tsum-catalogue/LineTsumTsum`).
+4. **The build is signed.** A maintainer releases with the signing key set; the
+   release warns loudly without it, and an unsigned release reaches players
+   without GAP Companion support. Contributors do not release, and never need
+   the key ([Trust and access](../architecture/trust-and-access#why-a-release-is-signed)).
 
 ## What `config.json` says
 
 | Field | Meaning |
 |:--|:--|
 | `Game` | Copied into every entry. |
-| `Publisher` | The catalogue this ships under, and the first segment of the on-device folder. |
+| `Publisher` | The source name the catalogue publishes under (`Tsum Tsum Scripts`), and so the first segment of the installed folder. Changing it moves every player's install. |
 | `Catalogue` | Where a release is written, relative to the package. |
 | `Channels.<name>` | `Name` (what the app shows), `Archive` (the zip's base name), `Directory` (under `Catalogue`), `Note` (appended to every release note on that channel), `Status` (the lowest `ReleaseStatus` the channel offers: 0 Alpha, 1 Beta, 2 Production). |
 | `MessageMaxChars` | The note is read on a phone; over this, the release refuses; `0` turns the check off. |
@@ -45,7 +49,7 @@ npm run release:alpha -- --yes       # skip the note review (for scripts; needs 
 | `MinHost`, `MaxHost` | The app versions a build runs on (optional, inclusive; a channel may set its own). The app will not download or run a build outside them — raise `MinHost` when the script starts using an API a newer app added. |
 
 ```json reference title="app.gap.Tsum/config.json"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/config.json
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/config.json
 ```
 
 ## What happens
@@ -61,7 +65,7 @@ https://github.com/game-automation-platform/game-automation-scripts/blob/main/ap
 3. **Four things are written** into `<Catalogue>/<Directory>/`:
 
    ```
-   ../game-automation-catalogue/Official/LineTsumTsum/Beta/
+   ../tsum-tsum-catalogue/LineTsumTsum/Beta/
    ├── TsumTsum-Beta-5.0a2.zip     the build
    ├── TsumTsum-Beta-5.0a1.zip     and the ones before it, up to HistoryLimit
    ├── metadata.json              describes the newest build and lists the rest
@@ -75,27 +79,27 @@ https://github.com/game-automation-platform/game-automation-scripts/blob/main/ap
    from the script's card in the app. Re-publishing a version replaces its
    row and its changelog section rather than adding a second. Archives past
    `HistoryLimit` are deleted; stage those deletions when you commit.
-4. **The release tells you what to do next**: run the catalogue's own
-   `build-official` script there and commit.
+4. **The release tells you what to do next**: check the entry with the
+   catalogue's `build-catalogue` script, then commit and push there.
 
 ```js reference title="app.gap.Tsum/tools/release/release.js"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tools/release/release.js#L39-L68
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tools/release/release.js#L39-L68
 ```
 
 ## Finish in the catalogue
 
 ```bash
-cd ../../game-automation-catalogue
-bash build-official.sh        # or build-official.ps1; regenerates official.json locally
+cd ../../tsum-tsum-catalogue
+bash build-catalogue.sh       # or build-catalogue.ps1; builds catalogue.json locally
 git add -A && git commit -m "Tsum Tsum Beta 5.0a2" && git push
 ```
 
-`official.json` itself is git-ignored there: the catalogue's GitHub Actions
-workflow rebuilds it on every push that touches a `metadata.json` and
-publishes it to GitHub Pages, which is the URL the app fetches. Running the
+`catalogue.json` itself is never committed there: the catalogue's GitHub
+Actions workflow rebuilds it on every push to `main`, publishes it to GitHub
+Pages, and announces the new version on Discord. Running the
 script locally is a check that the entry folds in cleanly, not the publish.
 
-Within a few minutes the app's Library shows the new version — with an
+Within a few minutes the Library of every app that has added the source shows the new version — with an
 **UPDATE** badge on devices that have an older one installed, unless that
 install was *pinned* by choosing its version by name.
 
@@ -104,8 +108,10 @@ install was *pinned* by choosing its version by name.
 - `npm run release:*` publishes an archive for the app to **install** from
   the catalogue. This is what a user gets.
 - `debug_deploy.ps1` and `npm run adb` push `dist/` straight over the
-  catalogue-installed script's folder (`scripts/Official GAP/Tsum Tsum/`),
-  skipping the catalogue.
+  catalogue-installed script's folder
+  (`scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/` for Production),
+  skipping the catalogue. That copy is unsigned, so it loses what a signature
+  gives until the next install.
 - `npm run buildAndAdb` builds, then pushes to its own `scripts/DEV` folder,
   listed in the app as "Tsum Tsum DEV" beside the installed script. This is the
   everyday debug loop.

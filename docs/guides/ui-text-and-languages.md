@@ -22,14 +22,14 @@ is a `UiText` member, dotted and grouped by where it appears (`tab.*`,
 `group.*`, `setting.*`, `skill.*`, `qb.*`):
 
 ```ts reference title="app.gap.Tsum/src/strings.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/strings.d.ts#L18-L40
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/strings.d.ts#L18-L40
 ```
 
 English is typed `UiStrings` — the full mapping — so a new member fails the
 build until it has text:
 
 ```ts reference title="app.gap.Tsum/src/uiEn.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/uiEn.ts#L1-L30
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/uiEn.ts#L1-L30
 ```
 
 A value may carry `{named}` placeholders (`'Waits {min} min between rounds.'`),

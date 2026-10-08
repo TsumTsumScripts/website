@@ -45,7 +45,7 @@ logDebug(Log.Board.PathDone, { paths: paths.length, durationMs: Date.now() - t0 
 ```
 
 ```ts reference title="app.gap.Tsum/src/logging.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/logging.ts#L417-L435
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/logging.ts#L417-L435
 ```
 
 The **two-argument shape** (`event, fields`) accepts only a *catalogued* event —
@@ -88,7 +88,7 @@ their whole description.
    derived from it.
 
 ```ts reference title="app.gap.Tsum/src/logEvents.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/logEvents.ts#L19-L39
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/logEvents.ts#L19-L39
 ```
 
 A new component needs its enum added to the `LogEvent` union in `logging.ts`,
@@ -109,10 +109,8 @@ nothing at the call site, because the logger checks the list. It has to be
 genuinely rare; the per-run cap is a backstop, not the design.
 
 ```ts reference title="app.gap.Tsum/src/report.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/report.ts#L63-L76
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/report.ts#L63-L76
 ```
-
-<ImagePlaceholder id="run-history-report-buttons" alt="A run card in the app's Run History with its Share report and Save to device buttons" />
 
 ### Where the records go
 
@@ -135,7 +133,7 @@ Names live in `scriptEvents.ts`, one `const enum` per component in a
 namespace, exactly like `Log`:
 
 ```ts reference title="app.gap.Tsum/src/scriptEvents.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/scriptEvents.ts
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/scriptEvents.ts
 ```
 
 Emit with `this.emit(Emit.X.Y, {...})` from a `Tsum` method, or
@@ -143,7 +141,7 @@ Emit with `this.emit(Emit.X.Y, {...})` from a `Tsum` method, or
 `run.started`). The one guard on the host native lives in `tsum.ts`:
 
 ```ts reference title="app.gap.Tsum/src/play.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/play.ts#L365-L371
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/play.ts#L365-L371
 ```
 
 Adding one is: a member with a line of JSDoc (`EVENTS.md` prints it), the

@@ -32,7 +32,7 @@ already decides it, and that is where a reaction goes. This page is the map.
 ## Run start and end
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L329-L355
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L329-L355
 ```
 
 Anything created per run — a watcher's state, a counter, a cached reading —
@@ -49,13 +49,13 @@ Round Duration cap does — and must not call `stop()`, which would wait for
 itself.
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L366-L411
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L366-L411
 ```
 
 ## Round start and end
 
 ```ts reference title="app.gap.Tsum/src/play.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/play.ts#L467-L490
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/play.ts#L467-L490
 ```
 
 `openRound` is gated so that one round is announced once: the pre-round
@@ -87,7 +87,7 @@ gFever.subscribe({
 ```
 
 ```ts reference title="app.gap.Tsum/src/globals.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/globals.d.ts#L502-L521
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/globals.d.ts#L502-L521
 ```
 
 Subscriptions are registrable at load time (the watcher is a global like

@@ -23,7 +23,7 @@ but cannot be picked on a Beta build. It also names the archive:
 
 What lands: `dist/index.js`, `dist/index.html`, `dist/quickbar.html`, the
 `dist/*.dat` libraries, `dist/LICENSE`, `dist/NOTICE`, the `gap-*.json`
-manifests, and the zip with its `.sha256` sidecar in the package root. `build/` keeps the readable bundle the
+manifests (the signature only when the build had the key), and the zip with its `.sha256` sidecar in the package root. `build/` keeps the readable bundle the
 offline tools load. [Setup and first build](../getting-started/setup-and-first-build)
 lists them; [Build and release](../architecture/build-and-release) is how the
 build works.
@@ -39,8 +39,8 @@ npm run buildAndAdb    # build, then push to its own scripts/DEV folder
 ```
 
 `adb` pushes `dist/` to
-`/sdcard/Download/GameAutomationPlatform/scripts/Official GAP/Tsum Tsum/` —
-the folder the installed (catalogue) script lives in. `buildAndAdb` pushes every `dist/` file to
+`/sdcard/Download/GameAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/` —
+the folder the installed Production script lives in. `buildAndAdb` pushes every `dist/` file to
 `.../scripts/DEV` on each connected emulator instead (listed in the app as
 "Tsum Tsum DEV"). The app's script root is
 `/sdcard/Download/GameAutomationPlatform/`; the Library lists what it finds
@@ -52,6 +52,13 @@ holds an `index.js` or `index.html`.
 `<Publisher>/<Game>/<Name with spaces dashed>`, so your build lands on top of
 the release the app already has rather than beside it. `-Channel` points it at
 another channel's folder.
+
+Your builds are unsigned. An old `gap-signature.json` left beside them would no
+longer match, so `buildAndAdb` removes it from the DEV folder on an unsigned
+push; `npm run adb` does not, so delete it by hand if you push over a signed
+install. On a device that is not linked to GAP Companion this changes
+nothing; on a linked one the copy gets no network until a signed build is
+installed again ([Trust and access](../architecture/trust-and-access)).
 
 On an emulator that mounts a shared folder as `/sdcard/Download` (MuMu does),
 copying `dist/` into that folder on the PC is the same thing without adb. The

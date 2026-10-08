@@ -32,7 +32,7 @@ once and read the log — `checkShareSlots` is what says a slot was forgotten.
 ## 1. The key and the field
 
 ```ts reference title="app.gap.Tsum/src/shared.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/shared.d.ts#L231-L250
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/shared.d.ts#L231-L250
 ```
 
 `interface Settings` is keyed by `SettingKey`, so the enum and the object that
@@ -52,7 +52,7 @@ The settings page is three levels: a **tab** (one button in the tab bar), a
 row needs a `key`, `title`, `help` and a boolean `default`:
 
 ```ts reference title="app.gap.Tsum/src/settings.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/settings.ts#L287-L292
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/settings.ts#L287-L292
 ```
 
 A number row adds `min`, `max` and `step`, and a dropdown row a `dropdown`
@@ -60,7 +60,7 @@ list — one written once and shared with the Quick Bar (`skillOptions.ts`,
 `bubbleOptions.ts`) if the strip offers it too:
 
 ```ts reference title="app.gap.Tsum/src/settings.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/settings.ts#L352-L369
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/settings.ts#L352-L369
 ```
 
 The row's type is inferred from its `default`; a pasted value of the wrong
@@ -75,7 +75,7 @@ circulation).
 `ts.*` field, a few onto the global `Config`:
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L114-L142
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L114-L142
 ```
 
 If the setting is new on `ts`, declare the field on the class in `tsum.ts`
@@ -93,7 +93,7 @@ pairs). A row on any other tab needs
 neither.
 
 ```ts reference title="app.gap.Tsum/src/settings.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/settings.ts#L1277-L1336
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/settings.ts#L1277-L1336
 ```
 
 The list is **append-only**. Two traps:
@@ -123,7 +123,7 @@ explains the three answers; the short form:
 same field `buildRun` wrote; `Restart` keys must not have one:
 
 ```ts reference title="app.gap.Tsum/src/quickbar.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/quickbar.ts#L211-L239
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/quickbar.ts#L211-L239
 ```
 
 Whatever the switch takes, `quickBarState()` has to report, or the settings
@@ -141,7 +141,7 @@ the page script changes unless the cell is a *dropdown*, which needs its list
 in `qbOptionsFor`.
 
 ```html reference title="app.gap.Tsum/src/quickbar.html"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/quickbar.html#L132-L141
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/quickbar.html#L132-L141
 ```
 
 A stepper cell carries `data-min` / `data-max`; the engine clamps to the same

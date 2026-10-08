@@ -36,7 +36,7 @@ Two consequences to internalise:
 The file list carries a comment per slot saying why it is where it is:
 
 ```jsonc reference title="app.gap.Tsum/tsconfig.json"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/tsconfig.json#L31-L143
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/tsconfig.json#L31-L143
 ```
 
 ## `Tsum` is typed by declaration merging
@@ -60,7 +60,7 @@ declares into an error.
 implements each member:
 
 ```ts reference title="app.gap.Tsum/src/globals.d.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/globals.d.ts#L1077-L1093
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/globals.d.ts#L1077-L1093
 ```
 
 The same idea one level down is why `Button`, `Page` and the log tables carry

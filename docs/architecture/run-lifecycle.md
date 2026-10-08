@@ -46,7 +46,7 @@ sequenceDiagram
    the router, drop `ts`, broadcast `run.stopped`, close the `runId`.
 
 ```ts reference title="app.gap.Tsum/src/index.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/index.ts#L57-L107
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/index.ts#L57-L107
 ```
 
 ## The scheduler
@@ -62,7 +62,7 @@ both the game bundle and the settings page, so the Run order card shows exactly
 what a run will register:
 
 ```ts reference title="app.gap.Tsum/src/runPlan.ts"
-https://github.com/game-automation-platform/game-automation-scripts/blob/main/app.gap.Tsum/src/runPlan.ts#L15-L60
+https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/runPlan.ts#L15-L60
 ```
 
 When more than one job is due, the order is `JobPriority` (lowest first), and
