@@ -1,0 +1,49 @@
+# Tsum Tsum website
+
+Docusaurus site for the Tsum Tsum script: felt-styled landing page, features guide
+(`/features/<key>`), changelog, starter tool page and contributor docs (`/docs`).
+`README.md` has the content layout and the MDX writing rules; read it before editing docs.
+
+## Commands
+
+- `npm start` / `npm run build` / `npm run serve`: dev, production build, serve `build/`.
+  Both start and build run `npm run sync` first.
+- `npm run typecheck` (tsc), `npm run refs:check` (code references resolve, media ids declared).
+- `npm run media:plan`: regenerate `MEDIA_PLAN.md` and the id-to-file index. Run it after
+  adding or removing anything in `static/media/`.
+- `npm run capture`: render screenshots from the script's real pages (see below).
+
+## Sibling repo
+
+The script repo sits beside this one (`../tsum-tsum-script`, or `TSUM_SCRIPT_REPO` /
+`TSUM_SCRIPT_DIR`). `sync` and `refs:check` read it, and the capture harness renders its built
+`app.gap.Tsum/dist/` pages. Rebuild the script before capturing so the pages are current.
+
+## Media
+
+- Every screenshot, clip and video is declared in `src/data/features.js` or `landing.js`.
+  `MEDIA_PLAN.md` and `src/data/mediaFiles.generated.json` are generated: never edit them by hand.
+- A file at `static/media/<id>.<ext>` replaces that id's placeholder with no page edit
+  (`src/components/felt/Media.tsx`). Stills show whole at their own proportions; only videos
+  keep the slot's fixed aspect.
+- Game art: only our own gameplay captures. Test account only: no friend names, ids or purchases.
+
+## Capture harness (`capture/`)
+
+Renders the settings page and Quick Bar in headless Chrome at the emulator's 540x960 at 240dpi
+(a 360x640 CSS viewport, density 1.5). `--scale 2` (default) writes 1080x1920. The host's
+`JavaScriptInterface` is stubbed; each scene in `capture/scenes.mjs` sets what the engine reports.
+
+- `npm run capture [-- <id> ...]` writes `capture/out/<id>.png` (git-ignored).
+- `--publish` also writes `static/media/<id>.webp`; run `npm run media:plan` afterwards.
+- Backdrops in `capture/backdrops/` are game captures and stay local (git-ignored). Use the
+  mid-round board from `../debug`; crop off the host's floating bar (`cropTop`), which shows an
+  older version.
+- Output is a render, not a device capture. Do not describe it as one.
+- Not capturable here: anything in the game itself, terminals, spreadsheets, GAP Companion.
+
+## Conventions
+
+- Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
+  `capture/out/`, `capture/.cache/`. Never edit them.
+- Public tree: nothing may name the private toolkit repository or copy host-app code.
