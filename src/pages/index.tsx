@@ -137,7 +137,7 @@ export default function Home(): React.JSX.Element {
         <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))'}}>
           {cards.map((f, i) => (
             <Patch key={f.key} as={Link} to={`/features/${f.key}`} tone={cardTones[i]} radius="34px" inset={9} hover className={tilts[i]} style={{padding: '18px 18px 28px', display: 'flex', flexDirection: 'column', gap: 18, textDecoration: 'none'}}>
-              <Media id={f.hero.id} alt={f.hero.alt} hint={f.hero.capture} aspect="16 / 10" />
+              <Media id={f.hero.id} alt={f.hero.alt} hint={f.hero.capture} aspect="16 / 10" zoom={false} />
               <div style={{padding: '0 10px', display: 'flex', flexDirection: 'column', gap: 8}}>
                 <h3 style={{fontSize: 23}}>{f.title}</h3>
                 <p style={{fontSize: 16, lineHeight: 1.6}}>{f.card}</p>
