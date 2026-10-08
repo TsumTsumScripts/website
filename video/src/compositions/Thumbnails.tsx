@@ -103,8 +103,5 @@ export const ThumbSkills: React.FC = () => (
 export const ThumbAutoplay: React.FC = () => (
   <Frame title={['Auto-', 'play']} subtitle="A whole round, hands off">
     <Card still="thumb-autoplay.png" height={620} left={800} top={50} tilt={4} edge="marigold" />
-    <div style={{position: 'absolute', left: 640, top: 560, transform: 'rotate(-4deg)'}}>
-      <Chip tone="jade" size={46}>Max chain 4</Chip>
-    </div>
   </Frame>
 );
