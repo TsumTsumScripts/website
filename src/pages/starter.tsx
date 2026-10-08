@@ -11,12 +11,13 @@ export default function Starter(): React.JSX.Element {
   const repo = siteConfig.customFields!.repoUrl as string;
   const discord = siteConfig.customFields!.discordUrl as string;
   return (
-    <FeltPage title="Starter tool" description="A small menu-driven tool that starts the GAP service on your phone or emulator.">
+    <FeltPage title="Starter tool" description="A small tool that opens in your browser and starts the GAP service on your phone or emulator.">
       <PageHead tone="jade" kicker="Starter tool" title="Start the service" accent="in a few taps.">
         <p>
           GAP needs a helper service on the phone or emulator. Android only lets a computer start it, and it stops when
-          the device restarts. The starter tool is a small numbered menu that does it, and can also install the app and
-          copy your round stats and Tsum list off the device. Rooted emulators do not need it.
+          the device restarts. The starter tool opens a page in your browser that does it in one click. It also installs
+          the app, exports your logs and round stats as one zip, and brings Tsum Tsum Stats with it. Rooted emulators do
+          not need it for the service.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
           <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download</Patch>
@@ -37,12 +38,12 @@ export default function Starter(): React.JSX.Element {
         <ol style={{lineHeight: 1.8, fontSize: 17, margin: 0, paddingLeft: 22}}>
           <li>Extract the download. On a Mac use the <code>.tar.gz</code> and run it from Terminal.</li>
           <li>Run <b>Start-Windows</b>, or <b>Start-Linux</b> on macOS and Linux.</li>
-          <li>The first time, let it fetch Google's <code>adb</code> (about 8 to 16 MB, checked against a recorded checksum). Nothing else is installed.</li>
-          <li>Pick your device, then choose <b>Start service</b>. It remembers the device next time.</li>
+          <li>The first time, let it fetch the page's program and Google's <code>adb</code>, each checked against a recorded checksum. Nothing is installed.</li>
+          <li>A page opens in your browser. Pick your device and press <b>Start service</b>. It remembers the device next time.</li>
           <li>Open GAP, add the Tsum Tsum script from the Library, and press Play.</li>
         </ol>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          Stuck? Ask in the <a href={discord}>Discord</a>.
+          Stuck? Press <b>Export logs &amp; stats</b> and share the zip in the <a href={discord}>Discord</a>.
         </p>
       </Patch>
     </FeltPage>
