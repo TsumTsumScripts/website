@@ -45,6 +45,13 @@ Quick Bar scenes sit over `backdrops/<file>` when a scene names one. Put **your 
 gameplay captures** there (the plan forbids other game art); `board-midround.png` is the default mid-round board; with none the strip
 sits over a plain gradient.
 
+## The service starter
+
+`page: 'starter'` renders the starter's browser page from `../tsum-stats/internal/starter/site/`
+(override with `TSUM_STATS_DIR`) in a 1280x800 window, 2560x1600 at the default scale. The scene's
+`api(path, body)` answers `/api/starter/<path>`: return an object for JSON, or `{stream: [...]}` for
+an action's NDJSON. `steps(h)` has `h.click(selector)` and `h.scrollTo(selector, offset)`.
+
 ## Not the device
 
 Chrome here is newer than the device's WebView, which lays out flex items a little
