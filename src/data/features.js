@@ -11,7 +11,7 @@
 
 /**
  * @typedef {{id: string, alt: string, capture: string}} Shot
- * @typedef {{id: string, kind: 'capture'|'remotion', seconds: number, brief: string, note: string}} Video
+ * @typedef {{id: string, kind: 'capture'|'remotion', seconds: number, brief: string, note: string, youtube?: string}} Video
  * @typedef {{title: string, body: string, shot?: Shot}} Step
  * @typedef {{name: string, desc: string, group?: string}} SettingOption
  * @typedef {{name: string, def?: string, desc: string, options?: SettingOption[]}} Setting
@@ -62,6 +62,7 @@ const features = [
     shots: [],
     video: {
       id: 'vid-autoplay',
+      youtube: '1HmHhnLJcUE',
       kind: 'remotion',
       seconds: 25,
       brief: 'Raw gameplay (one full round, sped up 2x in the middle) with Remotion callouts: chain-length badge following the finger, "Max chain 4" label, then the score tally.',
@@ -146,6 +147,7 @@ const features = [
     ],
     video: {
       id: 'vid-skills',
+      youtube: '6LaCN7cpbnw',
       kind: 'remotion',
       seconds: 30,
       brief: 'Three short cuts (Burst, Coronation Day Elsa, Gaston), each with a lower-third naming the skill type and a "gauge full" ring pulse at the moment the tap lands.',
@@ -230,13 +232,6 @@ const features = [
     ],
     tip: 'The round already committed to its items on the screen before, so a mid-round change lands on the next round.',
     shots: [],
-    video: {
-      id: 'vid-items',
-      kind: 'capture',
-      seconds: 10,
-      brief: 'Screen capture of the pre-round screen: items tapped on by the script, then Start. Add a Remotion highlight ring on each item as it lights.',
-      note: 'The script setting the items before a round.',
-    },
   },
   {
     key: 'hearts',
@@ -272,13 +267,6 @@ const features = [
     ],
     tip: 'The Quick Bar\'s Send chip adds or drops the heart chore straight away, mid-run.',
     shots: [],
-    video: {
-      id: 'vid-hearts',
-      kind: 'remotion',
-      seconds: 15,
-      brief: 'Sped-up capture of one sweep down the friend list with a counter ticking "Hearts sent". Names blurred.',
-      note: 'One sweep of the friend list.',
-    },
   },
   {
     key: 'mailbox',
@@ -318,13 +306,6 @@ const features = [
     ],
     tip: 'One By One is slower but encourages unknown players to send you hearts and coins later.',
     shots: [],
-    video: {
-      id: 'vid-mailbox',
-      kind: 'capture',
-      seconds: 12,
-      brief: 'Capture of the mailbox being worked one by one. Highlight the skipped ad row with a Remotion label.',
-      note: 'Working through the mailbox.',
-    },
   },
   {
     key: 'boxes',
