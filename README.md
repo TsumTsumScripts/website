@@ -6,7 +6,7 @@ page, and the contributor docs under `/docs`. Built with Docusaurus; the script 
 (`tsum-tsum-script`) is expected beside this one, or set `TSUM_SCRIPT_REPO`.
 
 - **Content:** `src/data/features.js` (every feature, step, setting) and `landing.js`.
-- **Changelog:** `npm run sync` reads `CHANGELOG.md`'s `### Summary` blocks;
+- **Changelog:** `npm run sync` reads the latest version's `### Summary` block from `CHANGELOG.md` (older versions are dropped);
   `src/data/featureLinks.js` decides which feature a line links to.
 - **Media:** `MEDIA_PLAN.md` lists every screenshot and clip (and the Remotion plan).
   Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.

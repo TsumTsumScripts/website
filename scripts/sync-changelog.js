@@ -78,7 +78,8 @@ if (fs.existsSync(source)) {
 
 const data = releases
   .filter((r) => r.body.some((l) => l.trim()))
+  .slice(0, 1) // only the latest version is published; older ones are dropped
   .map((r) => ({version: r.version, channel: r.channel, ...parseSummary(r.body)}));
 
 fs.writeFileSync(out, JSON.stringify(data, null, 2) + '\n');
-console.log(`changelog: ${data.length} releases with a Summary`);
+console.log(`changelog: kept ${data.length} release (the latest with a Summary)`);
