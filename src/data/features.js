@@ -712,46 +712,6 @@ const features = [
     },
   },
   {
-    key: 'companion',
-    title: 'GAP Companion',
-    category: 'Control',
-    card: 'Watch and steer a run from your phone, with notifications when it finishes.',
-    summary: 'Works with GAP Companion: live readouts and stats, remote start, workflows that chain jobs together, and Change My Tsum from the phone.',
-    hero: {
-      id: 'shot-companion-hero',
-      alt: 'GAP Companion showing a run in progress',
-      capture: 'GAP Companion Stats tab on a phone: this run, coins-per-round chart, recent rounds.',
-    },
-    steps: [
-      {
-        title: 'Pair the Companion',
-        body: 'Follow GAP Companion\'s own setup, then open the Tsum Tsum script from it.',
-      },
-      {
-        title: 'Watch the run',
-        body: 'The Stats tab shows this run, a coins-per-round chart and recent rounds. Notifications arrive when a run wraps up.',
-        shot: { id: 'shot-companion-stats', alt: 'The Companion Stats tab', capture: 'Companion Stats tab with a run in progress.' },
-      },
-      {
-        title: 'Steer it',
-        body: 'Change My Tsum, Stop after this round, and workflows that cycle jobs, all from the phone.',
-      },
-    ],
-    settings: [
-      { name: 'Change My Tsum', desc: 'Pick the Tsum from the phone. It is applied between rounds. Needs a Tsum List export first.' },
-      { name: 'Workflows', desc: 'Chain chores and rounds into a loop, with Select Tsum, Skill and other nodes.' },
-    ],
-    tip: 'Select Tsum needs the Tsum List export, so run that once first.',
-    shots: [],
-    video: {
-      id: 'vid-companion',
-      kind: 'remotion',
-      seconds: 20,
-      brief: 'Phone (Companion) and emulator side by side: tap Change My Tsum on the phone, the emulator switches Tsum between rounds.',
-      note: 'Changing the Tsum from the phone.',
-    },
-  },
-  {
     key: 'reports',
     title: 'Problem reports',
     category: 'Support',

@@ -6,7 +6,6 @@
 
 /** [pattern, feature key, optional tab] */
 const rules = [
-  [/change my tsum|workflow|companion|notification/i, 'companion'],
   [/tsum list|select my tsum/i, 'tsumlist'],
   [/quick bar|readout/i, 'quickbar'],
   [/preset|settings code|share (settings|code)|qr/i, 'presets'],
