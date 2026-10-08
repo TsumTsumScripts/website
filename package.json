@@ -15,7 +15,8 @@
     "refs:check": "node scripts/check-refs.js --images && node scripts/media-plan.js --check",
     "typecheck": "tsc",
     "media:plan": "node scripts/media-plan.js",
-    "media:check": "node scripts/media-plan.js --check"
+    "media:check": "node scripts/media-plan.js --check",
+    "capture": "node capture/run.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -34,6 +35,7 @@
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
     "@types/react": "^19.0.0",
+    "puppeteer-core": "^25.12.0",
     "typescript": "~6.0.2"
   },
   "browserslist": {

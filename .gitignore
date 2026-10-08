@@ -9,3 +9,10 @@ docs/reference/generated/
 # Written by `npm run sync` / `media:plan`.
 src/data/changelog.generated.json
 src/data/mediaFiles.generated.json
+
+# Rendered by `npm run capture`; the harness cache and unpublished renders.
+capture/.cache/
+capture/out/
+# Game captures: your own gameplay only, kept local rather than committed.
+capture/backdrops/*
+!capture/backdrops/.gitkeep

@@ -10,6 +10,8 @@ page, and the contributor docs under `/docs`. Built with Docusaurus; the script 
   `src/data/featureLinks.js` decides which feature a line links to.
 - **Media:** `MEDIA_PLAN.md` lists every screenshot and clip (and the Remotion plan).
   Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.
+  `npm run capture` renders the settings and Quick Bar screenshots without a device
+  (see `capture/README.md`).
 - **Discord:** the invite is one constant, `discordUrl` in `docusaurus.config.ts`.
 
 ## Contributor docs
