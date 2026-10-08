@@ -6,8 +6,10 @@ page, and the contributor docs under `/docs`. Built with Docusaurus; the script 
 (`tsum-tsum-script`) is expected beside this one, or set `TSUM_SCRIPT_REPO`.
 
 - **Content:** `src/data/features.js` (every feature, step, setting) and `landing.js`.
-- **Changelog:** `npm run sync` reads the latest version's `### Summary` block from `CHANGELOG.md` (older versions are dropped);
-  `src/data/featureLinks.js` decides which feature a line links to.
+- **Changelog:** `npm run sync` reads each version's `### Summary` block from `CHANGELOG.md` and shows the latest
+  production release, plus the latest alpha or beta when it is newer. Pre-releases are not on the public script
+  repo, so their Summary is kept in `changelog/prerelease.md`: refresh it from the checkout with
+  `node scripts/sync-changelog.js --prerelease`. `src/data/featureLinks.js` decides which feature a line links to.
 - **Media:** `MEDIA_PLAN.md` lists every screenshot and clip (and the Remotion plan).
   Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.
   `npm run capture` renders the settings and Quick Bar screenshots without a device
