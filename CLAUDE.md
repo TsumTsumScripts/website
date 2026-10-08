@@ -46,6 +46,9 @@ Renders the settings page and Quick Bar in headless Chrome at the emulator's 540
 
 ## Conventions
 
+- Commit as each task finishes, once typecheck, build and any relevant check (`contrast`, `refs:check`)
+  pass, without waiting to be asked. One commit per logical change: when a file mixes changes from
+  separate tasks, stage them apart. Do not push.
 - Colours: follow `CONTRAST.md`. Use a patch's `var(--ink)` on its fill, no `opacity` on text, and
   docs colours via the Infima variables in `custom.css` and `src/prism/themes.ts`.
 - Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
