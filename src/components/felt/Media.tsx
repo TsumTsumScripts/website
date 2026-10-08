@@ -35,8 +35,9 @@ export default function Media({
     );
   }
   const isVideo = /\.(mp4|webm)$/.test(file);
+  // A still is shown whole, at its own proportions; only a video keeps the slot's aspect.
   return (
-    <div className="media" style={style} data-media-id={id}>
+    <div className={isVideo ? 'media' : 'media media--shot'} style={isVideo ? style : undefined} data-media-id={id}>
       {isVideo ? (
         <video src={src} aria-label={alt} controls={id.startsWith('vid')} autoPlay={!id.startsWith('vid')} muted={!id.startsWith('vid')} loop={loop && !id.startsWith('vid')} playsInline preload="metadata" />
       ) : (

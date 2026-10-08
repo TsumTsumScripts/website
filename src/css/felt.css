@@ -124,6 +124,10 @@ body.felt-body .navbar-sidebar { background: var(--ground); }
   padding: 14px; text-align: center; background: #2a2730; color: #d8d2e4; border: 2px dashed #8e89b0;
 }
 .media--missing b { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.media--shot { width: fit-content; max-width: 100%; margin-inline: auto; height: auto; background: none; }
+.media--shot img { width: auto; max-width: 100%; height: auto; max-height: var(--shot-max, 440px); object-fit: contain; border-radius: inherit; }
+.phone:has(> .media--shot) { aspect-ratio: auto; --shot-max: 520px; }
+.phone > .media--shot, .patch > .media--shot { height: auto; }
 .media--missing code { background: rgba(0,0,0,.35); color: #f4efe6; padding: 1px 6px; border-radius: 6px; font-size: 12px; }
 .media--missing span { font-size: 13px; line-height: 1.35; opacity: .9; }
 
