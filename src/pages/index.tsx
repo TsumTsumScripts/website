@@ -150,20 +150,6 @@ export default function Home(): React.JSX.Element {
         </div>
       </section>
 
-      <section id="screens" style={section}>
-        <Heading tone="periwinkle" kicker="Screenshots" title="See it in the app" />
-        <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))'}}>
-          {landing.phoneShots.map((s, i) => (
-            <figure key={s.id} style={{margin: 0, display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'center'}}>
-              <Patch tone={s.tone as Tone} className={`phone ${tilts[i]}`} style={{width: '100%'}}>
-                <Media id={s.id} alt={s.alt} hint={s.capture} />
-              </Patch>
-              <figcaption style={{fontFamily: 'var(--font-display)', fontSize: 18}}>{s.title}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
       <section id="video" style={section}>
         <Heading tone="grape" kicker="Trailer" title="The script in 45 seconds" />
         <Patch tone="grape" radius="48px" inset={9} style={{padding: 22}}>

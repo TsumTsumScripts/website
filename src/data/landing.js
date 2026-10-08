@@ -15,14 +15,6 @@ const playClips = [
   { id: 'clip-play-bubbles', alt: 'Bubbles popping', seconds: 8, capture: '8s of bubbles being popped as chains land.' },
 ];
 
-/** Phone-framed screenshots (landing "See it in the app"). */
-const phoneShots = [
-  { id: 'shot-landing-settings', alt: 'The settings page', title: 'Settings', tone: 'marigold', capture: 'Settings page, Skills tab, light theme, preset dropdown visible.' },
-  { id: 'shot-landing-quickbar', alt: 'The Quick Bar', title: 'Quick Bar', tone: 'jade', capture: 'Quick Bar over a paused round, page one.' },
-  { id: 'shot-landing-midround', alt: 'A round in progress', title: 'Mid-round', tone: 'rose', capture: 'Round in progress with the floating bar and status line.' },
-  { id: 'shot-landing-results', alt: 'The results tally', title: 'Results', tone: 'grape', capture: 'Score tally with coins and medals.' },
-];
-
 const trailer = {
   id: 'vid-trailer',
   kind: 'remotion',
@@ -40,4 +32,4 @@ const starterShots = [
 /** Landing "What's in the sewing box" cards: feature keys, in order. */
 const landingFeatureKeys = ['autoplay', 'skills', 'bubbles', 'hearts', 'boxes', 'quickbar'];
 
-module.exports = {hero, playClips, phoneShots, trailer, starterShots, landingFeatureKeys};
+module.exports = {hero, playClips, trailer, starterShots, landingFeatureKeys};

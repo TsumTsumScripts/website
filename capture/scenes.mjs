@@ -52,7 +52,6 @@ const closeUp = (id, tab, first, last) => ({
 export const scenes = [
   // --- Quick Bar --------------------------------------------------------
   {id: 'shot-quickbar-hero', ...strip, steps: onGapStatePaused},
-  {id: 'shot-landing-quickbar', ...strip, steps: onGapStatePaused},
   {
     id: 'shot-quickbar-bars', ...strip,
     banner: 'Applies at the next round',
@@ -83,10 +82,6 @@ export const scenes = [
   },
 
   // --- Settings page ----------------------------------------------------
-  {
-    id: 'shot-landing-settings', ...page,
-    async steps(h) { await h.tab('Skills'); },
-  },
   {
     id: 'shot-skills-type', ...page,
     async steps(h) {

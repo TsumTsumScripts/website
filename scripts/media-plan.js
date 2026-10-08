@@ -35,7 +35,6 @@ const video = (v, page, alt) => add({id: v.id, type: 'video', what: v.brief, alt
 
 shot(landing.hero, 'Landing');
 for (const c of landing.playClips) add({id: c.id, type: 'clip', what: c.capture, alt: c.alt, seconds: c.seconds, kind: 'capture'}, 'Landing');
-for (const p of landing.phoneShots) shot(p, 'Landing');
 video(landing.trailer, 'Landing', landing.trailer.note);
 for (const s of landing.starterShots) shot(s, 'Starter');
 for (const f of features) {
