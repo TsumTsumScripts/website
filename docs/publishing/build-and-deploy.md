@@ -56,9 +56,8 @@ another channel's folder.
 Your builds are unsigned. An old `gap-signature.json` left beside them would no
 longer match, so `buildAndAdb` removes it from the DEV folder on an unsigned
 push; `npm run adb` does not, so delete it by hand if you push over a signed
-install. On a device that is not linked to GAP Companion this changes
-nothing; on a linked one the copy gets no network until a signed build is
-installed again ([Trust and access](../architecture/trust-and-access)).
+install. On most devices this changes nothing; on one linked for remote
+management the copy gets no network until a signed build is installed again ([Trust and access](../architecture/trust-and-access)).
 
 On an emulator that mounts a shared folder as `/sdcard/Download` (MuMu does),
 copying `dist/` into that folder on the PC is the same thing without adb. The

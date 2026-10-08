@@ -42,7 +42,7 @@ Renders the settings page and Quick Bar in headless Chrome at the emulator's 540
   mid-round board from `../debug`; crop off the host's floating bar (`cropTop`), which shows an
   older version.
 - Output is a render, not a device capture. Do not describe it as one.
-- Not capturable here: anything in the game itself, terminals, spreadsheets, GAP Companion.
+- Not capturable here: anything in the game itself, terminals, spreadsheets, the remote phone app.
 
 ## Video (`video/`)
 

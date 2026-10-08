@@ -10,8 +10,8 @@
 // closes itself, relative links point at GitHub, braces and placeholder tags
 // are escaped. Fenced code and inline code are left exactly as written.
 //
-// A document's `omit` keeps out what the site does not cover yet (GAP
-// Companion, for now): `sections` drops a heading and everything under it,
+// A document's `omit` keeps out what the site does not cover (the remote
+// phone app): `sections` drops a heading and everything under it,
 // `lines` drops single lines, `phrases` cuts text out of the lines it keeps.
 //
 // Runs before `start` and `build` (see package.json); the output directory is
@@ -39,8 +39,8 @@ const documents = [
     description: 'Every event the script broadcasts to outside tooling, and what each carries.',
     omit: {
       sections: [/^### `gap\.notify`/],
-      lines: [/src\/companion\.ts/],
-      phrases: [/ The companion app shows it as what the device is doing\./],
+      lines: [/src\/compan\w+\.ts/],
+      phrases: [/ The compan\w+ app shows it as what the device is doing\./],
     },
   },
   {

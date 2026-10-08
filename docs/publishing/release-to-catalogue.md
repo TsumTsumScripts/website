@@ -32,8 +32,8 @@ npm run release:alpha -- --yes       # skip the note review (for scripts; needs 
 3. The catalogue checkout is beside this repository, at the path
    `config.json`'s `Catalogue` names (`../../tsum-tsum-catalogue/LineTsumTsum`).
 4. **The build is signed.** A maintainer releases with the signing key set; the
-   release warns loudly without it, and an unsigned release reaches players
-   without GAP Companion support. Contributors do not release, and never need
+   release warns loudly without it, and an unsigned release loses what a
+   signature gives. Contributors do not release, and never need
    the key ([Trust and access](../architecture/trust-and-access#why-a-release-is-signed)).
 
 ## What `config.json` says

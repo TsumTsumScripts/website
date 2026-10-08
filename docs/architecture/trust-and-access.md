@@ -104,11 +104,9 @@ questions a hash in a catalogue cannot:
 
 What a valid signature changes:
 
-- **GAP Companion** (the phone app that watches and controls a device) only
-  works with a script whose signature verifies.
-- **On a device linked to GAP Companion, an unsigned or edited script gets no
-  network**, whatever the switches say. A linked device is one the player
-  manages remotely, so it holds a stricter line.
+- **On a device linked for remote management, an unsigned or edited script
+  gets no network**, whatever the switches say. The player is not watching that
+  device, so it holds a stricter line.
 - **A signed script does not need the shell switch.** The signature already says
   whose code it is, so its access screen shows that row as on and fixed.
 

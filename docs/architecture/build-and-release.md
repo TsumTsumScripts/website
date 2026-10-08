@@ -58,7 +58,7 @@ The `sign` step runs only when the build is given the maintainers' signing key.
 It comes after every `dist:` step and before the archive and the adb push, so
 the signature covers exactly the files that ship. Without the key the build is
 complete and unsigned, and the release tool warns loudly, because an unsigned
-release gets no GAP Companion and no network on a linked device. Why that is
+release gets no network on a device linked for remote management. Why that is
 the right trade is [Trust and access](trust-and-access#why-a-release-is-signed).
 
 ## Channels
