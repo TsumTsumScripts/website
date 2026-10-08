@@ -1,6 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <circle cx="18" cy="40" r="11" fill="#2e6bc4"/>
-  <circle cx="34" cy="24" r="11" fill="#5f9eec"/>
-  <circle cx="48" cy="42" r="11" fill="#9fc6f4"/>
-  <path d="M18 40 L34 24 L48 42" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 104 104" width="64" height="64">
+  <!-- The felt coin from src/components/felt/FeltAccent.tsx. -->
+  <defs>
+    <filter id="felt" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.55 0 0 0 -0.16" result="sp"/>
+      <feComposite in="sp" in2="d" operator="in" result="spk"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0.22 0 0 -0.1" result="hl"/>
+      <feComposite in="hl" in2="d" operator="in" result="hlk"/>
+      <feMerge>
+        <feMergeNode in="d"/>
+        <feMergeNode in="spk"/>
+        <feMergeNode in="hlk"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#felt)">
+    <circle cx="50" cy="54" r="46" fill="#a85f0c"/>
+    <circle cx="50" cy="50" r="46" fill="#e8900c"/>
+    <circle cx="50" cy="50" r="35" fill="#ffbb1a"/>
+    <circle cx="45" cy="45" r="22" fill="#ffd95a" opacity="0.5"/>
+    <g fill="#ffe07a">
+      <circle cx="51" cy="59.5" r="15"/>
+      <circle cx="34" cy="38.5" r="9.5"/>
+      <circle cx="68" cy="38.5" r="9.5"/>
+    </g>
+    <g fill="#e2700a">
+      <circle cx="50" cy="58" r="15"/>
+      <circle cx="33" cy="37" r="9.5"/>
+      <circle cx="67" cy="37" r="9.5"/>
+    </g>
+    <g fill="#c25604" opacity="0.55">
+      <path d="M35 58a15 15 0 0 1 30 0a15 15 0 0 0 -30 0z"/>
+    </g>
+  </g>
+  <circle cx="50" cy="50" r="40.5" fill="none" stroke="#fff4cc" stroke-width="2.4" stroke-dasharray="4.2 3.2" stroke-linecap="round"/>
+  <circle cx="50" cy="51" r="40.5" fill="none" stroke="#a85f0c" stroke-width="1.2" stroke-dasharray="4.2 3.2" stroke-linecap="round" opacity="0.35"/>
 </svg>

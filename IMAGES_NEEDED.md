@@ -32,5 +32,5 @@ orientation, with no personal data on screen (friend names, player ids).
 | `logdy-view` | guides/logging-and-events, reference/log-schema | Logdy with a run's log loaded: level, component, event, roundId columns, a row drawer open | needed |
 | `report-folder` | guides/test-without-a-device | The contents of one `reports/<id>` folder: the screen, the trail frames, the manifest, the log excerpt | needed |
 
-Also placeholders: `static/img/logo.svg` and `static/img/favicon.svg` are a
-generated three-circle mark, to be replaced with the project's own.
+Also a placeholder: `static/img/logo.svg` is a generated three-circle mark, to be
+replaced with the project's own. `static/img/favicon.svg` is the header's felt coin.
