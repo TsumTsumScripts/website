@@ -24,7 +24,7 @@ const config: Config = {
   url: 'https://tsumtsum.gapscripts.app',
   baseUrl: '/',
   organizationName: 'TsumTsumScripts',
-  projectName: 'tsum-tsum-website',
+  projectName: 'website',
   trailingSlash: false,
 
   // A broken link is a build failure, not a warning.
@@ -60,7 +60,7 @@ const config: Config = {
           path: 'docs',
           routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/TsumTsumScripts/tsum-tsum-website/tree/main/',
+          editUrl: 'https://github.com/TsumTsumScripts/website/tree/main/',
           showLastUpdateTime: false,
         },
         blog: false,
