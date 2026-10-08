@@ -1,12 +1,31 @@
 # Build the site and publish it to GitHub Pages (tsumtsum.gapscripts.app).
 # The build's sync step reads the script repository, so it is checked out
 # beside the site and named by TSUM_SCRIPT_REPO.
+#
+# The deploy dashboard (GAP/tools/deploy) dispatches this with pinned refs, and
+# reads build/deploy.json back from the live site to know what is deployed.
+# The run always starts on main, because the github-pages environment only
+# admits main; the refs only choose what is checked out.
 name: Deploy to GitHub Pages
+run-name: ${{ inputs.deploy_id && format('Deploy {0}', inputs.deploy_id) || github.event.head_commit.message || github.workflow }}
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      site_ref:
+        description: Site commit to build (empty = the run's commit)
+        required: false
+        default: ''
+      script_ref:
+        description: tsum-tsum-script commit to sync from (empty = its default branch)
+        required: false
+        default: ''
+      deploy_id:
+        description: Set by the deploy dashboard to find its run
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -24,10 +43,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: site
+          ref: ${{ inputs.site_ref || github.sha }}
       - uses: actions/checkout@v4
         with:
           repository: TsumTsumScripts/tsum-tsum-script
           path: tsum-tsum-script
+          ref: ${{ inputs.script_ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -39,6 +60,12 @@ jobs:
         working-directory: site
         env:
           TSUM_SCRIPT_REPO: ${{ github.workspace }}/tsum-tsum-script
+      - name: Record what was built
+        run: |
+          jq -n --arg site "$(git -C site rev-parse HEAD)" \
+                --arg script "$(git -C tsum-tsum-script rev-parse HEAD)" \
+                --arg id "${{ inputs.deploy_id }}" \
+                '{site: $site, script: $script, deploy_id: $id, at: (now | todate)}' > site/build/deploy.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/build
