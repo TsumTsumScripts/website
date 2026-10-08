@@ -16,3 +16,5 @@ capture/out/
 # Game captures: your own gameplay only, kept local rather than committed.
 capture/backdrops/*
 !capture/backdrops/.gitkeep
+# Unedited game captures (may show other players); publish only processed copies.
+capture/raw/
