@@ -94,7 +94,7 @@ export default function FeaturesGuide(): React.JSX.Element {
     document.getElementById(`tab-${t.id}`)?.focus();
   };
 
-  const allShots = [...(f.hero ? [f.hero] : []), ...f.steps.flatMap((s) => (s.shot ? [s.shot] : [])), ...f.shots];
+  const allShots = [...(f.hero ? [f.hero] : []), ...f.steps.flatMap((s) => [...(s.shot ? [s.shot] : []), ...(s.annotated ? [s.annotated.shot] : [])]), ...f.shots];
 
   return (
     <FeltPage

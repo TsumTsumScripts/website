@@ -43,7 +43,10 @@ for (const f of features) {
     shot(f.hero, page);
     if (landing.landingFeatureKeys.includes(f.key)) add({...items.get(f.hero.id)}, 'Landing');
   }
-  for (const st of f.steps) if (st.shot) shot(st.shot, page);
+  for (const st of f.steps) {
+    if (st.shot) shot(st.shot, page);
+    if (st.annotated) shot(st.annotated.shot, page);
+  }
   for (const s of f.shots) shot(s, page);
   if (f.video) video(f.video, page);
 }
