@@ -10,7 +10,7 @@ import {FPS} from '../theme';
 // `tapAt` is seconds into the cut (see capture/raw/cuts/cuts.json). Elsa's cut opens mid-skill,
 // so her tap is at 0.
 const cuts = [
-  {file: 'skill-burst.mp4', seconds: 8, tapAt: 1.7, kicker: 'Burst', title: 'Donald'},
+  {file: 'skill-burst.mp4', seconds: 8, tapAt: 1.7, kicker: 'Burst', title: 'Colorful Mickey Set'},
   {file: 'skill-elsa.mp4', seconds: 11, tapAt: 0, kicker: 'Unique', title: 'Coronation Day Elsa'},
   {file: 'skill-gaston.mp4', seconds: 10, tapAt: 1.0, kicker: 'Unique', title: 'Gaston'},
 ] as const;
