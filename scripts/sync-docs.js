@@ -73,6 +73,8 @@ function escapeProse(text) {
       .replace(/[{}]/g, (c) => '\\' + c)
       .replace(/<(\/?)([A-Za-z][\w-]*)([^>]*)>/g, (m, slash, tag) =>
         htmlTags.has(tag.toLowerCase()) ? m : m.replace('<', '&lt;').replace(/>$/, '&gt;'))
+      // A `<` that opens no tag (`<= 20`, `< 5`) would still start JSX.
+      .replace(/<(?![A-Za-z/!])/g, '&lt;')
       .replace(/\]\(([^)\s]+)\)/g, (m, target) => {
         if (/^(https?:|#|mailto:)/.test(target)) return m;
         const [file, anchor] = target.split('#');
