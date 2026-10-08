@@ -363,6 +363,7 @@ const features = [
     shots: [],
     video: {
       id: 'vid-boxes',
+      youtube: 'tLmZvj7onv4',
       kind: 'remotion',
       seconds: 20,
       brief: 'Capture of a sweep: store, box tab, 10-Time purchase, reveals clearing. Remotion coin counter dropping, and a "rubies untouched" badge at the end.',
