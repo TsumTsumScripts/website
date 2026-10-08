@@ -68,8 +68,8 @@ const parts: {title: string; tone: Tone; body: React.ReactNode}[] = [
     tone: 'surface',
     body: (
       <>
-        Tsum Night, the default, plus Midnight and Daylight Felt in this site's look, and a few more. You can add your
-        own as a small CSS file.
+        Midnight and Daylight Felt in this site's look, plus Halloween, Ember and Tsum Night. You can add your own as a
+        small CSS file.
       </>
     ),
   },

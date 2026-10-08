@@ -61,9 +61,9 @@ Compositions to build (6):
 | `shot-landing-hero` | screenshot | Landing |  Phone or emulator mid-round, floating bar visible, a long chain mid-draw. Full portrait screen. | done |
 | `shot-starter-devices` | screenshot | Starter |  Starter page: the device list, one device selected with its service stopped. | done |
 | `shot-starter-started` | screenshot | Starter |  Starter page: the chosen device's panel after "Start service" succeeded. | done |
-| `shot-stats-site-stats` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Stats page, last 7 days: KPI tiles and the top of Coin efficiency by Tsum. Laptop window, 1280x800 at 2x. | done |
-| `shot-stats-site-catalog` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Catalog with an imported Tsum List: the owned bar and the Cost to max panel. Laptop window, 1280x800 at 2x. | done |
-| `shot-stats-site-help` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Help section 1, heading just under the top bar. Laptop window, 1280x800 at 2x. | done |
+| `shot-stats-site-stats` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Stats page, last 7 days: KPI tiles and the top of Coin efficiency by Tsum. Midnight Felt theme, laptop window, 1280x800 at 2x. | done |
+| `shot-stats-site-catalog` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Catalog with an imported Tsum List: the owned bar and the Cost to max panel. Midnight Felt theme, laptop window, 1280x800 at 2x. | done |
+| `shot-stats-site-help` | screenshot | Tsum Tsum Stats |  Tsum Tsum Stats, Help section 1, heading just under the top bar. Midnight Felt theme, laptop window, 1280x800 at 2x. | done |
 | `shot-autoplay-hero` | screenshot | Features / Auto-play; Landing |  Mid-round, finger down on a chain of 8+ tsums, chain-count number visible. Crop to the board and score bar. | done |
 | `shot-autoplay-round-tab` | screenshot | Features / Auto-play |  Settings page on the Round tab, scrolled to the top, light theme. | done |
 | `shot-autoplay-max-chain` | screenshot | Features / Auto-play |  Close-up of the Maximum Chain Number and Chains per board scan rows. | done |
