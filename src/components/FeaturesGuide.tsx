@@ -1,4 +1,5 @@
 import React, {useMemo, useRef, useState} from 'react';
+import Link from '@docusaurus/Link';
 import {useHistory, useLocation} from '@docusaurus/router';
 import FeltPage from '@site/src/components/felt/FeltPage';
 import PageHead from '@site/src/components/felt/PageHead';
@@ -138,6 +139,12 @@ export default function FeaturesGuide(): React.JSX.Element {
               );
             })}
           </nav>
+          <Patch as={Link} to="/stats-site" tone="periwinkle" radius="22px" inset={4} lift={5} className="fg-item" style={{marginTop: 18}}>
+            <span style={{display: 'flex', flexDirection: 'column'}}>
+              <b style={{fontSize: 16}}>Tsum Tsum Stats →</b>
+              <small style={{fontSize: 14}}>Your rounds and collection, charted</small>
+            </span>
+          </Patch>
         </aside>
 
         <main style={{flex: '999 1 560px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 28}}>
@@ -197,6 +204,11 @@ export default function FeaturesGuide(): React.JSX.Element {
                     {f.tip}
                   </p>
                 </Patch>
+                {f.see && (
+                  <p style={{fontSize: 16, lineHeight: 1.6}}>
+                    <Link to={f.see.to}><b>{f.see.label}</b></Link> {f.see.text}
+                  </p>
+                )}
               </>
             )}
 

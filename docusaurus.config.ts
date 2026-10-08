@@ -112,6 +112,7 @@ const config: Config = {
             {label: 'Features', to: '/features'},
             {label: 'Changelog', to: '/changelog'},
             {label: 'Starter tool', to: '/starter'},
+            {label: 'Tsum Tsum Stats', to: '/stats-site'},
           ],
         },
         {

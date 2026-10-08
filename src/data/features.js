@@ -17,8 +17,9 @@
  * @typedef {{title: string, body: string, shot?: Shot, annotated?: Annotated}} Step
  * @typedef {{name: string, desc: string, group?: string}} SettingOption
  * @typedef {{name: string, def?: string, desc: string, options?: SettingOption[]}} Setting
+ * @typedef {{to: string, label: string, text: string}} SeeAlso  a page elsewhere on the site that builds on the feature
  * @typedef {{key: string, title: string, category: string, summary: string, card: string,
- *   tone: string, hero?: Shot, steps: Step[], settings: Setting[], tip: string, shots: Shot[], video?: Video}} Feature
+ *   tone: string, hero?: Shot, steps: Step[], settings: Setting[], tip: string, shots: Shot[], video?: Video, see?: SeeAlso}} Feature
  */
 
 /** @type {Feature[]} */
@@ -448,6 +449,7 @@ const features = [
       { name: 'Export Tsum list (Now)', desc: 'Exports every owned Tsum: position, id, name, level and cap, skill level, month acquired, favourite, game build and device name.' },
     ],
     tip: 'With a run going, the export waits for the current round and the run carries on after it.',
+    see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'shows the export as a catalog of every Tsum, with what it costs to max the rest.'},
     shots: [],
     video: {
       id: 'vid-tsumlist',
@@ -483,6 +485,7 @@ const features = [
       { name: 'Share round stats (Beta)', def: 'Off', desc: 'Sends new rows at most once a minute. Needs Record round stats and a stats server set in GAP.' },
     ],
     tip: 'Each round has a unique id, so files from different devices can be merged without double counting.',
+    see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'turns these files into coin efficiency, charts and a table of every round, on your own computer.'},
     shots: [
       { id: 'shot-stats-quickbar-readout', alt: 'The Quick Bar readout showing average coins', capture: 'Quick Bar right-hand readout with Base, Final and Medals rows filled.' },
     ],

@@ -37,6 +37,7 @@ shot(landing.hero, 'Landing');
 for (const c of landing.playClips) add({id: c.id, type: 'clip', what: c.capture, alt: c.alt, seconds: c.seconds, kind: 'capture'}, 'Landing');
 video(landing.trailer, 'Landing', landing.trailer.note);
 for (const s of landing.starterShots) shot(s, 'Starter');
+for (const s of landing.statsShots) shot(s, 'Tsum Tsum Stats');
 for (const f of features) {
   const page = `Features / ${f.title}`;
   if (f.hero) {
