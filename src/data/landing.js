@@ -25,8 +25,8 @@ const trailer = {
 };
 
 const starterShots = [
-  { id: 'shot-starter-menu', alt: 'The starter tool\'s numbered menu', capture: 'Terminal showing the starter tool menu with a device listed.' },
-  { id: 'shot-starter-started', alt: 'The service started', capture: 'Terminal after "Start service" succeeded.' },
+  { id: 'shot-starter-devices', alt: 'The starter page in a browser, listing two emulators and a phone with MuMu #1 selected', capture: 'Starter page: the device list, one device selected with its service stopped.' },
+  { id: 'shot-starter-started', alt: 'The chosen device after Start service: the service is running, with the app and export cards beside it', capture: 'Starter page: the chosen device\'s panel after "Start service" succeeded.' },
 ];
 
 /** Landing "What's in the sewing box" cards: feature keys, in order. */

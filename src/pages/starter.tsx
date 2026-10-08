@@ -12,12 +12,12 @@ export default function Starter(): React.JSX.Element {
   const discord = siteConfig.customFields!.discordUrl as string;
   return (
     <FeltPage title="Starter tool" description="A small tool that opens in your browser and starts the GAP service on your phone or emulator.">
-      <PageHead tone="jade" kicker="Starter tool" title="Start the service" accent="in a few taps.">
+      <PageHead tone="jade" kicker="Starter tool" title="Start the service" accent="in one click.">
         <p>
           GAP needs a helper service on the phone or emulator. Android only lets a computer start it, and it stops when
-          the device restarts. The starter tool opens a page in your browser that does it in one click. It also installs
-          the app, exports your logs and round stats as one zip, and brings Tsum Tsum Stats with it. Rooted emulators do
-          not need it for the service.
+          the device restarts. The starter tool opens a page in your browser: pick your device and press Start service. The
+          same page installs the app, exports your logs and round stats as one zip, clears them off the device, and runs
+          Tsum Tsum Stats beside it. Rooted devices start the service themselves.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
           <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download</Patch>
@@ -39,7 +39,9 @@ export default function Starter(): React.JSX.Element {
           <li>Extract the download. On a Mac use the <code>.tar.gz</code> and run it from Terminal.</li>
           <li>Run <b>Start-Windows</b>, or <b>Start-Linux</b> on macOS and Linux.</li>
           <li>The first time, let it fetch the page's program and Google's <code>adb</code>, each checked against a recorded checksum. Nothing is installed.</li>
-          <li>A page opens in your browser. Pick your device and press <b>Start service</b>. It remembers the device next time.</li>
+          <li>A page opens in your browser. Keep the terminal window open while you use it: closing it stops the page.</li>
+          <li>Pick your device and press <b>Start service</b>. It stays chosen next time.</li>
+          <li>No app yet? Press <b>Download &amp; install the latest APK</b>, then tap <b>Add</b> when GAP offers the Tsum Tsum library.</li>
           <li>Open GAP, add the Tsum Tsum script from the Library, and press Play.</li>
         </ol>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
