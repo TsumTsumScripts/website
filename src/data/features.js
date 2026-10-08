@@ -59,9 +59,7 @@ const features = [
       { name: 'Max round duration (min)', def: '0 (no limit)', desc: 'Gives up on a round that never ends, such as a stuck skill or an unrecognised screen. Set what happens next under Schedules and limits.' },
     ],
     tip: 'Low-cap, many-chain play is the usual choice for Roxas, Maleficent and other count-scoring Tsums.',
-    shots: [
-      { id: 'shot-autoplay-board', alt: 'The board after a chain pops and new tsums drop in', capture: 'Board a moment after a pop, tsums falling.' },
-    ],
+    shots: [],
     video: {
       id: 'vid-autoplay',
       kind: 'remotion',
@@ -436,11 +434,6 @@ const features = [
     category: 'Data',
     card: 'Exports every Tsum you own to a spreadsheet, favourites marked.',
     summary: 'Walks your collection, taps each Tsum and writes its name, level, skill level, month acquired and favourite star to a CSV.',
-    hero: {
-      id: 'shot-tsumlist-hero',
-      alt: 'The collection screen being walked card by card',
-      capture: 'Collection screen sorted by Date acquired with one Tsum\'s detail panel open.',
-    },
     steps: [
       {
         title: 'Open Chores',
