@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Freeze, OffthreadVideo, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Patch} from './Patch';
 import {Tone, fonts, tones} from '../theme';
 
@@ -8,13 +8,13 @@ import {Tone, fonts, tones} from '../theme';
 export const WIDE_W = 1920;
 export const WIDE_H = 1080;
 
-const CARD_W = 603;
-const CARD_H = 1000;
-const CARD_LEFT = 1170;
-const CARD_TOP = 40;
-const BORDER = 8;
-const INNER_W = CARD_W - BORDER * 2;
-const INNER_H = CARD_H - BORDER * 2;
+export const CARD_W = 603;
+export const CARD_H = 1000;
+export const CARD_LEFT = 1170;
+export const CARD_TOP = 40;
+export const BORDER = 8;
+export const INNER_W = CARD_W - BORDER * 2;
+export const INNER_H = CARD_H - BORDER * 2;
 // The cuts are 540x896; the card shows them at this scale, trimmed a few px each side.
 const SCALE = INNER_H / 896;
 
@@ -62,12 +62,24 @@ export const Chip: React.FC<{tone: Tone; size?: number; children: React.ReactNod
 };
 
 /** The footage card. Children (rings, badges) are placed in card coordinates and clipped to it. */
-export const Card: React.FC<{file: string; startFrom?: number; playbackRate?: number; children?: React.ReactNode}> = ({
-  file,
-  startFrom = 0,
-  playbackRate = 1,
-  children,
-}) => (
+export const Card: React.FC<{
+  file: string;
+  startFrom?: number;
+  playbackRate?: number;
+  /** Hold the video on its first frame; children (callouts, rings) keep animating. */
+  freeze?: boolean;
+  children?: React.ReactNode;
+}> = ({file, startFrom = 0, playbackRate = 1, freeze = false, children}) => {
+  const video = (
+    <OffthreadVideo
+      src={staticFile(`footage/${file}`)}
+      startFrom={startFrom}
+      playbackRate={playbackRate}
+      muted
+      style={{width: '100%', height: '100%', objectFit: 'cover'}}
+    />
+  );
+  return (
   <div
     style={{
       position: 'absolute',
@@ -83,16 +95,11 @@ export const Card: React.FC<{file: string; startFrom?: number; playbackRate?: nu
       background: '#14131f',
     }}
   >
-    <OffthreadVideo
-      src={staticFile(`footage/${file}`)}
-      startFrom={startFrom}
-      playbackRate={playbackRate}
-      muted
-      style={{width: '100%', height: '100%', objectFit: 'cover'}}
-    />
+    {freeze ? <Freeze frame={0}>{video}</Freeze> : video}
     {children}
   </div>
-);
+  );
+};
 
 /** Kicker chip over a big title patch, in the left panel. Pops in, and out before its end. */
 export const Headline: React.FC<{kicker?: string; title: string; durationInFrames: number; kickerTone?: Tone}> = ({

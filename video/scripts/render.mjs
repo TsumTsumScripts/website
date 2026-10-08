@@ -12,7 +12,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const publish = args.includes('--publish');
 const ids = args.filter((a) => !a.startsWith('--'));
-const all = ['vid-skills', 'vid-autoplay', 'yt-skills', 'yt-autoplay'];
+const all = ['vid-skills', 'vid-autoplay', 'yt-skills', 'yt-autoplay', 'yt-boxes'];
 const run = (cmd, a) => {
   const r = spawnSync(cmd, a, {cwd: root, stdio: 'inherit'});
   if (r.status !== 0) {

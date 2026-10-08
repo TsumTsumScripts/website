@@ -105,3 +105,11 @@ export const ThumbAutoplay: React.FC = () => (
     <Card still="thumb-autoplay.png" height={620} left={800} top={50} tilt={4} edge="marigold" />
   </Frame>
 );
+
+export const ThumbBoxes: React.FC = () => (
+  <Frame title={['Box', 'buying']} subtitle="Rubies are never spent">
+    <Card still="thumb-boxes-pile.png" height={500} left={610} top={118} tilt={-5} edge="periwinkle" />
+    <Card still="thumb-boxes-result.png" height={500} left={960} top={118} tilt={5} edge="rose" />
+    <Card still="thumb-boxes-get.png" height={540} left={790} top={92} tilt={0} edge="marigold" />
+  </Frame>
+);

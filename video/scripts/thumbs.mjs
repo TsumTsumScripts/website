@@ -6,7 +6,7 @@ import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const ids = ['thumb-vid-skills', 'thumb-vid-autoplay'];
+const ids = ['thumb-vid-skills', 'thumb-vid-autoplay', 'thumb-vid-boxes'];
 const run = (cmd, a) => {
   const r = spawnSync(cmd, a, {cwd: root, stdio: 'inherit'});
   if (r.status !== 0) {
@@ -21,6 +21,9 @@ const frames = [
   ['skill-elsa.mp4', 2.5, 'thumb-elsa.png'],
   ['skill-gaston.mp4', 7.0, 'thumb-gaston.png'],
   ['autoplay-round.mp4', 100, 'thumb-autoplay.png'],
+  ['boxes-sweep.mp4', 7.4, 'thumb-boxes-pile.png'],
+  ['boxes-sweep.mp4', 9.0, 'thumb-boxes-get.png'],
+  ['boxes-sweep.mp4', 24.6, 'thumb-boxes-result.png'],
 ];
 for (const [file, t, name] of frames) {
   run('ffmpeg', ['-v', 'error', '-y', '-ss', String(t), '-i', join('public', 'footage', file), '-frames:v', '1', join('public', 'footage', name)]);
