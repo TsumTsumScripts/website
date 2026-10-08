@@ -451,13 +451,6 @@ const features = [
     tip: 'With a run going, the export waits for the current round and the run carries on after it.',
     see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'shows the export as a catalog of every Tsum, with what it costs to max the rest.'},
     shots: [],
-    video: {
-      id: 'vid-tsumlist',
-      kind: 'remotion',
-      seconds: 20,
-      brief: 'Sped-up walk of the collection, then a Remotion wipe to the CSV rows filling in.',
-      note: 'Collection to spreadsheet.',
-    },
   },
   {
     key: 'stats',
@@ -599,13 +592,6 @@ const features = [
     ],
     tip: 'A code is a whole round configuration, not a patch: a round setting it does not mention returns to its default. Settings outside that list are never touched.',
     shots: [],
-    video: {
-      id: 'vid-presets',
-      kind: 'remotion',
-      seconds: 20,
-      brief: 'Two phones side by side: copy a code on one, scan the QR with the other, settings change. Remotion connector line between them.',
-      note: 'Sharing a setup between two phones.',
-    },
   },
   {
     key: 'runcontrol',
