@@ -268,3 +268,20 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 /* The felt Discord sticker before a Discord link's label (DiscordMark.tsx). */
 .felt-discord { display: inline-block; height: 1.25em; width: auto; vertical-align: -0.3em; margin-right: 0.4em; }
 .fbtn .felt-discord { height: 1.3em; margin-right: 0.5em; }
+
+/* YouTube video: our own poster until play, then the player (youtube-nocookie, so no tracking before the click). */
+.media--yt { background: #141318; }
+.media--yt iframe { display: block; width: 100%; height: 100%; border: 0; }
+.media-yt-play { display: block; position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.media-yt-badge {
+  position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%;
+  background: #ffb454; border: 5px solid #a5651a; box-shadow: 0 6px 0 #a5651a;
+  transition: transform .15s;
+}
+.media-yt-badge::after {
+  content: ''; position: absolute; left: 50%; top: 50%; margin: -17px 0 0 -9px;
+  border-left: 28px solid #2e1a03; border-top: 17px solid transparent; border-bottom: 17px solid transparent;
+}
+.media-yt-play:hover .media-yt-badge, .media-yt-play:focus-visible .media-yt-badge { transform: scale(1.08); }
+.media-yt-play:focus-visible { outline: 3px solid #ffb454; outline-offset: -6px; }
+@media (prefers-reduced-motion: reduce) { .media-yt-badge { transition: none; } }

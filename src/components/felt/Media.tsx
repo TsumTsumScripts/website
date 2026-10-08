@@ -15,6 +15,7 @@ export default function Media({
   aspect,
   loop = true,
   zoom = true,
+  youtube,
 }: {
   id: string;
   alt: string;
@@ -24,11 +25,35 @@ export default function Media({
   loop?: boolean;
   /** Click a still to see it whole in a dialog. Turn off inside a link. */
   zoom?: boolean;
+  /** A YouTube video id. Shown as a click-to-load player; nothing is requested from YouTube before the click. */
+  youtube?: string;
 }): React.JSX.Element {
   const file = index[id];
+  const [playing, setPlaying] = useState(false);
   const src = useBaseUrl(file ?? '/');
+  const posterSrc = useBaseUrl(`/img/video-posters/${id}.jpg`);
   const [open, setOpen] = useState(false);
   const style: React.CSSProperties = aspect ? {aspectRatio: aspect} : {};
+  if (youtube) {
+    return (
+      <div className="media media--yt" style={style} data-media-id={id}>
+        {playing ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${youtube}?autoplay=1&rel=0`}
+            title={alt}
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        ) : (
+          <button type="button" className="media-yt-play" aria-label={`Play video: ${alt}`} onClick={() => setPlaying(true)}>
+            <img src={posterSrc} alt="" loading="lazy" />
+            <span className="media-yt-badge" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+    );
+  }
   if (!file) {
     return (
       <div className="media media--missing" style={style} role="img" aria-label={alt} data-media-id={id}>

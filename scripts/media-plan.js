@@ -31,7 +31,7 @@ function add(entry, page) {
   items.set(entry.id, {...entry, pages: [page]});
 }
 const shot = (s, page) => add({id: s.id, type: 'screenshot', what: s.capture, alt: s.alt}, page);
-const video = (v, page, alt) => add({id: v.id, type: 'video', what: v.brief, alt: alt || v.note, seconds: v.seconds, kind: v.kind}, page);
+const video = (v, page, alt) => add({id: v.id, type: 'video', what: v.brief, alt: alt || v.note, seconds: v.seconds, kind: v.kind, youtube: v.youtube}, page);
 
 shot(landing.hero, 'Landing');
 for (const c of landing.playClips) add({id: c.id, type: 'clip', what: c.capture, alt: c.alt, seconds: c.seconds, kind: 'capture'}, 'Landing');
@@ -90,7 +90,7 @@ fs.writeFileSync(
 );
 
 const row = (it) => {
-  const done = index[it.id] ? 'done' : 'needed';
+  const done = index[it.id] ? 'done' : it.youtube ? 'on YouTube' : 'needed';
   const len = it.seconds ? ` (${it.seconds}s)` : '';
   const kind = it.kind === 'remotion' ? ' **Remotion.**' : '';
   return `| \`${it.id}\` | ${it.type}${len} | ${it.pages.join('; ')} | ${kind} ${it.what.replace(/\|/g, '/')} | ${done} |`;
@@ -99,7 +99,7 @@ const head = '| Id | Type | Used on | What | Status |\n|:--|:--|:--|:--|:--|';
 const all = [...items.values()];
 const byType = (t) => all.filter((i) => i.type === t);
 const remotion = all.filter((i) => i.kind === 'remotion');
-const left = all.filter((i) => !index[i.id]).length;
+const left = all.filter((i) => !index[i.id] && !i.youtube).length;
 
 const out = `# Media plan
 

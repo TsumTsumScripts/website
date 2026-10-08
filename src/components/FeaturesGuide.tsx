@@ -224,8 +224,16 @@ export default function FeaturesGuide(): React.JSX.Element {
 
             {tab === 'video' && f.video && (
               <Patch tone="grape" radius="40px" inset={9} style={{padding: 22, display: 'flex', flexDirection: 'column', gap: 16}}>
-                <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="16 / 9" />
-                <p style={{fontSize: 16}}>{f.video.note}</p>
+                <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="16 / 9" youtube={f.video.youtube} />
+                <p style={{fontSize: 16}}>
+                  {f.video.note}
+                  {f.video.youtube && (
+                    <>
+                      {' '}
+                      <a href={`https://www.youtube.com/watch?v=${f.video.youtube}`}>Watch on YouTube</a>
+                    </>
+                  )}
+                </p>
               </Patch>
             )}
           </div>
