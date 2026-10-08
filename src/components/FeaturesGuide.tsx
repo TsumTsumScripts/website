@@ -38,7 +38,9 @@ export default function FeaturesGuide(): React.JSX.Element {
   const sel = Math.max(0, features.findIndex((f) => f.key === key));
   const f = features[sel];
   const tabParam = new URLSearchParams(search).get('tab');
-  const tab: TabId = isTab(tabParam) ? tabParam : 'how';
+  // A feature without a video has no Video tab.
+  const featureTabs = tabs.filter((t) => t.id !== 'video' || f.video);
+  const tab: TabId = isTab(tabParam) && featureTabs.some((t) => t.id === tabParam) ? tabParam : 'how';
   const tone = f.tone as Tone;
 
   const shown = useMemo(() => {
@@ -61,12 +63,12 @@ export default function FeaturesGuide(): React.JSX.Element {
     const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
     if (!dir) return;
     e.preventDefault();
-    const t = tabs[(i + dir + tabs.length) % tabs.length];
+    const t = featureTabs[(i + dir + featureTabs.length) % featureTabs.length];
     history.replace(`/features/${f.key}?tab=${t.id}`);
     document.getElementById(`tab-${t.id}`)?.focus();
   };
 
-  const allShots = [f.hero, ...f.steps.flatMap((s) => (s.shot ? [s.shot] : [])), ...f.shots];
+  const allShots = [...(f.hero ? [f.hero] : []), ...f.steps.flatMap((s) => (s.shot ? [s.shot] : [])), ...f.shots];
 
   return (
     <FeltPage
@@ -125,7 +127,7 @@ export default function FeaturesGuide(): React.JSX.Element {
           </Patch>
 
           <div role="tablist" aria-label={`${f.title} details`} style={{display: 'flex', gap: 10, flexWrap: 'wrap'}}>
-            {tabs.map((t, i) => (
+            {featureTabs.map((t, i) => (
               <button
                 key={t.id}
                 id={`tab-${t.id}`}
@@ -220,7 +222,7 @@ export default function FeaturesGuide(): React.JSX.Element {
               </div>
             )}
 
-            {tab === 'video' && (
+            {tab === 'video' && f.video && (
               <Patch tone="grape" radius="40px" inset={9} style={{padding: 22, display: 'flex', flexDirection: 'column', gap: 16}}>
                 <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="16 / 9" />
                 <p style={{fontSize: 16}}>{f.video.note}</p>

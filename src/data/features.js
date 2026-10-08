@@ -16,7 +16,7 @@
  * @typedef {{name: string, desc: string, group?: string}} SettingOption
  * @typedef {{name: string, def?: string, desc: string, options?: SettingOption[]}} Setting
  * @typedef {{key: string, title: string, category: string, summary: string, card: string,
- *   tone: string, hero: Shot, steps: Step[], settings: Setting[], tip: string, shots: Shot[], video: Video}} Feature
+ *   tone: string, hero?: Shot, steps: Step[], settings: Setting[], tip: string, shots: Shot[], video?: Video}} Feature
  */
 
 /** @type {Feature[]} */
@@ -77,11 +77,6 @@ const features = [
     card: 'Fires your Tsum\'s skill the moment the gauge fills, with choreography for the tricky ones.',
     summary:
       'Fires the skill when the gauge is full, waits for the board to settle, and has hand-tuned play for skills that need more than a tap: bubble-makers, Gaston, Elsa, Lorcana Aurora and more.',
-    hero: {
-      id: 'shot-skills-hero',
-      alt: 'The skill gauge full and the skill button lit',
-      capture: 'Board with the skill gauge just full, skill button glowing. Crop to include the gauge.',
-    },
     steps: [
       {
         title: 'Pick your skill type',
@@ -161,11 +156,6 @@ const features = [
     card: 'Spends the bubbles the board leaves lying about, or saves them for when they help most.',
     summary:
       'A bubble popped as a chain lands takes a bigger area with it. Pick how much of that to give up, and when to hold bubbles back, such as through a fever\'s last seconds.',
-    hero: {
-      id: 'shot-bubbles-hero',
-      alt: 'A bubble popping as a chain clears',
-      capture: 'The instant a bubble pops inside a clearing chain, big clear area visible.',
-    },
     steps: [
       {
         title: 'Choose a strategy',
@@ -199,13 +189,6 @@ const features = [
     ],
     tip: 'Skills that turn Tsums into bubbles (Marie, Moana, Snow White and others) clear up after themselves whatever this is set to.',
     shots: [],
-    video: {
-      id: 'vid-bubbles',
-      kind: 'remotion',
-      seconds: 20,
-      brief: 'Split screen: "One Bubble Mid Chain" against "All Bubbles ASAP" on the same kind of board, with a running coin counter under each.',
-      note: 'Two strategies side by side.',
-    },
   },
   {
     key: 'items',
@@ -213,11 +196,6 @@ const features = [
     category: 'Gameplay',
     card: 'Sets the pre-round items you want, every round, without you touching the screen.',
     summary: 'Chooses +Score, +Coin, +Exp, +Time, +Bubble, 5>4 and +Combo on the pre-round screen before each round starts.',
-    hero: {
-      id: 'shot-items-hero',
-      alt: 'The pre-round screen with bonus items selected',
-      capture: 'The game\'s pre-round screen with +Coin and 5>4 lit.',
-    },
     steps: [
       {
         title: 'Open the Round tab',
@@ -466,7 +444,6 @@ const features = [
       {
         title: 'Open the file',
         body: 'Look for stats/tsum_list_<stamp>.csv in the script\'s storage folder on the device. The starter tool can copy it to your computer.',
-        shot: { id: 'shot-tsumlist-csv', alt: 'The exported CSV opened in a spreadsheet', capture: 'tsum_list CSV open in a spreadsheet, columns visible. Use a sample account.' },
       },
     ],
     settings: [
@@ -488,11 +465,6 @@ const features = [
     category: 'Data',
     card: 'Records every round it plays: score, coins, medals and the settings it was played under.',
     summary: 'One CSV row per round, one file per day, read off the score screen. Optionally shares new rows with a stats server.',
-    hero: {
-      id: 'shot-stats-hero',
-      alt: 'A round results screen and its row in the stats CSV',
-      capture: 'Score tally screen next to the matching stats CSV row (composite, or two captures).',
-    },
     steps: [
       {
         title: 'Switch on Record round stats',
@@ -516,13 +488,6 @@ const features = [
     shots: [
       { id: 'shot-stats-quickbar-readout', alt: 'The Quick Bar readout showing average coins', capture: 'Quick Bar right-hand readout with Base, Final and Medals rows filled.' },
     ],
-    video: {
-      id: 'vid-stats',
-      kind: 'remotion',
-      seconds: 15,
-      brief: 'A round ending, score tally, then the CSV row appearing in a terminal-style overlay.',
-      note: 'From the tally to the file.',
-    },
   },
   {
     key: 'quickbar',
@@ -566,13 +531,6 @@ const features = [
     ],
     tip: 'Tap the readout to copy base and final coins, medals, per-second rates and round durations to the clipboard.',
     shots: [],
-    video: {
-      id: 'vid-quickbar',
-      kind: 'remotion',
-      seconds: 25,
-      brief: 'Pause, open the Quick Bar, switch Bubble and Preset, resume. Remotion arrows and step badges (1 Pause, 2 Change, 3 Resume).',
-      note: 'Changing settings without ending the run.',
-    },
   },
   {
     key: 'presets',
@@ -703,13 +661,6 @@ const features = [
     ],
     tip: 'Changing Stop after games mid-run starts the count again from there.',
     shots: [],
-    video: {
-      id: 'vid-runcontrol',
-      kind: 'remotion',
-      seconds: 15,
-      brief: 'Settings with Stop after games set to 3, then a time-lapse of three rounds and the run pausing. Remotion round counter 1/3, 2/3, 3/3.',
-      note: 'A run that stops itself.',
-    },
   },
   {
     key: 'reports',
@@ -717,11 +668,6 @@ const features = [
     category: 'Support',
     card: 'Sends in everything needed to fix a problem: the screen, the frames before it and the log.',
     summary: 'When something goes wrong, one tap saves a folder with the screen, the router\'s recent frames and the last few hundred log records.',
-    hero: {
-      id: 'shot-reports-hero',
-      alt: 'A problem report folder with its screen and log',
-      capture: 'A reports/<id> folder open in a file manager: screen, trail frames, manifest, log excerpt.',
-    },
     steps: [
       {
         title: 'Long-press Log',
@@ -747,13 +693,6 @@ const features = [
     ],
     tip: 'A screen that will not capture is itself useful, so reports record that too.',
     shots: [],
-    video: {
-      id: 'vid-reports',
-      kind: 'capture',
-      seconds: 12,
-      brief: 'Capture: long-press Log, type a note, the report saved banner, then the folder on a computer.',
-      note: 'Filing a report.',
-    },
   },
 ];
 
