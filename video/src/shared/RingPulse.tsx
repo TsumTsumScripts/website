@@ -13,7 +13,9 @@ export const RingPulse: React.FC<{
   color?: string;
   /** Radius of the steady ring, which the spreading rings start from. */
   radius?: number;
-}> = ({x, y, at, color = '#fff3e0', radius = 78}) => {
+  /** Scales the spread and line widths for a smaller frame (1 at 1080x1920). */
+  scale?: number;
+}> = ({x, y, at, color = '#fff3e0', radius = 78, scale = 1}) => {
   const frame = useCurrentFrame();
   const lead = interpolate(frame, [at - 24, at - 16, at + 6, at + 14], [0, 1, 1, 0], {
     extrapolateLeft: 'clamp',
@@ -36,8 +38,8 @@ export const RingPulse: React.FC<{
           width: radius * 2,
           height: radius * 2,
           borderRadius: '50%',
-          border: `10px solid ${color}`,
-          boxShadow: '0 0 0 4px #14131f',
+          border: `${10 * scale}px solid ${color}`,
+          boxShadow: `0 0 0 ${4 * scale}px #14131f`,
           opacity: lead,
         }}
       />
@@ -48,12 +50,12 @@ export const RingPulse: React.FC<{
               key={i}
               style={{
                 position: 'absolute',
-                left: x - radius - r.p * 150,
-                top: y - radius - r.p * 150,
-                width: (radius + r.p * 150) * 2,
-                height: (radius + r.p * 150) * 2,
+                left: x - radius - r.p * 150 * scale,
+                top: y - radius - r.p * 150 * scale,
+                width: (radius + r.p * 150 * scale) * 2,
+                height: (radius + r.p * 150 * scale) * 2,
                 borderRadius: '50%',
-                border: `${12 - r.p * 8}px solid ${color}`,
+                border: `${(12 - r.p * 8) * scale}px solid ${color}`,
                 opacity: 1 - r.p,
               }}
             />

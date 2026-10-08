@@ -4,14 +4,15 @@ import {Callout} from '../shared/Callout';
 import {Counter} from '../shared/Counter';
 import {Footage} from '../shared/Footage';
 import {LowerThird} from '../shared/LowerThird';
+import {ResultMask} from '../shared/ResultMask';
 import {FPS} from '../theme';
 
 // vid-autoplay: one full round (autoplay-round.mp4, 223.5 s at 1x) retimed to 25 s.
 // A full round at 2x would run about 110 s, so the middle is a 16x timelapse instead.
 // Times are seconds in the source; `frames` is the length in the composition.
-const FINAL_SCORE = 38_510_024;
+export const FINAL_SCORE = 38_510_024;
 
-const segments = [
+export const segments = [
   {from: 0, to: 4, speed: 1, frames: 120, kicker: 'Play', title: 'The script takes over'},
   {from: 4, to: 200, speed: 16, frames: 368, kicker: '16x', title: 'A whole round, sped up'},
   {from: 200, to: 208, speed: 2, frames: 120, kicker: '2x', title: 'Slowing for the finish'},
@@ -31,6 +32,7 @@ export const Autoplay: React.FC = () => {
         return (
           <Sequence key={i} from={start} durationInFrames={s.frames}>
             <Footage file="autoplay-round.mp4" startFrom={Math.round(s.from * FPS)} playbackRate={s.speed} />
+            {i === segments.length - 1 && <ResultMask height={360} fontSize={96} />}
             {'title' in s && <LowerThird kicker={s.kicker} title={s.title} durationInFrames={s.frames} />}
           </Sequence>
         );
