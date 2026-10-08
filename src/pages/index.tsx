@@ -10,18 +10,26 @@ import {features} from '@site/src/data/features';
 import landing from '@site/src/data/landing';
 
 const steps: {title: string; body: React.ReactNode; tone: Tone}[] = [
-  {title: 'Install GAP', body: 'Get the General Automation Platform app for your phone or emulator.', tone: 'marigold'},
   {
-    title: 'Start the service',
+    title: 'Get the starter tool',
     body: (
       <>
-        Android only lets a computer start GAP's helper. The <Link to="/starter">starter tool</Link> does it in a few
-        steps.
+        Download the <Link to="/starter">starter tool</Link> on your computer, extract it and run <b>Start-Windows</b>{' '}
+        (or <b>Start-Linux</b> on macOS and Linux). A page opens in your browser.
       </>
     ),
+    tone: 'marigold',
+  },
+  {
+    title: 'Start the service',
+    body: 'Pick your phone or emulator on that page and press Start service. Android only lets a computer start GAP\'s helper, so do this again after the device restarts.',
     tone: 'jade',
   },
-  {title: 'Add the script', body: "Open GAP's Library, find Tsum Tsum and tap Add.", tone: 'rose'},
+  {
+    title: 'Install GAP and the script',
+    body: 'No GAP yet? Press Download & install the latest APK on the same page and tap Add when GAP offers the Tsum Tsum library. Then add Tsum Tsum from GAP\'s Library.',
+    tone: 'rose',
+  },
   {
     title: 'Set it and start',
     body: 'Pick a skill, a chain length and your chores, open Tsum Tsum, then tap Play on the floating bar.',
@@ -46,6 +54,7 @@ const section = {display: 'flex', flexDirection: 'column', gap: 32} as const;
 export default function Home(): React.JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   const discord = siteConfig.customFields!.discordUrl as string;
+  const repo = siteConfig.customFields!.repoUrl as string;
   const cards = landing.landingFeatureKeys.map((k) => features.find((f) => f.key === k)!);
 
   return (
@@ -126,7 +135,16 @@ export default function Home(): React.JSX.Element {
       </section>
 
       <section id="start" style={section}>
-        <Heading tone="marigold" kicker="How to get started" title="Running in four steps" />
+        <Heading tone="marigold" kicker="How to get started" title="Begin with the starter tool" />
+        <p style={{fontSize: 18, lineHeight: 1.6, maxWidth: '40em', marginTop: -12}}>
+          Everything starts on your computer. The starter tool is a small download that opens a page in your browser,
+          starts GAP's service on your phone or emulator, and installs the app if you don't have it yet. Four steps take
+          you from download to hands-off play.
+        </p>
+        <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
+          <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download the starter tool</Patch>
+          <Patch as={Link} to="/starter" tone="surface" className="fbtn">How the starter works</Patch>
+        </div>
         <ol className="felt-grid" style={{listStyle: 'none', margin: 0, padding: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 26}}>
           {steps.map((s, i) => (
             <Patch as="li" key={s.title} tone={s.tone} radius="32px" inset={9} tilt={[-1.6, 1.2, -0.8, 1.8][i]} style={{padding: '30px 26px', display: 'flex', flexDirection: 'column', gap: 14}}>
