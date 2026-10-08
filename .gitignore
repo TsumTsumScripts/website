@@ -18,3 +18,7 @@ capture/backdrops/*
 !capture/backdrops/.gitkeep
 # Unedited game captures (may show other players); publish only processed copies.
 capture/raw/
+
+# Remotion project (video/): renders, and the copied gameplay cuts (unedited captures stay local).
+video/out/
+video/public/footage/

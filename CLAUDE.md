@@ -44,6 +44,18 @@ Renders the settings page and Quick Bar in headless Chrome at the emulator's 540
 - Output is a render, not a device capture. Do not describe it as one.
 - Not capturable here: anything in the game itself, terminals, spreadsheets, GAP Companion.
 
+## Video (`video/`)
+
+Remotion project, one composition per `vid-*` id, 1080x1920 at 30 fps. It has its own
+`package.json`: run `npm install` inside `video/` once.
+
+- `npm run video:studio` previews; `npm run video:render -- <id> ...` renders to `video/out/<id>.mp4`
+  (git-ignored). `--publish` also copies it to `static/media/<id>.mp4`; run `npm run media:plan` after.
+- Inputs are the trimmed cuts in `capture/raw/cuts/` (git-ignored; `cuts.json` there has tap and
+  event times). `video/scripts/footage.mjs` copies them into `video/public/footage/` first.
+- Shared elements live in `video/src/shared/` (felt `Patch`, lower-third, ring pulse, callout,
+  counter). Colours come from `video/src/theme.ts`, which mirrors `felt.css`: text uses a patch's `ink`.
+
 ## Conventions
 
 - Commit as each task finishes, once typecheck, build and any relevant check (`contrast`, `refs:check`)
