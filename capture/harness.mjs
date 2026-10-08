@@ -12,6 +12,9 @@ export const root = path.resolve(here, '..');
 
 export const SCRIPT_DIR = path.resolve(
   process.env.TSUM_SCRIPT_DIR || path.join(root, '..', 'tsum-tsum-script', 'app.gap.Tsum'));
+/** The service starter's page, served by tsum-stats --starter; read from its source. */
+export const STARTER_SITE = path.resolve(
+  process.env.TSUM_STATS_DIR || path.join(root, '..', 'tsum-stats'), 'internal', 'starter', 'site');
 const CHROME = process.env.CHROME_PATH
   || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -121,6 +124,7 @@ export async function launch() {
  * `scene.page` is 'settings' (full screen) or 'quickbar' (strip over a backdrop).
  */
 export async function open(browser, scene, scale) {
+  if (scene.page === 'starter') { return openStarter(browser, scene, scale); }
   const page = await browser.newPage();
   await page.setViewport({width: WIDTH, height: HEIGHT, deviceScaleFactor: DENSITY * scale});
   const cfg = {
@@ -207,6 +211,74 @@ export async function open(browser, scene, scale) {
     async shot(file, clip) {
       await h.sleep(250);
       await page.screenshot({path: file, type: 'png', captureBeyondViewport: false, ...(clip ? {clip} : {})});
+    },
+    async close() { await page.close(); },
+  };
+  return h;
+}
+
+/** The starter is a desktop page: a laptop browser window. */
+export const STARTER_WIDTH = 1280;
+export const STARTER_HEIGHT = 800;
+const STARTER_ORIGIN = 'http://starter.test';
+
+/**
+ * Opens the service starter's page as its server would serve it. Its own files come
+ * from STARTER_SITE; `/api/starter/<path>` is answered by `scene.api(path, body)`,
+ * which returns an object (sent as JSON) or `{stream: [...]}` (sent as the NDJSON an
+ * action streams). Fonts still load from Google, as on a real computer.
+ */
+async function openStarter(browser, scene, scale) {
+  if (!fs.existsSync(path.join(STARTER_SITE, 'index.html'))) {
+    throw new Error(`No starter page in ${STARTER_SITE}; set TSUM_STATS_DIR.`);
+  }
+  const page = await browser.newPage();
+  await page.setViewport({width: STARTER_WIDTH, height: STARTER_HEIGHT, deviceScaleFactor: scale});
+  await page.setRequestInterception(true);
+  const types = {'.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml'};
+  page.on('request', (req) => {
+    const url = new URL(req.url());
+    if (url.origin !== STARTER_ORIGIN) { req.continue(); return; }
+    if (url.pathname.startsWith('/api/starter/')) {
+      const rel = url.pathname.slice('/api/starter/'.length) + url.search;
+      const body = req.postData() ? JSON.parse(req.postData()) : null;
+      const reply = scene.api(rel, body) ?? {};
+      if (reply.stream) {
+        req.respond({status: 200, contentType: 'application/x-ndjson',
+          body: reply.stream.map((m) => JSON.stringify(m) + '\n').join('')});
+      } else {
+        req.respond({status: 200, contentType: 'application/json', body: JSON.stringify(reply)});
+      }
+      return;
+    }
+    const rel = url.pathname.replace(/^\/starter\/?/, '') || 'index.html';
+    const file = path.join(STARTER_SITE, rel);
+    if (!file.startsWith(STARTER_SITE) || !fs.existsSync(file)) { req.respond({status: 404, body: ''}); return; }
+    req.respond({status: 200, contentType: types[path.extname(file)] || 'application/octet-stream',
+      body: fs.readFileSync(file)});
+  });
+  await page.goto(`${STARTER_ORIGIN}/starter/`, {waitUntil: 'networkidle0'});
+  await page.evaluate(() => document.fonts.ready);
+
+  const h = {
+    page, target: page,
+    sleep: (ms) => new Promise((r) => setTimeout(r, ms)),
+    async click(selector) {
+      await page.waitForSelector(selector, {visible: true});
+      await page.click(selector);
+      await h.sleep(300);
+    },
+    /** Scrolls so `selector`'s top sits `offset` CSS px below the window's top. */
+    async scrollTo(selector, offset = 0) {
+      await page.evaluate((sel, off) => {
+        document.documentElement.style.scrollBehavior = 'auto';
+        scrollTo(0, document.querySelector(sel).getBoundingClientRect().top + scrollY - off);
+      }, selector, offset);
+      await h.sleep(200);
+    },
+    async shot(file) {
+      await h.sleep(250);
+      await page.screenshot({path: file, type: 'png'});
     },
     async close() { await page.close(); },
   };

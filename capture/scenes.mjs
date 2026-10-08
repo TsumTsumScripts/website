@@ -30,6 +30,48 @@ const settings = {
   stopAfterGames: 3, stopAfterAction: 'pause',
 };
 
+/**
+ * What the starter's server answers: two emulators and a phone, MuMu #1 chosen last
+ * time with its service stopped. "Start service" starts it. Invented serials.
+ */
+function starterApi() {
+  const devices = [
+    {serial: '127.0.0.1:16384', state: 'device', model: 'SM-S9180', abi: 'x86_64', service: 'stopped', installed: '5.0b1'},
+    {serial: '127.0.0.1:16416', state: 'device', model: 'SM-S9180', abi: 'x86_64', service: 'running', installed: '5.0b1'},
+    {serial: 'R5CT40XQ2LM', state: 'device', model: 'SM-A546E', abi: 'arm64-v8a', service: 'not installed', installed: ''},
+  ];
+  const started = [
+    'starting the service on 127.0.0.1:16384 ...',
+    '  abi    : x86_64 (app_process64)',
+    '  libs   : /data/app/app.gap/lib/x86_64',
+    '  step   : launched',
+    '  step   : listening',
+  ];
+  return (rel, body) => {
+    const [route, query] = rel.split('?');
+    const serial = new URLSearchParams(query || '').get('serial');
+    switch (route) {
+      case 'status': return {
+        version: '0.13', bundle: 'C:\\Users\\Player\\Downloads\\TsumTsum-Starter', storage: '/sdcard/Download/GAP',
+        adb: {path: 'C:\\Users\\Player\\Downloads\\TsumTsum-Starter\\adb\\adb.exe', source: 'downloaded r37',
+          missing: false, revision: '37', sizeMB: 9},
+        channel: '', hasApks: false, lastDevice: '127.0.0.1:16384',
+        collected: 'C:\\Users\\Player\\Downloads\\TsumTsum-Starter\\collected',
+      };
+      case 'devices': return {devices};
+      case 'device': return {device: devices.find((d) => d.serial === serial)};
+      case 'action':
+        if (body.action === 'start') {
+          devices.find((d) => d.serial === body.serial).service = 'running';
+          return {stream: [...started.map((log) => ({log})),
+            {done: true, ok: true, msg: 'Service is running.\nIt survives an app reinstall, and stays up until the device reboots.'}]};
+        }
+        return {stream: [{done: true, ok: true, msg: ''}]};
+      default: return {};
+    }
+  };
+}
+
 const page = {page: 'settings', theme: 'light', presets, settings};
 const strip = {
   page: 'quickbar', backdrop: 'board-midround.png', presets,
@@ -152,6 +194,19 @@ export const scenes = [
       await h.tab('General');
       await h.clickText('#setting_shareSettings button', 'Copy');
       return h.clipTo('#setting_shareSettings', '.share-panel:not([hidden])');
+    },
+  },
+
+  // --- The service starter (a desktop browser page) ---------------------
+  {
+    id: 'shot-starter-devices', page: 'starter', api: starterApi(),
+    async steps() {},
+  },
+  {
+    id: 'shot-starter-started', page: 'starter', api: starterApi(),
+    async steps(h) {
+      await h.click('#service-actions [data-action="start"]');
+      await h.scrollTo('#device', 16);
     },
   },
 ];
