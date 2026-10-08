@@ -30,9 +30,12 @@ export default function Patch({
 } & Record<string, unknown>): React.JSX.Element {
   const vars: Record<string, string | number> = {};
   if (radius) {
-    vars['--r'] = radius;
     // Expand CSS shorthand (1-4 values) so the stitch can inset each corner separately.
-    const [a, b = a, c = a, d = b] = radius.split(/\s+/);
+    // Each corner is capped by --r-cap, which felt.css lowers on narrow screens: a 140px
+    // corner on a 360px-wide patch eats the room the text needs.
+    const corners = radius.split(/\s+/);
+    const [a, b = a, c = a, d = b] = corners.length > 1 ? corners.map((r) => `min(${r}, var(--r-cap, 999px))`) : corners;
+    vars['--r'] = `${a} ${b} ${c} ${d}`;
     vars['--r1'] = a; vars['--r2'] = b; vars['--r3'] = c; vars['--r4'] = d;
   }
   if (inset !== undefined) vars['--inset'] = `${inset}px`;

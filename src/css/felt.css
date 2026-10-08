@@ -173,6 +173,8 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 }
 @media (max-width: 600px) {
   .felt-wrap { padding: 16px 16px 72px; gap: 64px; }
+  /* Uneven corners (Patch radius with 2-4 values) shrink to this, or they crowd the text. */
+  .felt { --r-cap: 32px; }
 }
 
 .patch > .media { height: 100%; }
