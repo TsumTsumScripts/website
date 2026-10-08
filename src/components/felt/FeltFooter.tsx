@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import {useThemeConfig} from '@docusaurus/theme-common';
 import Patch from './Patch';
 import FeltAccent from './FeltAccent';
+import DiscordMark from './DiscordMark';
 import '@site/src/css/felt.css';
 
 /** A stitched felt footer built from the links in the theme config. */
@@ -11,7 +12,7 @@ export default function FeltFooter(): React.JSX.Element | null {
   if (!footer) return null;
   const columns = (footer.links ?? []).filter((c) => 'items' in c) as {
     title?: string | null;
-    items: {label?: string; to?: string; href?: string}[];
+    items: {label?: string; to?: string; href?: string; className?: string}[];
   }[];
 
   return (
@@ -26,7 +27,7 @@ export default function FeltFooter(): React.JSX.Element | null {
                 <h3>{col.title}</h3>
                 <ul>
                   {col.items.map((it) => (
-                    <li key={it.label}>{it.to ? <Link to={it.to}>{it.label}</Link> : <a href={it.href}>{it.label}</a>}</li>
+                    <li key={it.label}>{it.to ? <Link to={it.to}>{it.label}</Link> : <a href={it.href}>{it.className?.includes('discord-link') && <DiscordMark />}{it.label}</a>}</li>
                   ))}
                 </ul>
               </div>

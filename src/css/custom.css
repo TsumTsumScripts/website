@@ -58,3 +58,16 @@
 [data-theme='dark'] .docusaurus-mermaid-container .edgeLabel,
 [data-theme='dark'] .docusaurus-mermaid-container .edgeLabel p,
 [data-theme='dark'] .docusaurus-mermaid-container .labelBkg { color: #ffffff !important; }
+
+/* Docs navbar and footer: the felt Discord sticker before the Discord link (className in docusaurus.config.ts). */
+.navbar .discord-link::before,
+.navbar-sidebar .discord-link::before,
+.footer .discord-link::before {
+  content: '';
+  display: inline-block;
+  width: 1.55em;
+  height: 1.25em;
+  margin-right: 0.4em;
+  vertical-align: -0.3em;
+  background: url('../../static/img/discord-felt.svg') center / contain no-repeat;
+}

@@ -3,6 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import FeltPage from '@site/src/components/felt/FeltPage';
 import PageHead from '@site/src/components/felt/PageHead';
 import Patch from '@site/src/components/felt/Patch';
+import DiscordMark from '@site/src/components/felt/DiscordMark';
 import Media from '@site/src/components/felt/Media';
 import landing from '@site/src/data/landing';
 
@@ -45,7 +46,7 @@ export default function Starter(): React.JSX.Element {
           <li>Open GAP, add the Tsum Tsum script from the Library, and press Play.</li>
         </ol>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          Stuck? Press <b>Export logs &amp; stats</b> and share the zip in the <a href={discord}>Discord</a>.
+          Stuck? Press <b>Export logs &amp; stats</b> and share the zip in the <a href={discord}><DiscordMark />Discord</a>.
         </p>
       </Patch>
     </FeltPage>

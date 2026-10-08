@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import FeltPage from '@site/src/components/felt/FeltPage';
 import Patch, {Kicker, type Tone} from '@site/src/components/felt/Patch';
 import FeltAccent from '@site/src/components/felt/FeltAccent';
+import DiscordMark from '@site/src/components/felt/DiscordMark';
 import Media from '@site/src/components/felt/Media';
 import {features} from '@site/src/data/features';
 import landing from '@site/src/data/landing';
@@ -172,7 +173,7 @@ export default function Home(): React.JSX.Element {
           send in a problem report.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
-          <Patch as="a" href={discord} tone="grape" className="fbtn">Join the Discord</Patch>
+          <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Join the Discord</Patch>
           <Patch as={Link} to="/features" tone="jade" className="fbtn">Explore all features</Patch>
           <Patch as={Link} to="/changelog" tone="surface" className="fbtn">What's new</Patch>
         </div>

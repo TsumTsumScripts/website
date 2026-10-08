@@ -5,9 +5,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useLocation} from '@docusaurus/router';
 import Patch, {type Tone} from './Patch';
 import FeltAccent from './FeltAccent';
+import DiscordMark from './DiscordMark';
 import '@site/src/css/felt.css';
 
-type Item = {label: string; to?: string; href?: string; tone: Tone; match?: string};
+type Item = {label: string; to?: string; href?: string; tone: Tone; match?: string; icon?: React.ReactNode};
 
 /** The felt site header: coin logo, display-type title and a row of coloured pill links. */
 export default function FeltHeader(): React.JSX.Element {
@@ -20,7 +21,7 @@ export default function FeltHeader(): React.JSX.Element {
     {label: 'Changelog', to: '/changelog', tone: 'jade', match: '/changelog'},
     {label: 'Starter tool', to: '/starter', tone: 'marigold', match: '/starter'},
     {label: 'Docs', to: '/docs', tone: 'periwinkle'},
-    {label: 'Discord', href: discordUrl, tone: 'grape'},
+    {label: 'Discord', href: discordUrl, tone: 'grape', icon: <DiscordMark />},
     {label: 'GitHub', href: repoUrl, tone: 'surface'},
   ];
 
@@ -47,6 +48,7 @@ export default function FeltHeader(): React.JSX.Element {
                 </Patch>
               ) : (
                 <Patch key={it.label} as="a" href={it.href} tone={it.tone} className={cls}>
+                  {it.icon}
                   {it.label}
                 </Patch>
               );

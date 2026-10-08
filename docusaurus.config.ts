@@ -91,7 +91,7 @@ const config: Config = {
         {to: '/changelog', label: 'Changelog', position: 'left'},
         {to: '/starter', label: 'Starter tool', position: 'left'},
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
-        {href: discordUrl, label: 'Discord', position: 'right'},
+        {href: discordUrl, label: 'Discord', position: 'right', className: 'discord-link'},
         {href: repoUrl, label: 'GitHub', position: 'right'},
       ],
     },
@@ -101,7 +101,7 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            {label: 'Discord (support and discussion)', href: discordUrl},
+            {label: 'Discord (support and discussion)', href: discordUrl, className: 'discord-link'},
             {label: 'GitHub', href: repoUrl},
             {label: 'General Automation Platform', href: 'https://gapapp.app'},
           ],

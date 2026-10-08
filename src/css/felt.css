@@ -264,3 +264,7 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 @media (prefers-reduced-motion: reduce) {
   .felt-pill, .felt-brand__coin { transform: none !important; animation: none !important; }
 }
+
+/* The felt Discord sticker before a Discord link's label (DiscordMark.tsx). */
+.felt-discord { display: inline-block; height: 1.25em; width: auto; vertical-align: -0.3em; margin-right: 0.4em; }
+.fbtn .felt-discord { height: 1.3em; margin-right: 0.5em; }

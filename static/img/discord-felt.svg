@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 71 57" width="71" height="57">
+  <!-- Felt Discord sticker, in the style of the felt coin and medal (FeltAccent.tsx). -->
+  <defs>
+    <path id="body" d="M41.2351 0C40.6164 1.09866 40.0607 2.2352 39.5556 3.397C34.7569 2.67719 29.8697 2.67719 25.0584 3.397C24.5658 2.2352 23.9976 1.09866 23.3788 0C18.8705 0.770324 14.4759 2.12155 10.3085 4.02841C2.04967 16.2652 -0.185531 28.1863 0.925755 39.9432C5.76238 43.517 11.1799 46.2447 16.951 47.9874C18.2517 46.2447 19.4009 44.3883 20.3859 42.4562C18.5169 41.7616 16.7111 40.8903 14.981 39.88C15.4356 39.5517 15.8776 39.2107 16.307 38.8824C26.4475 43.6559 38.1917 43.6559 48.3449 38.8824C48.7742 39.236 49.2162 39.577 49.6708 39.88C47.9408 40.9029 46.1349 41.7616 44.2533 42.4688C45.2383 44.4009 46.3875 46.2573 47.6882 48C53.4593 46.2573 58.8768 43.5422 63.7134 39.9684C65.0268 26.3299 61.4656 14.5099 54.3054 4.04104C50.1507 2.13418 45.7561 0.782952 41.2478 0.0252565L41.2351 0Z"/>
+    <clipPath id="clip"><use href="#body"/></clipPath>
+    <filter id="felt" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="6" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.5 0 0 0 -0.16" result="sp"/>
+      <feComposite in="sp" in2="d" operator="in" result="spk"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0.22 0 0 -0.1" result="hl"/>
+      <feComposite in="hl" in2="d" operator="in" result="hlk"/>
+      <feMerge>
+        <feMergeNode in="d"/>
+        <feMergeNode in="spk"/>
+        <feMergeNode in="hlk"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#felt)">
+    <use href="#body" y="3" fill="#353d9e"/>
+    <use href="#body" fill="#5865f2"/>
+    <ellipse cx="30" cy="17" rx="20" ry="10" fill="#8890f7" opacity="0.45" clip-path="url(#clip)"/>
+    <g fill="#bfc4fb">
+      <ellipse cx="21.8" cy="27.6" rx="5.7" ry="6.3"/>
+      <ellipse cx="42.84" cy="27.6" rx="5.7" ry="6.3"/>
+    </g>
+    <g fill="#ffffff">
+      <ellipse cx="21.8" cy="26.38" rx="5.7" ry="6.3"/>
+      <ellipse cx="42.84" cy="26.38" rx="5.7" ry="6.3"/>
+    </g>
+  </g>
+  <path d="M39.89 5.14C39.37 6.01 38.90 6.91 38.47 7.83C34.39 7.26 30.23 7.26 26.14 7.83C25.73 6.91 25.24 6.01 24.72 5.14C20.88 5.75 17.15 6.82 13.61 8.33C6.59 17.99 4.69 27.41 5.63 36.70C9.74 39.52 14.35 41.68 19.25 43.06C20.36 41.68 21.34 40.21 22.17 38.69C28.5 40.1 36.1 40.1 42.46 38.70C43.30 40.22 44.27 41.69 45.38 43.06C50.29 41.69 54.89 39.54 59.00 36.72C60.12 25.95 57.09 16.61 51.00 8.34C47.47 6.83 43.74 5.76 39.91 5.16Z" fill="none" stroke="#353d9e" stroke-width="0.9" stroke-dasharray="2.6 2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35" transform="translate(0 0.7)"/>
+  <path d="M39.89 5.14C39.37 6.01 38.90 6.91 38.47 7.83C34.39 7.26 30.23 7.26 26.14 7.83C25.73 6.91 25.24 6.01 24.72 5.14C20.88 5.75 17.15 6.82 13.61 8.33C6.59 17.99 4.69 27.41 5.63 36.70C9.74 39.52 14.35 41.68 19.25 43.06C20.36 41.68 21.34 40.21 22.17 38.69C28.5 40.1 36.1 40.1 42.46 38.70C43.30 40.22 44.27 41.69 45.38 43.06C50.29 41.69 54.89 39.54 59.00 36.72C60.12 25.95 57.09 16.61 51.00 8.34C47.47 6.83 43.74 5.76 39.91 5.16Z" fill="none" stroke="#e3e6ff" stroke-width="1.5" stroke-dasharray="2.6 2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
