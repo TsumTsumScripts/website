@@ -77,6 +77,11 @@ const features = [
     card: 'Fires your Tsum\'s skill the moment the gauge fills, with choreography for the tricky ones.',
     summary:
       'Fires the skill when the gauge is full, waits for the board to settle, and has hand-tuned play for skills that need more than a tap: bubble-makers, Gaston, Elsa, Lorcana Aurora and more.',
+    hero: {
+      id: 'shot-skills-hero',
+      alt: 'The skill gauge full and the skill button lit',
+      capture: 'Board with the skill gauge just full, skill button glowing. Crop to include the gauge.',
+    },
     steps: [
       {
         title: 'Pick your skill type',
@@ -156,6 +161,11 @@ const features = [
     card: 'Spends the bubbles the board leaves lying about, or saves them for when they help most.',
     summary:
       'A bubble popped as a chain lands takes a bigger area with it. Pick how much of that to give up, and when to hold bubbles back, such as through a fever\'s last seconds.',
+    hero: {
+      id: 'shot-bubbles-hero',
+      alt: 'A bubble popping as a chain clears',
+      capture: 'The instant a bubble pops inside a clearing chain, big clear area visible.',
+    },
     steps: [
       {
         title: 'Choose a strategy',
