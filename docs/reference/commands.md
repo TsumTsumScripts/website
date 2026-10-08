@@ -19,7 +19,7 @@ Run from `app.gap.Tsum/`.
 | `npm run dispatch:update` | Rewrite the goldens from the bundle as it stands. The diff is the review. |
 | `npm run map:check` | Verify `CODEMAP.md` against the tree. |
 | `npm run i18n:check` | What each language is missing; a `data-i18n` naming no key. |
-| `npm run workflow:check` | Drives the GAP Companion workflow runner and Tsum's run mode in the built bundle. |
+| `npm run workflow:check` | Drives the workflow runner and Tsum's run mode in the built bundle. |
 | `npm run live:check` | Every setting a preset carries says when it reaches a running script, and the value survives the round trip. |
 | `npm run release:alpha` | Build the Alpha channel and publish it to the catalogue; `release:beta`, `release:production` likewise. `-- --dry-run` shows the entry without writing; `-- --yes` skips the note review. |
 

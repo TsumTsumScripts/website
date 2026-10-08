@@ -32,13 +32,12 @@ flowchart LR
   dn["dist:notices<br/>LICENSE, NOTICE"]
   de["dist:env<br/>gap-env.json"]
   dk["dist:backup<br/>gap-backup.json"]
-  dc["dist:companion<br/>companionSettings.json"]
   sg["sign<br/>gap-signature.json, if a key is set"]
   arc["archive<br/>zip + .sha256"]
   tscg --> docsp & evald & live & db
-  tscs --> tscq --> minp --> di & dq & dc
+  tscs --> tscq --> minp --> di & dq
   stage --> di & dq
-  di & dq & db & dl & dn & de & dk & dc --> sg --> arc
+  di & dq & db & dl & dn & de & dk --> sg --> arc
 ```
 
 Steps marked ⁽ᵒ⁾ are **optional**: a stale document, a drifted code map or a

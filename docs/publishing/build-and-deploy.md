@@ -22,9 +22,8 @@ but cannot be picked on a Beta build. It also names the archive:
 `version`.
 
 What lands: `dist/index.js`, `dist/index.html`, `dist/quickbar.html`, the
-`dist/*.dat` libraries, `dist/LICENSE`, `dist/NOTICE`, the `gap-*.json` and
-`companionSettings.json` manifests, and the zip with its
-`.sha256` sidecar in the package root. `build/` keeps the readable bundle the
+`dist/*.dat` libraries, `dist/LICENSE`, `dist/NOTICE`, the `gap-*.json`
+manifests, and the zip with its `.sha256` sidecar in the package root. `build/` keeps the readable bundle the
 offline tools load. [Setup and first build](../getting-started/setup-and-first-build)
 lists them; [Build and release](../architecture/build-and-release) is how the
 build works.

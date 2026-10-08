@@ -25,7 +25,7 @@ In bundle order.
 | `uiEn.ts`, `uiZhTw.ts`, `uiJa.ts` | One language each, keyed by `UiText`. English must be complete. |
 | `taskController.ts` | `TsumTaskController`, the cooperative scheduler. Five consecutive throws from one job restart the app. |
 | `runPlan.ts` | The run's task table, in the game and settings compilations, so the Run order card lists exactly what runs. |
-| `settingDefaults.ts` | Every setting's default, in the game and settings compilations. `remoteStartSettings` fills a GAP Companion start from it. |
+| `settingDefaults.ts` | Every setting's default, in the game and settings compilations. |
 | `state.ts` | The two script-wide globals: `ts`, `gTaskController`. |
 | `utils.ts` | `isSameColor`, `absColor`, `channelDiff`. |
 | `data.ts` | Every coordinate and tuning constant, no logic: the page fingerprints, the navigation plans, one table per screen a chore walks. Shared tables only. |
@@ -62,10 +62,8 @@ In bundle order.
 | `tsums.dat` | Generated, not part of the bundle: the tsum library, deployed beside it. |
 | `forecast.ts` | What the script is about to do, without doing it. Read forward only. |
 | `pageHandlers.ts` | Every reaction to a page, one subscription each; reading it top to bottom is the dispatch order. |
-| `gapWorkflow.ts` | The GAP Companion workflow runner: generic, references nothing else here. |
+| `gapWorkflow.ts` | The workflow runner: generic, references nothing else here. |
 | `index.ts` | The entry point: `start()` / `stop()` / `requestStop()`, the run lifecycle, the globals the settings page evaluates by name. Kept thin. |
-| `companionScreens.ts` | GAP Companion's screens (`gapScreens`): tabs, Stats cards, event wording, as data. |
-| `companion.ts` | GAP Companion's standard globals: `gapCompanion`, `gapRemoteState` / `Set` / `Action` / `StartPrepare` / `StartRun`, and `gapNotify` push notifications. |
 | `workflow.ts` | Tsum's workflow half: the node catalog, each node's implementation, the Tsum List check, and the run mode `startWorkflow` arms. |
 | `quickbar.ts` | The engine half of the Quick Bar, and `LiveSettings`. |
 | `settings.ts` | The settings page: the `tabs` schema, rendering, persistence, share codes, the Run order card, presets. |
@@ -116,7 +114,6 @@ In bundle order.
 | `codemap/` | Checks `CODEMAP.md` against the tree; `symbols.js` is the reusable symbol extractor. | `map:check` |
 | `i18n/` | What each language is missing. | `i18n:check` |
 | `liveSettings/` | When each setting reaches a run in progress, by driving the bundle. | `live:check` |
-| `companion/` | Writes `dist/companionSettings.json`, GAP Companion's Settings tab, from the settings page. | `dist:companion` build step |
 | `workflowCheck/` | Drives the workflow runner and Tsum's run mode in the built bundle. | `workflow:check` |
 | `release/` | Cuts a release into the catalogue; `review.js` is the note gate. | `release:alpha`, `release:beta`, `release:production` |
 | `build/` | The build as a dependency graph; `zip.js` the deterministic archive writer. | `build`, `buildAndAdb` |
@@ -148,7 +145,6 @@ A prefix usually settles it; `map:check` enforces every row.
 | `stopAfter*`, `wrapUp*` | `play.ts`, `index.ts`, `stopAfterOptions.ts` |
 | `Trace`, `trace*` | `trace.ts` |
 | `gapWorkflow*` / `workflow*`, `startWorkflow` | `gapWorkflow.ts` / `workflow.ts` |
-| `gapCompanion`, `gapRemote*`, `gapNotify` / `gapScreens` | `companion.ts` / `companionScreens.ts` |
 | `maxRound*`, `RoundCoast*`, `watchRoundEnd` | `play.ts` |
 | `Box*`, `buyBox*` | `boxes.ts`, `shared.d.ts`, `data.ts` |
 | `dialog*`, `Stall*` | `dialogs.ts` |

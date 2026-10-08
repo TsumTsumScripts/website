@@ -58,7 +58,7 @@ The build is a dependency graph of steps that run concurrently
 | `dist/index.html` | The settings page with its CSS and script inlined, so it needs no network. |
 | `dist/quickbar.html` | The Quick Bar page, inlined the same way. |
 | `dist/tsums.dat`, `tsumsCollection.dat`, `tsumNames.dat` | The tsum libraries, copied without their headers. |
-| `dist/gap-env.json`, `gap-backup.json`, `companionSettings.json` | What the app reads beside the script: env vars, backed-up page keys, GAP Companion's Settings tab. |
+| `dist/gap-env.json`, `gap-backup.json` | What the app reads beside the script: env vars and backed-up page keys. |
 | `dist/LICENSE`, `dist/NOTICE` | Travel with the archive. |
 | `TsumTsum-Alpha-5.0a2.zip` + `.sha256` | The release archive, named from `config.json` (channel) and `package.json` (version), and its digest. |
 

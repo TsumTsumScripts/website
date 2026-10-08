@@ -36,7 +36,7 @@ progress will take; a key it does not know is ignored, which is most of the
 form — a run reads those once in `buildRun`, and only a fresh `start()` can
 change them.
 
-Its companion invariant: **anything `quickBarApplyOne` can take,
+Its counterpart invariant: **anything `quickBarApplyOne` can take,
 `quickBarState()` has to report.** Both pages re-read the world from that reply
 rather than trusting what they sent, because the engine clamps, and a skill can
 hold another setting off.
