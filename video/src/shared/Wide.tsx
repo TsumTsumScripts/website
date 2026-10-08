@@ -68,8 +68,10 @@ export const Card: React.FC<{
   playbackRate?: number;
   /** Hold the video on its first frame; children (callouts, rings) keep animating. */
   freeze?: boolean;
+  /** Left edge of the card; CARD_LEFT (the right-hand column) unless given. */
+  left?: number;
   children?: React.ReactNode;
-}> = ({file, startFrom = 0, playbackRate = 1, freeze = false, children}) => {
+}> = ({file, startFrom = 0, playbackRate = 1, freeze = false, left = CARD_LEFT, children}) => {
   const video = (
     <OffthreadVideo
       src={staticFile(`footage/${file}`)}
@@ -83,7 +85,7 @@ export const Card: React.FC<{
   <div
     style={{
       position: 'absolute',
-      left: CARD_LEFT,
+      left,
       top: CARD_TOP,
       width: CARD_W,
       height: CARD_H,

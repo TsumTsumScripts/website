@@ -19,4 +19,10 @@ const files = readdirSync(from).filter((f) => f.endsWith('.mp4') && !f.endsWith(
 for (const f of files) {
   copyFileSync(join(from, f), join(to, f));
 }
-console.log(`footage: ${files.length} cuts copied to video/public/footage`);
+// The landing's published play clips (already trimmed, in the site's static/media) feed the trailer.
+const media = join(here, '..', '..', 'static', 'media');
+const clips = readdirSync(media).filter((f) => f.startsWith('clip-play-') && f.endsWith('.mp4'));
+for (const f of clips) {
+  copyFileSync(join(media, f), join(to, f));
+}
+console.log(`footage: ${files.length} cuts and ${clips.length} play clips copied to video/public/footage`);

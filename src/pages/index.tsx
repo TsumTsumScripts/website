@@ -152,7 +152,7 @@ export default function Home(): React.JSX.Element {
       </section>
 
       <section id="video" style={section}>
-        <Heading tone="grape" kicker="Trailer" title="The script in 45 seconds" />
+        <Heading tone="grape" kicker="Trailer" title="The script in under 40 seconds" />
         <Patch tone="grape" radius="48px" inset={9} style={{padding: 22}}>
           <Media id={landing.trailer.id} alt="The Tsum Tsum script trailer" hint={landing.trailer.brief} aspect="16 / 9" />
         </Patch>

@@ -18,10 +18,10 @@ const playClips = [
 const trailer = {
   id: 'vid-trailer',
   kind: 'remotion',
-  seconds: 45,
+  seconds: 38,
   brief:
-    '16:9 trailer. Cold open on a long chain (3s), title card "Tsum Tsum Script" (2s), six feature beats of ~5s each using the best clips (auto-play, skills, bubbles, chores, Quick Bar, presets), a Discord/CTA end card (4s). Captions only, no voice.',
-  note: 'The script in 45 seconds.',
+    '16:9 trailer. Cold open on a long chain (3s), title card "Tsum Tsum Script" (2.5s), five feature beats from the existing cuts (auto-play, skills, bubbles, chores as box buying and level unlocking, Quick Bar), a Discord end card (4s). Captions only, no voice.',
+  note: 'The script in under 40 seconds.',
 };
 
 const starterShots = [

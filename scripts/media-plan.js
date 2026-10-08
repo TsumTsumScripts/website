@@ -128,7 +128,7 @@ page uses it. No page edit.
 ## Remotion
 
 Trailers and instructional videos are built as Remotion compositions in a
-\`video/\` project beside the site (\`npm run video:studio\`, \`npm run video:render\`). Built so far: \`vid-skills\` and \`vid-autoplay\`. Plan:
+\`video/\` project beside the site (\`npm run video:studio\`, \`npm run video:render\`). Built so far: \`vid-trailer\`, \`vid-skills\`, \`vid-autoplay\` and \`vid-levels\`. Plan:
 
 - **One composition per \`vid-*\` id**, same name, 1080x1920 for single-feature
   walkthroughs (they play inside a phone frame) and 1920x1080 for the trailer.
