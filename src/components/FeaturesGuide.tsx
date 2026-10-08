@@ -59,6 +59,8 @@ export default function FeaturesGuide(): React.JSX.Element {
   const {pathname, search} = useLocation();
   const history = useHistory();
   const [query, setQuery] = useState('');
+  // On a narrow screen the feature list folds behind one button; it opens on tap.
+  const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   const key = pathname.replace(/\/$/, '').split('/')[2];
@@ -78,6 +80,7 @@ export default function FeaturesGuide(): React.JSX.Element {
 
   const go = (to: string) => {
     history.push(to);
+    setMenuOpen(false);
     // On a narrow screen the sidebar is above the content; bring the hero into view.
     if (window.matchMedia('(max-width: 900px)').matches) {
       requestAnimationFrame(() => heroRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'}));
@@ -107,44 +110,59 @@ export default function FeaturesGuide(): React.JSX.Element {
       </PageHead>
 
       <div style={{display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-start'}}>
-        <aside className="fg-side">
-          <label className="visually-hidden" htmlFor="fg-search">Search features</label>
-          <input id="fg-search" className="fg-search" type="search" placeholder="Search features" value={query} onChange={(e) => setQuery(e.target.value)} />
-          <nav aria-label="Features" style={{display: 'flex', flexDirection: 'column', gap: 10}}>
-            {shown.length === 0 && <p style={{color: 'var(--ground-ink-soft)'}}>No features match “{query}”.</p>}
-            {shown.map((x) => {
-              const i = features.indexOf(x);
-              const on = i === sel;
-              return (
-                <Patch
-                  key={x.key}
-                  as="a"
-                  href={`/features/${x.key}`}
-                  tone={on ? (x.tone as Tone) : 'surface'}
-                  radius="22px"
-                  inset={4}
-                  lift={on ? 4 : 5}
-                  aria-current={on ? 'true' : undefined}
-                  className="fg-item"
-                  onClick={(e: React.MouseEvent) => {
-                    e.preventDefault();
-                    go(`/features/${x.key}`);
-                  }}>
-                  <span className="fg-num" style={on ? {background: '#1c1b2b', color: '#f4efe6'} : {background: `var(--${x.tone}-fill)`, color: `var(--${x.tone}-ink)`}}>{i + 1}</span>
-                  <span style={{display: 'flex', flexDirection: 'column'}}>
-                    <b style={{fontSize: 16}}>{x.title}</b>
-                    <small style={{fontSize: 14}}>{x.category}</small>
-                  </span>
-                </Patch>
-              );
-            })}
-          </nav>
-          <Patch as={Link} to="/stats-site" tone="periwinkle" radius="22px" inset={4} lift={5} className="fg-item" style={{marginTop: 18}}>
-            <span style={{display: 'flex', flexDirection: 'column'}}>
-              <b style={{fontSize: 16}}>Tsum Tsum Stats →</b>
-              <small style={{fontSize: 14}}>Your rounds and collection, charted</small>
+        <aside className={'fg-side' + (menuOpen ? ' fg-side--open' : '')}>
+          <button
+            type="button"
+            className="fg-menu-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="fg-menu"
+            onClick={() => setMenuOpen((o) => !o)}>
+            <span className="fg-num" style={{background: `var(--${f.tone}-fill)`, color: `var(--${f.tone}-ink)`}}>{sel + 1}</span>
+            <span style={{display: 'flex', flexDirection: 'column', minWidth: 0}}>
+              <small>All {features.length} features</small>
+              <b>{f.title}</b>
             </span>
-          </Patch>
+            <span className="fg-menu-caret" aria-hidden="true">{menuOpen ? '▴' : '▾'}</span>
+          </button>
+          <div id="fg-menu" className="fg-menu">
+            <label className="visually-hidden" htmlFor="fg-search">Search features</label>
+            <input id="fg-search" className="fg-search" type="search" placeholder="Search features" value={query} onChange={(e) => setQuery(e.target.value)} />
+            <nav aria-label="Features" style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+              {shown.length === 0 && <p style={{color: 'var(--ground-ink-soft)'}}>No features match “{query}”.</p>}
+              {shown.map((x) => {
+                const i = features.indexOf(x);
+                const on = i === sel;
+                return (
+                  <Patch
+                    key={x.key}
+                    as="a"
+                    href={`/features/${x.key}`}
+                    tone={on ? (x.tone as Tone) : 'surface'}
+                    radius="22px"
+                    inset={4}
+                    lift={on ? 4 : 5}
+                    aria-current={on ? 'true' : undefined}
+                    className="fg-item"
+                    onClick={(e: React.MouseEvent) => {
+                      e.preventDefault();
+                      go(`/features/${x.key}`);
+                    }}>
+                    <span className="fg-num" style={on ? {background: '#1c1b2b', color: '#f4efe6'} : {background: `var(--${x.tone}-fill)`, color: `var(--${x.tone}-ink)`}}>{i + 1}</span>
+                    <span style={{display: 'flex', flexDirection: 'column'}}>
+                      <b style={{fontSize: 16}}>{x.title}</b>
+                      <small style={{fontSize: 14}}>{x.category}</small>
+                    </span>
+                  </Patch>
+                );
+              })}
+            </nav>
+            <Patch as={Link} to="/stats-site" tone="periwinkle" radius="22px" inset={4} lift={5} className="fg-item" style={{marginTop: 18}}>
+              <span style={{display: 'flex', flexDirection: 'column'}}>
+                <b style={{fontSize: 16}}>Tsum Tsum Stats →</b>
+                <small style={{fontSize: 14}}>Your rounds and collection, charted</small>
+              </span>
+            </Patch>
+          </div>
         </aside>
 
         <main style={{flex: '999 1 560px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 28}}>
