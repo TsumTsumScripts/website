@@ -12,7 +12,8 @@ Docusaurus site for the Tsum Tsum script: felt-styled landing page, features gui
 - `npm run media:plan`: regenerate `MEDIA_PLAN.md` and the id-to-file index. Run it after
   adding or removing anything in `static/media/`.
 - `npm run contrast`: colour-contrast gate over the built site (run `npm run build` first). The rule
-  is in `CONTRAST.md`: text 7:1 (large 4.5:1), focus rings and field edges 3:1. Run it after any colour change.
+  is in `CONTRAST.md`: text 7:1 (large 4.5:1), focus rings and field edges 3:1. Paused: run it only when
+  the user asks.
 - `npm run capture`: render screenshots from the script's real pages (see below).
 
 ## Sibling repo
@@ -62,9 +63,8 @@ Remotion project, one composition per `vid-*` id, 1080x1920 at 30 fps. It has it
 
 ## Conventions
 
-- Commit as each task finishes, once typecheck, build and any relevant check (`contrast`, `refs:check`)
-  pass, without waiting to be asked. One commit per logical change: when a file mixes changes from
-  separate tasks, stage them apart. Do not push.
+- Commit as each task finishes, once typecheck, build and any relevant check (`refs:check`) pass,
+  without waiting to be asked. One commit per logical change: when a file mixes changes from separate tasks, stage them apart. Do not push.
 - Colours: follow `CONTRAST.md`. Use a patch's `var(--ink)` on its fill, no `opacity` on text, and
   docs colours via the Infima variables in `custom.css` and `src/prism/themes.ts`.
 - Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
