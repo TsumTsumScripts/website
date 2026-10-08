@@ -31,9 +31,9 @@ const starterShots = [
 
 /** The Tsum Tsum Stats page: the program's own pages in a desktop browser, with a test account's data. */
 const statsShots = [
-  { id: 'shot-stats-site-stats', alt: 'The Stats page: coin efficiency tiles over the coins-per-day chart', capture: 'Tsum Tsum Stats, Stats page, last 7 days: KPI tiles and the Coins per day chart. Device names anonymised.' },
-  { id: 'shot-stats-site-catalog', alt: 'The Catalog: Tsum cards with levels, and the Cost to max panel', capture: 'Tsum Tsum Stats, Catalog in Cards layout with an imported Tsum List, Cost to max panel open.' },
-  { id: 'shot-stats-site-help', alt: 'Help: the Script events address to paste into the GAP app', capture: 'Tsum Tsum Stats, Help section 1 with the 10.0.2.2:21025 address and one device connected.' },
+  { id: 'shot-stats-site-stats', alt: 'The Stats page for the last 7 days: coin and medal tiles over the Coin efficiency by Tsum chart', capture: 'Tsum Tsum Stats, Stats page, last 7 days: KPI tiles and the top of Coin efficiency by Tsum. Laptop window, 1280x800 at 2x.' },
+  { id: 'shot-stats-site-catalog', alt: 'The Catalog: 375 of 683 Tsums owned, and Cost to max with the days left at the current pace', capture: 'Tsum Tsum Stats, Catalog with an imported Tsum List: the owned bar and the Cost to max panel. Laptop window, 1280x800 at 2x.' },
+  { id: 'shot-stats-site-help', alt: 'Help: the 10.0.2.2:21025 address to paste into the GAP app\'s Script events, with the steps', capture: 'Tsum Tsum Stats, Help section 1, heading just under the top bar. Laptop window, 1280x800 at 2x.' },
 ];
 
 /** Landing "What's in the sewing box" cards: feature keys, in order. */
