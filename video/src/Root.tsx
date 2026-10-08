@@ -2,6 +2,7 @@ import React from 'react';
 import {Composition, Still} from 'remotion';
 import {AUTOPLAY_FRAMES, Autoplay} from './compositions/Autoplay';
 import {SKILLS_FRAMES, Skills} from './compositions/Skills';
+import {LEVELS_FRAMES, Levels} from './compositions/Levels';
 import {YtAutoplay, YtSkills} from './compositions/Wide';
 import {BOXES_FRAMES, YtBoxes} from './compositions/WideBoxes';
 import {ThumbAutoplay, ThumbBoxes, ThumbSkills} from './compositions/Thumbnails';
@@ -12,6 +13,7 @@ export const RemotionRoot: React.FC = () => (
   <>
     <Composition id="vid-skills" component={Skills} durationInFrames={SKILLS_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="vid-autoplay" component={Autoplay} durationInFrames={AUTOPLAY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+    <Composition id="vid-levels" component={Levels} durationInFrames={LEVELS_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
     {/* 16:9 for YouTube regular videos: same cuts, words in a left panel. Not used on the site. */}
     <Composition id="yt-skills" component={YtSkills} durationInFrames={SKILLS_FRAMES} fps={FPS} width={1920} height={1080} />
     <Composition id="yt-autoplay" component={YtAutoplay} durationInFrames={AUTOPLAY_FRAMES} fps={FPS} width={1920} height={1080} />

@@ -405,7 +405,7 @@ const features = [
     video: {
       id: 'vid-levels',
       kind: 'capture',
-      seconds: 15,
+      seconds: 21,
       brief: 'Capture of a sweep sorted by Level Lock, raises bought one by one. Remotion "coins spent" ticker.',
       note: 'A level-cap sweep.',
     },
