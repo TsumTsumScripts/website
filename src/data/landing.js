@@ -4,7 +4,7 @@
 const hero = {
   id: 'shot-landing-hero',
   alt: 'The Tsum Tsum script playing a round on a phone',
-  capture: 'Phone or emulator mid-round, floating bar visible, a long chain mid-draw. Landscape-safe crop 4:3 around the board.',
+  capture: 'Phone or emulator mid-round, floating bar visible, a long chain mid-draw. Full portrait screen.',
 };
 
 /** Short clips of the game being played by the script (landing "Watch it play"). */

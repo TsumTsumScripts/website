@@ -77,7 +77,7 @@ export default function Home(): React.JSX.Element {
             <Patch as="a" href="#video" tone="grape" className="fbtn">Watch the trailer</Patch>
           </div>
         </div>
-        <Patch tone="periwinkle" radius="36px 48px 32px 52px" inset={10} tilt={2} style={{padding: 22, aspectRatio: '4 / 3'}}>
+        <Patch tone="periwinkle" radius="36px 48px 32px 52px" inset={10} tilt={2} style={{padding: 22, justifySelf: 'center'}}>
           <Media id={landing.hero.id} alt={landing.hero.alt} hint={landing.hero.capture} />
         </Patch>
         <FeltAccent kind="medal" width={118} top={-10} right={-6} rotate={12} />
