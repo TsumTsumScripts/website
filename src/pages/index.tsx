@@ -6,6 +6,7 @@ import Patch, {Kicker, type Tone} from '@site/src/components/felt/Patch';
 import FeltAccent from '@site/src/components/felt/FeltAccent';
 import DiscordMark from '@site/src/components/felt/DiscordMark';
 import Media from '@site/src/components/felt/Media';
+import BestSetup from '@site/src/components/felt/BestSetup';
 import {features} from '@site/src/data/features';
 import landing from '@site/src/data/landing';
 
@@ -141,6 +142,7 @@ export default function Home(): React.JSX.Element {
           starts GAP's service on your phone or emulator, and installs the app if you don't have it yet. Four steps take
           you from download to hands-off play.
         </p>
+        <BestSetup />
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
           <Patch as="a" href={`${repo}/releases/latest`} tone="marigold" className="fbtn">Download the starter tool</Patch>
           <Patch as={Link} to="/starter" tone="surface" className="fbtn">How the starter works</Patch>

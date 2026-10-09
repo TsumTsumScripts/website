@@ -6,6 +6,7 @@ import PageHead from '@site/src/components/felt/PageHead';
 import Patch from '@site/src/components/felt/Patch';
 import DiscordMark from '@site/src/components/felt/DiscordMark';
 import Media from '@site/src/components/felt/Media';
+import BestSetup from '@site/src/components/felt/BestSetup';
 import landing from '@site/src/data/landing';
 
 export default function Starter(): React.JSX.Element {
@@ -26,6 +27,8 @@ export default function Starter(): React.JSX.Element {
           <Patch as="a" href={`${repo}/tree/main/starter`} tone="surface" className="fbtn">Read the source</Patch>
         </div>
       </PageHead>
+
+      <BestSetup />
 
       <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))'}}>
         {landing.starterShots.map((s, i) => (
