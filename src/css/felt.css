@@ -186,7 +186,8 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 /* The list's own button: only on a narrow screen, where the list folds behind it. */
 .fg-menu-toggle { display: none; }
 @media (max-width: 900px) {
-  .fg-side { position: static; flex-basis: 100%; }
+  /* The list floats over the page below its button, so opening it moves nothing. */
+  .fg-side { position: relative; top: 0; z-index: 15; flex-basis: 100%; }
   .fg-menu-toggle {
     display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 18px; text-align: left; cursor: pointer;
     border-radius: 999px; border: 2px dashed var(--surface-thread); background: var(--surface); color: var(--ground-ink);
@@ -196,8 +197,14 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
   .fg-menu-toggle b { font-size: 17px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .fg-menu-caret { margin-left: auto; font-size: 22px; line-height: 1; }
   .fg-side:not(.fg-side--open) .fg-menu { display: none; }
+  .fg-menu {
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0;
+    max-height: min(70vh, 640px); overflow-y: auto; overscroll-behavior: contain;
+    padding: 14px 12px 18px; border-radius: 28px; border: 2px dashed var(--surface-thread); background: var(--ground);
+    box-shadow: 0 6px 0 var(--surface-edge), 0 18px 40px rgba(0, 0, 0, .55);
+  }
   /* Open, the list is two columns where it fits, so it takes half the scrolling. */
-  .fg-menu nav { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); }
+  .fg-menu nav { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(min(100%, 136px), 1fr)); }
   .fg-menu .fg-item { padding: 10px 12px; gap: 10px; }
   .fg-menu .fg-item .fg-num { width: 30px; height: 30px; font-size: 16px; }
 }
@@ -298,8 +305,16 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
     box-shadow: 0 4px 0 var(--surface-edge);
   }
   .felt-header:not(.felt-header--open) .felt-nav { display: none; }
-  /* Open, the links are two columns of full-width pills, each tall enough to tap. */
-  .felt-nav { flex-basis: 100%; margin-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 8px; }
+  /* Open, the links float over the page below the header row (the page does not move):
+     two columns of full-width pills, each tall enough to tap. */
+  .felt-head { position: relative; z-index: 20; }
+  .felt-wrap.felt-header { position: relative; }
+  .felt-nav {
+    position: absolute; top: calc(100% - 4px); left: 12px; right: 12px; margin-left: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 14px 20px;
+    border-radius: 28px; border: 2px dashed var(--surface-thread); background: var(--ground);
+    box-shadow: 0 6px 0 var(--surface-edge), 0 18px 40px rgba(0, 0, 0, .55);
+  }
   .felt .felt-pill { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; padding: 8px 14px; font-size: 16px; }
   .felt-pagehead { padding-right: 0; padding-top: 40px; }
   .felt-pagehead .felt-sticker:last-child { display: none; }

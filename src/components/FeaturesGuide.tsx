@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import Link from '@docusaurus/Link';
 import {useHistory, useLocation} from '@docusaurus/router';
 import FeltPage from '@site/src/components/felt/FeltPage';
@@ -59,9 +59,30 @@ export default function FeaturesGuide(): React.JSX.Element {
   const {pathname, search} = useLocation();
   const history = useHistory();
   const [query, setQuery] = useState('');
-  // On a narrow screen the feature list folds behind one button; it opens on tap.
+  // On a narrow screen the feature list folds behind one button; it opens on tap, floating over
+  // the page, and closes again on Escape or a tap outside.
   const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const sideRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setMenuOpen(false);
+      toggleRef.current?.focus();
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (!sideRef.current?.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [menuOpen]);
 
   const key = pathname.replace(/\/$/, '').split('/')[2];
   const sel = Math.max(0, features.findIndex((f) => f.key === key));
@@ -110,8 +131,9 @@ export default function FeaturesGuide(): React.JSX.Element {
       </PageHead>
 
       <div style={{display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-start'}}>
-        <aside className={'fg-side' + (menuOpen ? ' fg-side--open' : '')}>
+        <aside ref={sideRef} className={'fg-side' + (menuOpen ? ' fg-side--open' : '')}>
           <button
+            ref={toggleRef}
             type="button"
             className="fg-menu-toggle"
             aria-expanded={menuOpen}
