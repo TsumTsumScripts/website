@@ -99,7 +99,7 @@ The heart tally (`heartsReceived` / `heartsSent` / `heartsSendDueMin`) rides in
 Logdy auto-detects JSON lines. Off the file, which survives a service restart:
 
 ```sh
-adb shell "tail -f /sdcard/Download/GameAutomationPlatform/logs/script-<id>.log" | logdy
+adb shell "tail -f /sdcard/Download/GeneralAutomationPlatform/logs/script-<id>.log" | logdy
 ```
 
 Use `-f`, not `-F` — the device's `tail` has no `-F`. Quote the remote

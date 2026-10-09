@@ -39,11 +39,11 @@ npm run buildAndAdb    # build, then push to its own scripts/DEV folder
 ```
 
 `adb` pushes `dist/` to
-`/sdcard/Download/GameAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/` —
+`/sdcard/Download/GeneralAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/` —
 the folder the installed Production script lives in. `buildAndAdb` pushes every `dist/` file to
 `.../scripts/DEV` on each connected emulator instead (listed in the app as
 "Tsum Tsum DEV"). The app's script root is
-`/sdcard/Download/GameAutomationPlatform/`; the Library lists what it finds
+`/sdcard/Download/GeneralAutomationPlatform/`; the Library lists what it finds
 under `scripts/` up to three levels deep, stopping at the first folder that
 holds an `index.js` or `index.html`.
 

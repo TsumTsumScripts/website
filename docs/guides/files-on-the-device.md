@@ -10,13 +10,13 @@ storage — the same root `npm run adb` and `buildAndAdb` push into
 ([Build and deploy](../publishing/build-and-deploy)):
 
 ```
-/sdcard/Download/GameAutomationPlatform/
+/sdcard/Download/GeneralAutomationPlatform/
 ```
 
 Everything the script itself writes goes in **this device's own folder**:
 
 ```
-/sdcard/Download/GameAutomationPlatform/devices/<name>_<id>/
+/sdcard/Download/GeneralAutomationPlatform/devices/<name>_<id>/
 ```
 
 `<name>` is the device's name (from the app's Settings, else its model) and
@@ -62,7 +62,7 @@ Nothing to pull. MuMu mounts its shared folder *as* the guest's `Download`, so
 the root is already a folder on the PC:
 
 ```
-C:\Users\<you>\Documents\MuMuSharedFolder\Download\GameAutomationPlatform\
+C:\Users\<you>\Documents\MuMuSharedFolder\Download\GeneralAutomationPlatform\
 ```
 
 `Documents` is wherever Windows keeps it (often under OneDrive); a shared folder
@@ -79,7 +79,7 @@ at once will interleave their stats.
 
 The guest path is the same; the route onto the PC differs.
 
-1. **The shared folder.** Copy from `Download/GameAutomationPlatform/…` into
+1. **The shared folder.** Copy from `Download/GeneralAutomationPlatform/…` into
    it with the guest's *Files* app. Defaults, from each emulator's own
    documentation: Nox — `Nox_share` in the user folder (guest `/mnt/shared`);
    BlueStacks 5 — `C:\ProgramData\BlueStacks_nxt\Engine\UserData\SharedFolder`
@@ -94,8 +94,8 @@ The guest path is the same; the route onto the PC differs.
 
    ```sh
    adb connect 127.0.0.1:16384
-   adb pull /sdcard/Download/GameAutomationPlatform/devices .
-   adb pull /sdcard/Download/GameAutomationPlatform/logs .
+   adb pull /sdcard/Download/GeneralAutomationPlatform/devices .
+   adb pull /sdcard/Download/GeneralAutomationPlatform/logs .
    ```
 
    A pulled directory is created *inside* the target (`./devices/`,

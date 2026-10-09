@@ -85,7 +85,7 @@ Three ways, from quickest to most official:
    folder ("Tsum Tsum DEV" in the app), leaving the installed script alone.
    This is the everyday loop. `npm run adb` pushes an existing `dist/` over
    the installed copy instead:
-   `/sdcard/Download/GameAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/`.
+   `/sdcard/Download/GeneralAutomationPlatform/scripts/Tsum Tsum Scripts/Tsum Tsum/Tsum-Tsum/`.
 2. **`debug_deploy.ps1`** builds and pushes over the *installed* script's
    folder, which it derives from `config.json`, so your build lands on top of
    the release the app already has rather than beside it. This is the debug
