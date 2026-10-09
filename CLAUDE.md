@@ -68,6 +68,11 @@ Remotion project, one composition per `vid-*` id, 1080x1920 at 30 fps. It has it
 - Visual changes: show the user screenshots as the work goes and at the end, with before-and-after
   comparisons at the widths that matter (phone and desktop). Take the "before" shots first, before
   changing anything; screenshots you view yourself are not visible to the user, so send them.
+  Keep a baseline instead of swapping edits in and out: before editing, `npm run build`, copy `build/`
+  to the scratchpad and serve it with `npx docusaurus serve --dir <copy> --port 3001`; shoot "after"
+  from `npm start` on 3000. For a baseline at an older commit, use `git worktree add` in the scratchpad
+  (symlink `node_modules`, set `TSUM_SCRIPT_REPO` so `sync` finds the script). If the task also changes
+  the script, build the baseline from the old script state.
 - Colours: follow `CONTRAST.md`. Use a patch's `var(--ink)` on its fill, no `opacity` on text, and
   docs colours via the Infima variables in `custom.css` and `src/prism/themes.ts`.
 - Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
