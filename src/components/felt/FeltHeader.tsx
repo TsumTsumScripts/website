@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -15,6 +15,29 @@ export default function FeltHeader(): React.JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   const {pathname} = useLocation();
   const {discordUrl, repoUrl} = siteConfig.customFields as {discordUrl: string; repoUrl: string};
+  // On a phone the links fold behind one Menu button; they close again on a new page, Escape or a tap outside.
+  const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [open]);
 
   const items: Item[] = [
     {label: 'Features', to: '/features', tone: 'rose', match: '/features'},
@@ -31,14 +54,26 @@ export default function FeltHeader(): React.JSX.Element {
         <body className="felt-body" />
       </Head>
       <div className="felt felt-head">
-        <header className="felt-wrap felt-header">
+        <header ref={headerRef} className={`felt-wrap felt-header${open ? ' felt-header--open' : ''}`}>
           <Link to="/" className="felt-brand" aria-label="Tsum Tsum Script, home">
             <span className="felt-brand__coin">
               <FeltAccent kind="coin" width={54} />
             </span>
             <span className="felt-brand__name">Tsum Tsum Script</span>
           </Link>
-          <nav aria-label="Main" className="felt-nav">
+          <button
+            ref={toggleRef}
+            type="button"
+            className="felt-menu-toggle"
+            aria-expanded={open}
+            aria-controls="felt-nav"
+            aria-label="Menu"
+            onClick={() => setOpen((o) => !o)}>
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+          <nav id="felt-nav" aria-label="Main" className="felt-nav">
             {items.map((it, i) => {
               const active = !!it.match && (pathname === it.match || pathname.startsWith(`${it.match}/`));
               const cls = `felt-pill ${i % 2 ? 'felt-pill--r' : 'felt-pill--l'}${active ? ' felt-pill--on' : ''}`;

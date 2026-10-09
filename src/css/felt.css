@@ -267,6 +267,8 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .felt-brand:hover .felt-brand__coin { transform: rotate(14deg) scale(1.08); }
 .felt-brand__name { font: 400 clamp(20px, 3vw, 26px) var(--font-display); }
 .felt-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-left: auto; }
+/* The header's Menu button: only on a phone, where the links fold behind it. */
+.felt-menu-toggle { display: none; }
 .felt .felt-pill { --r: 999px; --inset: 4px; --stitch: 2px; --lift: 4px; padding: 9px 18px; font: 700 15px var(--font-body); text-decoration: none !important; color: var(--ink); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s; }
 .felt .felt-pill--l { --tilt: -1.5deg; }
 .felt .felt-pill--r { --tilt: 1.5deg; }
@@ -286,8 +288,19 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .felt-pagehead__body { font-size: 18px; line-height: 1.6; color: var(--ground-ink-soft); }
 .felt-pagehead .kicker { display: inline-block; }
 @media (max-width: 700px) {
-  .felt-nav { margin-left: 0; gap: 10px; }
-  .felt .felt-pill { padding: 7px 14px; font-size: 14px; }
+  .felt-wrap.felt-header { gap: 12px; }
+  /* A smaller coin keeps the brand and the Menu button on one row. */
+  .felt-brand { gap: 8px; }
+  .felt-brand__coin, .felt-brand__coin .felt-sticker { width: 40px !important; height: 42px !important; }
+  .felt-menu-toggle {
+    display: flex; align-items: center; justify-content: center; margin-left: auto; width: 48px; height: 48px; padding: 0; cursor: pointer;
+    border-radius: 999px; border: 2px dashed var(--surface-thread); background: var(--surface); color: var(--ground-ink);
+    box-shadow: 0 4px 0 var(--surface-edge);
+  }
+  .felt-header:not(.felt-header--open) .felt-nav { display: none; }
+  /* Open, the links are two columns of full-width pills, each tall enough to tap. */
+  .felt-nav { flex-basis: 100%; margin-left: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 8px; }
+  .felt .felt-pill { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; padding: 8px 14px; font-size: 16px; }
   .felt-pagehead { padding-right: 0; padding-top: 40px; }
   .felt-pagehead .felt-sticker:last-child { display: none; }
   .felt-pagehead .felt-sticker { top: -14px !important; right: 8px !important; width: 56px !important; height: 58px !important; }
