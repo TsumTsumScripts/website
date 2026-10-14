@@ -164,7 +164,7 @@ export default function StatsSite(): React.JSX.Element {
           <li>Run a Tsum List export, then import it the same way to fill in the Catalog.</li>
         </ol>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          Keep the starter's terminal window open while you use either page; closing it, or Ctrl+C in it, stops both.
+          Keep the starter's terminal window open while you use either page; <b>Stop</b> on the starter page stops both.
           Questions? Ask in the{' '}
           <a href={discord}><DiscordMark />Discord</a>.
         </p>

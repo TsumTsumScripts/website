@@ -121,7 +121,8 @@ function WindowsSteps(): React.JSX.Element {
           </li>
         </ol>
         <p className="st-note">
-          Leave the console window open while you use the page. Closing it, or pressing Ctrl+C in it, stops the page.
+          Leave the console window open while you use the page. To stop, press <b>Stop</b> at the top of the page; the
+          window closes by itself.
         </p>
       </Step>
     </>
@@ -173,7 +174,7 @@ function MacSteps(): React.JSX.Element {
           </li>
         </ol>
         <p className="st-note">
-          Leave Terminal open while you use the page. Closing it, or pressing Ctrl+C in it, stops the page.
+          Leave Terminal open while you use the page. To stop, press <b>Stop</b> at the top of the page.
         </p>
         <p className="st-note">
           Next time, a quicker way: open Terminal, drag <b>Start-Linux.sh</b> from Finder onto the Terminal window and
@@ -431,6 +432,11 @@ export default function Starter(): React.JSX.Element {
                 <li>
                   Most often the zip was not extracted. Close it, right-click the zip, <b>Extract All…</b>, and run
                   Start-Windows from the extracted folder.
+                </li>
+                <li>
+                  Each run is logged to <b>starter-log.txt</b> in the TsumTsum-Starter folder (the run before it to
+                  starter-log.prev.txt). Share that file in the <a href={discord}><DiscordMark />Discord</a> when asking
+                  for help.
                 </li>
                 <li>
                   To see the message: in the TsumTsum-Starter folder, click the address bar, type <code>cmd</code> and press{' '}
