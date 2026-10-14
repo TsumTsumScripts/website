@@ -78,3 +78,5 @@ Remotion project, one composition per `vid-*` id, 1080x1920 at 30 fps. It has it
 - Generated and git-ignored: `docs/reference/generated/`, `src/data/*.generated.json`, `build/`,
   `capture/out/`, `capture/.cache/`. Never edit them.
 - Public tree: nothing may name the private toolkit repository or copy host-app code.
+
+**Deployments** (local, testers, production, any repo): read `../tools/DEPLOYMENTS.md` first.
