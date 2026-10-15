@@ -1,3 +1,5 @@
+Read `CODEMAP.md` before searching the tree: it says which file owns what.
+
 # Tsum Tsum website
 
 Docusaurus site for the Tsum Tsum script: felt-styled landing page, features guide
