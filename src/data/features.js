@@ -30,7 +30,7 @@ const features = [
     category: 'Gameplay',
     card: 'Finds the longest chains on the board and links them, round after round.',
     summary:
-      'Reads the board, plans chains and draws them for you, then starts the next round. Tune how long a chain may be, how many it draws per look and whether the fan is used.',
+      'Reads the board, plans chains and draws them for you, large tsums included, then starts the next round. Tune how long a chain may be, how many it draws per look and whether the fan is used.',
     hero: {
       id: 'shot-autoplay-hero',
       alt: 'A board mid-round with the script drawing a long chain',
@@ -65,8 +65,8 @@ const features = [
     ],
     settings: [
       { name: 'Auto Play Game', def: 'On', desc: 'Plays rounds whenever no other chore is due. Hearts and mailbox chores go first, so very frequent chores can leave no time for rounds. Turn it off to run chores only.' },
-      { name: 'Chains per board scan', def: '6', desc: 'How many chains are drawn before the board is read again (1 to 12). Fewer keeps each chain fresh; more plays faster.' },
-      { name: 'Maximum Chain Number', def: '4', desc: 'Caps how many Tsums are linked in one chain (3 to 15). A low cap plays more, shorter chains, which suits Tsums that score on chain count. It also makes each board scan cheaper.' },
+      { name: 'Chains per board scan', def: '3', desc: 'How many chains are drawn before the board is read again (1 to 12). Fewer keeps each chain fresh; more plays faster.' },
+      { name: 'Maximum Chain Number', def: '5', desc: 'Caps how many Tsums are linked in one chain (3 to 15). A low cap plays more, shorter chains, which suits Tsums that score on chain count. It also makes each board scan cheaper.' },
       { name: 'Link reach (% of a tsum)', def: '190', desc: 'The largest gap allowed between two linked Tsums, as a share of one Tsum\'s width (150 to 350). Too low and chains come out short; too high and the game refuses the drag.' },
       { name: 'Link MyTsum first', def: 'On', desc: 'Prefers chains of your own Tsum, so the skill gauge fills faster.' },
       { name: 'Use Fan?', def: 'Off', desc: 'Shakes the board with the fan every few scans. Opinions differ on whether it helps, so try it and compare your results.' },
@@ -125,7 +125,7 @@ const features = [
           { group: 'Burst', name: 'Holiday Donald', desc: 'The same choreography as Donald.' },
           { group: 'Burst', name: 'Jedi Luke', desc: 'Taps four spots before and after the skill, and flies it with five upward drags.' },
           { group: 'Burst', name: 'Lightning McQueen+', desc: 'Waits for the car to reach top speed before the follow-up tap, so it clears the most.' },
-          { group: 'Burst', name: 'Nightmare Before Christmas (Set)', desc: 'Plays through each character\'s cut-in, and keeps reading the board as Oogie Boogie\'s rolls shrink the tsums.' },
+          { group: 'Burst', name: 'Nightmare Before Christmas (Set)', desc: 'Plays through each character\'s cut-in, and keeps reading the board as Oogie Boogie\'s rolls shrink the tsums. Holds still while his dice roll, and rerolls only a first roll under 7.' },
           { group: 'Burst', name: 'Disney Villains (Set) (Beta)', desc: 'Fires like Burst, and reads the neon villain tsums by colour so more of them can be chained.' },
           { group: 'Burst', name: 'Pair Tsum', desc: 'Like Burst, but watches both skill buttons and fires whichever is ready the moment it is.' },
           { group: 'Burst', name: 'Sheriff Woody', desc: 'Swings the lasso with three left-and-right drags across the board.' },
@@ -200,7 +200,7 @@ const features = [
       {
         name: 'Bubble Strategy',
         def: 'One Bubble Mid Chain',
-        desc: 'What to do with the bubbles on the board. A bubble popped as a chain lands clears a bigger area, so each option is a trade between that and clearing bubbles quickly. Skills that make bubbles themselves clear up after their own, whatever this says.',
+        desc: 'What to do with the bubbles on the board. A bubble popped as a chain lands clears a bigger area, so each option is a trade between that and clearing bubbles quickly. The three Mid Chain options pop all but the two best bubbles at once when four or more pile up. Skills that make bubbles themselves clear up after their own, whatever this says.',
         options: [
           { name: 'One Bubble Mid Chain', desc: 'Pops exactly one bubble as each chain lands, keeping the rest for later chains.' },
           { name: 'All Bubbles Mid Chain', desc: 'Pops every bubble the last scan found, still only as a chain lands.' },
@@ -297,7 +297,7 @@ const features = [
       {
         title: 'Choose a style',
         body: 'Receive All Hearts is fast. Receive Hearts One By One also returns a heart to each sender, even unknown ones.',
-        shot: { id: 'shot-mailbox-settings', alt: 'The mailbox settings on the Chores tab', capture: 'Mailbox settings group on the Chores tab.' },
+        shot: { id: 'shot-mailbox-settings', alt: 'The mailbox settings on the Hearts tab', capture: 'Mailbox settings groups on the Hearts tab.' },
       },
       {
         title: 'Decide about rubies',
@@ -310,13 +310,13 @@ const features = [
     ],
     settings: [
       { name: 'Receive All Hearts', def: 'Off', desc: 'Uses Claim All. Fast, but unknown senders do not get a heart back.' },
-      { name: 'Waiting time (min) before repeat', def: '25', desc: 'How long to wait before the next Claim All (5 to 60).' },
+      { name: 'Waiting time (min) before repeat', def: '40', desc: 'How long to wait before the next Claim All (5 to 60).' },
       { name: 'Receive Hearts One By One', def: 'Off', desc: 'Opens each message so every sender gets a heart back. Slower than Claim All. The pinned ad mail is always skipped.' },
       { name: 'Skip Ruby', def: 'Off', desc: 'Leaves messages containing rubies in the mailbox. Useful when your main device is on iOS and your sender on Android, since rubies do not carry across.' },
       { name: 'Skip Medals', def: 'Off', desc: 'Leaves Mission Clear medals in the mailbox.' },
       { name: 'Claim All old mails', def: 'Off', desc: 'Collects coin-bearing heart mails one by one, then finishes with Claim All.' },
-      { name: 'Max Times to Open Mailbox', def: '5', desc: 'Most consecutive openings before the next task starts (1 to 20). Ends early when the mailbox is empty.' },
-      { name: 'Waiting time (min) before repeat', def: '5', desc: 'Minutes before the mailbox is opened again, once it is empty or the limit above is reached (1 to 60).' },
+      { name: 'Max Times to Open Mailbox', def: '2', desc: 'Most consecutive openings before the next task starts (1 to 20). Ends early when the mailbox is empty.' },
+      { name: 'Waiting time (min) before repeat', def: '25', desc: 'Minutes before the mailbox is opened again, once it is empty or the limit above is reached (1 to 60).' },
     ],
     tip: 'One By One is slower but encourages unknown players to send you hearts and coins later.',
     shots: [],
@@ -372,6 +372,7 @@ const features = [
         ],
       },
       { name: 'Purchases per sweep', def: '10', desc: 'Safety limit, 1 to 50. A 10-Time purchase counts as one.' },
+      { name: 'Buy open capsule box until sold out (Now) (Beta)', desc: 'Open the capsule in the store first. Now buys it one at a time until it sells out or the Coins run out, then stops the run. It never buys from any other box.' },
     ],
     tip: 'Rubies are never spent: if the game offers to trade them for coins, the script cancels and ends the sweep.',
     shots: [],
@@ -446,7 +447,7 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Export Tsum list (Now)', desc: 'Exports every owned Tsum: position, id, name, level and cap, skill level, month acquired, favourite, game build and device name.' },
+      { name: 'Export Tsum list (Now) (Beta)', desc: 'Exports every owned Tsum: position, id, name, level and cap, skill level, month acquired, favourite, game build and device name.' },
     ],
     tip: 'With a run going, the export waits for the current round and the run carries on after it.',
     see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'shows the export as a catalog of every Tsum, with what it costs to max the rest.'},
@@ -511,7 +512,7 @@ const features = [
       },
       {
         title: 'Use page two',
-        body: 'The page dots switch to page two: hearts, Unlock Level, Copy code, Last round, Games and Then.',
+        body: 'The page dots switch to page two: hearts, Unlock Level, Copy code, Last round, Games and Then. The play-on-repeat button under the dots turns Auto Play on or off.',
         shot: { id: 'shot-quickbar-page2', alt: 'Quick Bar page two', capture: 'Quick Bar page two, readout showing times.' },
       },
     ],
@@ -519,9 +520,25 @@ const features = [
       { name: 'Skill, Lv, Scan, Chain', desc: 'Skill type, skill level, chains per board scan and maximum chain.' },
       { name: '+Coin, 5>4, Bubble', desc: 'Two bonus items and the bubble strategy.' },
       { name: 'Preset', desc: 'Loads a saved configuration.' },
+      { name: 'Auto Play (⟳▶)', desc: 'Under the page dots, solid when on. Off lets the round in progress finish and plays no more; on starts playing again. Takes effect at once.' },
+      { name: '♥ Send, ♥ 1-by-1', desc: 'Page two. Auto Send Hearts and Receive Hearts One By One. The chore is added or dropped straight away.' },
+      { name: 'Lvl (padlock)', desc: 'Page two. Raises level caps once the current round is over, like the Now button beside Unlock Level.' },
+      { name: 'Copy code', desc: 'Page two. Copies your settings code to the clipboard.' },
       { name: 'Last round', desc: 'Stops the script once the round in progress is over. This run only.' },
       { name: 'Games, Then', desc: 'Stop after games and what happens afterwards.' },
-      { name: 'Readout', desc: 'Average base coins, final coins and medals per round. Tap it to copy the run\'s figures.' },
+      { name: 'Readout', desc: 'Average base coins, final coins and medals per round; on page two, round and run times. Tap it to copy the run\'s figures.' },
+      {
+        name: 'Appearance (Aa)',
+        def: 'Accessible, Device, Small',
+        desc: 'The Aa button at the top of the settings page. The style and theme apply to the settings page and the Quick Bar; the size applies only to the settings page.',
+        options: [
+          { group: 'Style', name: 'Accessible', desc: 'The default: larger text and buttons, high contrast, and a light Quick Bar.' },
+          { group: 'Style', name: 'Felt', desc: 'The look of this website, with cream and midnight themes.' },
+          { group: 'Theme', name: 'Dark, Light or Device', desc: 'Device follows your phone or emulator\'s own setting.' },
+          { group: 'Size', name: 'Extra small to Large', desc: 'Accessible style only.' },
+        ],
+      },
+      { name: 'Language', desc: 'The language of the settings page and the Quick Bar. On the General tab.' },
     ],
     tip: 'Tap the readout to copy base and final coins, medals, per-second rates and round durations to the clipboard.',
     shots: [],
@@ -549,14 +566,16 @@ const features = [
       },
       {
         title: 'Share a code',
-        body: 'Share settings → Copy puts a code on the clipboard and draws a QR. Another player pastes it, or scans the QR.',
+        body: 'The Code button at the top of the settings page, or Share settings → Copy, puts a code on the clipboard; Share settings also draws a QR. Another player pastes it, or scans the QR.',
         shot: { id: 'shot-presets-share', alt: 'The share code and QR', capture: 'Share settings card with a code and QR.' },
       },
     ],
     settings: [
       { name: 'Preset dropdown', desc: 'Names the preset your settings currently match, or No preset.' },
+      { name: 'Code button', desc: 'At the top of the settings page, beside the preset dropdown. Copies your settings code in one tap.' },
+      { name: 'Copy with settings list', def: 'On', desc: 'Adds the skill type and every setting changed from its default under the code, so whoever gets it can read what it does.' },
       { name: 'Share settings', desc: 'Copy, Paste and a QR. A code carries how a round is played and nothing about your account.' },
-      { name: 'Export presets', desc: 'Writes one line per preset to presets.txt beside the round stats.' },
+      { name: 'Export presets', desc: 'One settings code per preset, with Copy to the clipboard or Save file to presets.txt beside the round stats. Paste the export back into the code box to save every preset in it; a single line also applies it.' },
       {
         name: 'What a code or preset carries',
         desc: 'Codes and presets hold the same settings: how a round is played, off the Skills, Round and Gameplay tabs. Loading one sets every setting below, and one it does not mention goes back to its default.',
@@ -584,7 +603,7 @@ const features = [
         desc: 'Loading a code or preset never changes these settings. They stay as you set them.',
         options: [
           { name: 'Auto Play Game', desc: 'On the Round tab, but it is about the run, not the round.' },
-          { name: 'General tab', desc: 'Language, the device settings, Auto Launch Tsum App, Delay between rounds, Max round duration and its action, Stop after games and its action, Record round stats and Share round stats.' },
+          { name: 'General tab', desc: 'Language, the device settings, Auto Launch Tsum App, Game Region, Delay between rounds, Max round duration and its action, Stop after games and its action, Record round stats and Share round stats.' },
           { name: 'Hearts and Chores tabs', desc: 'Receiving and sending hearts, the mailbox, level caps, box buying and the Tsum List.' },
           { name: 'Debug tab', desc: 'Logging and diagnostics.' },
         ],
@@ -598,7 +617,7 @@ const features = [
     title: 'Schedules and limits',
     category: 'Control',
     card: 'Rests between rounds, stops after a set number of games, and gives up on stuck rounds.',
-    summary: 'Decide how a run starts, rests and ends: auto launch, delay between rounds, stop or pause after N games, and a round time limit.',
+    summary: 'Decide how a run starts, rests and ends: auto launch and which game region, delay between rounds, stop or pause after N games, and a round time limit.',
     hero: {
       id: 'shot-runcontrol-hero',
       alt: 'The General tab with the Run order card',
@@ -622,7 +641,17 @@ const features = [
     settings: [
       { name: 'Special Screen Ratio (Long Screen)', def: 'Off', desc: 'For long screens with uneven black bars above and below the game. Try it if hearts or the mailbox misbehave. Start the game yourself first: it does not work with Auto Launch.' },
       { name: 'Tsum app restart frequency (min)', def: '0 (off)', desc: 'Restarts the game this often on long runs (0 to 7200). Needs Auto Launch Tsum App.' },
-      { name: 'Auto Launch Tsum App', def: 'Off', desc: 'Starts the game when the script starts. Leave it off with Special Screen Ratio.' },
+      { name: 'Auto Launch Tsum App', def: 'On', desc: 'Starts the game when the script starts. Leave it off with Special Screen Ratio.' },
+      {
+        name: 'Game Region',
+        def: 'Automatic',
+        desc: 'Which Tsum Tsum the script opens and plays when both the International and the Japanese game are installed. Takes effect on the next start.',
+        options: [
+          { name: 'Automatic', desc: 'The one already open, otherwise the one installed.' },
+          { name: 'International', desc: 'Always the International game.' },
+          { name: 'Japan', desc: 'Always the Japanese game.' },
+        ],
+      },
       { name: 'Delay between rounds (min)', def: '0', desc: 'How long to rest after a round (0 to 120). Chores keep their own clocks. Now ends a rest.' },
       { name: 'Max round duration (min)', def: '0 (no limit)', desc: 'Gives up on a round that never ends (0 to 60).' },
       {
@@ -658,7 +687,7 @@ const features = [
     steps: [
       {
         title: 'Long-press Log',
-        body: 'Long-press the Log chip on the floating bar, or use the Debug tab\'s Report row, and add a note.',
+        body: 'Long-press the Log chip on the floating bar, or use Report a problem on the Debug tab, and add a note.',
         shot: { id: 'shot-reports-debug', alt: 'The Debug tab Report row', capture: 'Debug tab with the Report row and note field.' },
       },
       {
@@ -671,7 +700,9 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Report', desc: 'Writes the report folder, including debug records the normal log never gets.' },
+      { name: 'Copy debug info', desc: 'Copies your device details and every setting, to paste when asking for help.' },
+      { name: 'Report a problem', desc: 'Writes the report folder, including debug records the normal log never gets.' },
+      { name: 'Detect MyTsum', desc: 'Checks which Tsum the script reads off the pre-round screen. Open that screen, stop the script, then press Detect.' },
       { name: 'Debug logs', def: 'Off', desc: 'Adds more detail to the log file. A report carries those lines either way.' },
       { name: 'Debug game', def: 'Off', desc: 'Saves working screenshots while playing, and a picture of every screen visited. For development.' },
       { name: 'Walkthrough recorder', def: 'Off', desc: 'Records instead of playing: you drive the game by hand and each screen and tap is written to walkthrough/. Nothing else runs. Turn it off again to play.' },

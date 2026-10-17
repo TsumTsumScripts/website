@@ -78,7 +78,7 @@ Compositions to build (4):
 | `shot-hearts-hero` | screenshot | Features / Heart sending; Landing |  Friend list mid-sweep with several rows showing sent hearts. Blur or crop names. | done |
 | `shot-hearts-tab` | screenshot | Features / Heart sending |  Hearts tab, Auto Send Hearts on, Send to 0 score visible. | done |
 | `shot-mailbox-hero` | screenshot | Features / Mailbox collection |  Mailbox list with heart mails and the Claim All button. | done |
-| `shot-mailbox-settings` | screenshot | Features / Mailbox collection |  Mailbox settings group on the Chores tab. | done |
+| `shot-mailbox-settings` | screenshot | Features / Mailbox collection |  Mailbox settings groups on the Hearts tab. | done |
 | `shot-boxes-hero` | screenshot | Features / Box buying; Landing |  Store screen with a Premium Box selected and the 10-Time Purchase button visible. | done |
 | `shot-boxes-settings` | screenshot | Features / Box buying |  Box buying group on the Chores tab with all four rows. | done |
 | `shot-levels-hero` | screenshot | Features / Level unlocking |  Post-round level-up panel with "Raise level cap!" on the first card. | done |
