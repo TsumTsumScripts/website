@@ -126,7 +126,7 @@ const features = [
           { group: 'Burst', name: 'Jedi Luke', desc: 'Taps four spots before and after the skill, and flies it with five upward drags.' },
           { group: 'Burst', name: 'Lightning McQueen+', desc: 'Waits for the car to reach top speed before the follow-up tap, so it clears the most.' },
           { group: 'Burst', name: 'Nightmare Before Christmas (Set)', desc: 'Plays through each character\'s cut-in, and keeps reading the board as Oogie Boogie\'s rolls shrink the tsums. Holds still while his dice roll, and rerolls only a first roll under 7.' },
-          { group: 'Burst', name: 'Disney Villains (Set) (Beta)', desc: 'Fires like Burst, and reads the neon villain tsums by colour so more of them can be chained.' },
+          { group: 'Burst', name: 'Disney Villains (Set)', desc: 'Fires like Burst, and reads the neon villain tsums by colour so more of them can be chained.' },
           { group: 'Burst', name: 'Pair Tsum', desc: 'Like Burst, but watches both skill buttons and fires whichever is ready the moment it is.' },
           { group: 'Burst', name: 'Sheriff Woody', desc: 'Swings the lasso with three left-and-right drags across the board.' },
           { group: 'Bubble', name: 'Burst + clear bubbles', desc: 'Burst, then a sweep of the whole play area for a skill that leaves the board covered in bubbles. The rest of the round still follows Bubble Strategy.' },
@@ -372,7 +372,7 @@ const features = [
         ],
       },
       { name: 'Purchases per sweep', def: '10', desc: 'Safety limit, 1 to 50. A 10-Time purchase counts as one.' },
-      { name: 'Buy open capsule box until sold out (Now) (Beta)', desc: 'Open the capsule in the store first. Now buys it one at a time until it sells out or the Coins run out, then stops the run. It never buys from any other box.' },
+      { name: 'Buy open capsule box until sold out (Now)', desc: 'Open the capsule in the store first. Now buys it one at a time until it sells out or the Coins run out, then stops the run. It never buys from any other box.' },
     ],
     tip: 'Rubies are never spent: if the game offers to trade them for coins, the script cancels and ends the sweep.',
     shots: [],
@@ -447,7 +447,7 @@ const features = [
       },
     ],
     settings: [
-      { name: 'Export Tsum list (Now) (Beta)', desc: 'Exports every owned Tsum: position, id, name, level and cap, skill level, month acquired, favourite, game build and device name.' },
+      { name: 'Export Tsum list (Now)', desc: 'Exports every owned Tsum: position, id, name, level and cap, skill level, month acquired, favourite, game build and device name.' },
     ],
     tip: 'With a run going, the export waits for the current round and the run carries on after it.',
     see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'shows the export as a catalog of every Tsum, with what it costs to max the rest.'},
@@ -458,7 +458,7 @@ const features = [
     title: 'Round stats',
     category: 'Data',
     card: 'Records every round it plays: score, coins, medals and the settings it was played under.',
-    summary: 'One CSV row per round, one file per day, read off the score screen. Optionally shares new rows with a stats server.',
+    summary: 'One CSV row per round, one file per day, read off the score screen. Optionally adds them to the global Tsum Tsum Stats site.',
     steps: [
       {
         title: 'Switch on Record round stats',
@@ -471,12 +471,12 @@ const features = [
       },
       {
         title: 'Optionally share',
-        body: 'Share round stats (Beta) sends new rows to a server set on the script\'s Library card in GAP. Off by default.',
+        body: 'Share round stats adds your rounds to the global Tsum Tsum Stats site, for players who do not run the starter. Off by default.',
       },
     ],
     settings: [
       { name: 'Record round stats', def: 'On', desc: 'Appends a row per round: id, UTC time, skill, seconds, score, coins, medals and the gameplay settings used.' },
-      { name: 'Share round stats (Beta)', def: 'Off', desc: 'Sends new rows at most once a minute. Needs Record round stats and a stats server set in GAP.' },
+      { name: 'Share round stats', def: 'Off', desc: 'Sends new rows to the global Tsum Tsum Stats site every 15 minutes. Needs Record round stats, and Use environment variables and Allow network requests turned on in GAP (Library > this script > settings). Not needed if the starter already uploads your stats.' },
     ],
     tip: 'Each round has a unique id, so files from different devices can be merged without double counting.',
     see: {to: '/stats-site', label: 'Tsum Tsum Stats', text: 'turns these files into coin efficiency, charts and a table of every round, on your own computer.'},
@@ -682,8 +682,8 @@ const features = [
     key: 'reports',
     title: 'Problem reports',
     category: 'Support',
-    card: 'Sends in everything needed to fix a problem: the screen, the frames before it and the log.',
-    summary: 'When something goes wrong, one tap saves a folder with the screen, the router\'s recent frames and the last few hundred log records.',
+    card: 'Sends in everything needed to fix a problem: the screen, the screens before it and the log.',
+    summary: 'When something goes wrong, one tap saves a folder with the screen, the recent screens visited and the last few hundred log records. Pictures of those screens are added only with Debug game on.',
     steps: [
       {
         title: 'Long-press Log',
@@ -704,7 +704,7 @@ const features = [
       { name: 'Report a problem', desc: 'Writes the report folder, including debug records the normal log never gets.' },
       { name: 'Detect MyTsum', desc: 'Checks which Tsum the script reads off the pre-round screen. Open that screen, stop the script, then press Detect.' },
       { name: 'Debug logs', def: 'Off', desc: 'Adds more detail to the log file. A report carries those lines either way.' },
-      { name: 'Debug game', def: 'Off', desc: 'Saves working screenshots while playing, and a picture of every screen visited. For development.' },
+      { name: 'Debug game', def: 'Off', desc: 'Saves working screenshots while playing, and a picture of every screen visited, which a report then includes. For development.' },
       { name: 'Walkthrough recorder', def: 'Off', desc: 'Records instead of playing: you drive the game by hand and each screen and tap is written to walkthrough/. Nothing else runs. Turn it off again to play.' },
       { name: 'Collect unknown screens', def: 'Off', desc: 'Saves screens the script cannot recognise to corpus/, so they can be sent in for a fix.' },
       { name: 'Page history depth', def: '20', desc: 'How many recent screens are remembered for a report (0 to 100). 0 turns the history off.' },
