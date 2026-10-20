@@ -7,9 +7,11 @@ page, and the contributor docs under `/docs`. Built with Docusaurus; the script 
 
 - **Content:** `src/data/features.js` (every feature, step, setting) and `landing.js`.
 - **Changelog:** `npm run sync` reads each version's `### Summary` block from `CHANGELOG.md` and shows the latest
-  production release, plus the latest alpha or beta when it is newer. Pre-releases are not on the public script
-  repo, so their Summary is kept in `changelog/prerelease.md`: refresh it from the checkout with
-  `node scripts/sync-changelog.js --prerelease`. `src/data/featureLinks.js` decides which feature a line links to.
+  production release's whole major (5.4 back to 5.0), plus the latest alpha or beta when it is newer. The public
+  script repo has no pre-releases and only some production releases, so those Summaries are kept here:
+  `changelog/prerelease.md` (refresh with `node scripts/sync-changelog.js --prerelease`) and `changelog/releases.md`
+  (`--releases`; set `TSUM_CHANGELOG=<file>` to read a CHANGELOG.md from another branch).
+  `src/data/featureLinks.js` decides which feature a line links to.
 - **Media:** `MEDIA_PLAN.md` lists every screenshot and clip (and the Remotion plan).
   Drop a file in `static/media/<id>.<ext>`, run `npm run media:plan`; no page edit.
   `npm run capture` renders the settings and Quick Bar screenshots without a device

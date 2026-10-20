@@ -9,7 +9,7 @@ tsum-tsum-website/
 ├── sidebars.ts           the /docs sidebar
 ├── src/                  pages, felt components, theme wrappers, site data
 ├── docs/                 contributor docs (/docs); reference/generated/ is synced, git-ignored
-├── changelog/            prerelease.md: alpha/beta Summary blocks the public script repo lacks
+├── changelog/            prerelease.md, releases.md: Summary blocks the public script repo lacks
 ├── plugins/              features-routes.js: one route per feature
 ├── scripts/              sync, refs, media-plan and contrast tools
 ├── static/               media/<id>.<ext> (screenshots, clips), img/, CNAME
@@ -64,4 +64,5 @@ tsum-tsum-website/
 | `npm run video:studio` / `npm run video:render -- <id> [--publish]` | Remotion preview / render to `video/out/` (`npm install` in `video/` once) |
 | `npm --prefix video run thumbs` | YouTube thumbnails to `video/out/thumbs/` |
 | `node scripts/sync-changelog.js --prerelease` | Refresh `changelog/prerelease.md` from the script checkout |
+| `node scripts/sync-changelog.js --releases` | Refresh `changelog/releases.md` (production Summaries of the latest major); `TSUM_CHANGELOG=<file>` reads another CHANGELOG.md |
 | Deploy | GAP Devkit card **Tsum Tsum website** (dispatches `deploy.yml`, rollback); see `../tools/DEPLOYMENTS.md` § Website. A push to `main` also deploys |

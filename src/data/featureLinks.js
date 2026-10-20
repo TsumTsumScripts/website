@@ -16,7 +16,7 @@ const rules = [
   [/send\w* hearts|\bhearts?\b/i, 'hearts'],
   [/bubble/i, 'bubbles'],
   [/stop after|delay between|max round|round duration|auto launch|app restart|pause|last round|auto play/i, 'runcontrol'],
-  [/report|log\b/i, 'reports'],
+  [/report|log\b|page history|debug game/i, 'reports'],
   [/skill|elsa|gaston|lorcana|villains|nightmare|fever|burst|rapunzel|moana|cinderella|tiara|formal beast/i, 'skills'],
   [/bonus|\+score|\+coin|\+exp|\+time|5>4|combo/i, 'items'],
   [/chain|large tsums|board|tsums?\b/i, 'autoplay'],

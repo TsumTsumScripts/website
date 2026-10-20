@@ -3,15 +3,21 @@
 //   node scripts/sync-changelog.js               write src/data/changelog.generated.json
 //   node scripts/sync-changelog.js --prerelease  copy the checkout's latest alpha/beta
 //                                                Summary into changelog/prerelease.md
+//   node scripts/sync-changelog.js --releases    copy the checkout's production Summaries
+//                                                of its latest major into changelog/releases.md
+//
+// TSUM_CHANGELOG=<file> reads that CHANGELOG.md instead of the checkout's (say, a
+// `git show 5.0:app.gap.Tsum/CHANGELOG.md` copy when the checkout is on another branch).
 //
 // Only each version's `### Summary` is read -- that block is the user-facing
 // changelog, one line per feature (see the script repo's CHANGELOG.md header).
 // Everything below it is the internal record and never reaches this site.
 //
-// The page shows the latest production release and, when one is newer, the
-// latest alpha or beta. Pre-releases are not on the public script repo's main,
-// which the deploy builds from, so their Summary is kept here in
-// changelog/prerelease.md (same format); `--prerelease` refreshes it.
+// The page shows every production release of the latest major (5.4, 5.3 ... 5.0)
+// and, when one is newer, the latest alpha or beta. The public script repo's main,
+// which the deploy builds from, gets only some releases and no pre-releases, so
+// the rest are kept here (same format): pre-releases in changelog/prerelease.md
+// (`--prerelease`), production releases in changelog/releases.md (`--releases`).
 
 'use strict';
 
@@ -21,8 +27,11 @@ const {featureFor} = require('../src/data/featureLinks');
 
 const siteDir = path.resolve(__dirname, '..');
 const scriptRepo = process.env.TSUM_SCRIPT_REPO || path.resolve(siteDir, '..', 'tsum-tsum-script');
-const source = path.join(scriptRepo, 'app.gap.Tsum', 'CHANGELOG.md');
+const source = process.env.TSUM_CHANGELOG
+  ? path.resolve(process.env.TSUM_CHANGELOG)
+  : path.join(scriptRepo, 'app.gap.Tsum', 'CHANGELOG.md');
 const prerelease = path.join(siteDir, 'changelog', 'prerelease.md');
+const kept = path.join(siteDir, 'changelog', 'releases.md');
 const out = path.join(siteDir, 'src', 'data', 'changelog.generated.json');
 
 /** a = alpha, b = beta, anything else is production. */
@@ -121,19 +130,44 @@ if (process.argv.includes('--prerelease')) {
   process.exit(0);
 }
 
+const newestFirst = (a, b) => (newer(a.version, b.version) ? -1 : 1);
+const majorOf = (version) => rank(version)[0];
+
+if (process.argv.includes('--releases')) {
+  const prod = fromScript.filter((r) => r.channel === 'Production').sort(newestFirst);
+  if (!prod.length) throw new Error(`changelog: no production release with a Summary in ${source}`);
+  const major = majorOf(prod[0].version);
+  const copied = prod.filter((r) => majorOf(r.version) === major);
+  fs.mkdirSync(path.dirname(kept), {recursive: true});
+  fs.writeFileSync(kept, [
+    '# Production release notes',
+    '',
+    `Copied from the script repo's app.gap.Tsum/CHANGELOG.md by`,
+    '`node scripts/sync-changelog.js --releases`, for releases the public script repo',
+    'does not have yet; edit them there, not here.',
+    '',
+    ...copied.flatMap((r) => [`## [${r.version}]`, '', '### Summary', '', r.body.join('\n').trim(), '']),
+  ].join('\n'));
+  console.log(`changelog: copied ${copied.map((r) => r.version).join(', ')} to ${path.relative(siteDir, kept)}`);
+  process.exit(0);
+}
+
 const all = [...fromScript];
-if (fs.existsSync(prerelease)) {
-  for (const r of readReleases(prerelease)) {
+for (const file of [kept, prerelease]) {
+  if (!fs.existsSync(file)) continue;
+  for (const r of readReleases(file)) {
     if (!all.some((x) => x.version === r.version)) all.push(r);
   }
 }
 
-const production = all.filter((r) => r.channel === 'Production').sort((a, b) => (newer(a.version, b.version) ? -1 : 1))[0];
+const productions = all.filter((r) => r.channel === 'Production').sort(newestFirst);
+const latest = productions[0];
+const shown = latest ? productions.filter((r) => majorOf(r.version) === majorOf(latest.version)) : [];
 const pre = all
-  .filter((r) => r.channel !== 'Production' && (!production || newer(r.version, production.version)))
-  .sort((a, b) => (newer(a.version, b.version) ? -1 : 1))[0];
+  .filter((r) => r.channel !== 'Production' && (!latest || newer(r.version, latest.version)))
+  .sort(newestFirst)[0];
 
-const data = [pre, production]
+const data = [pre, ...shown]
   .filter(Boolean)
   .map((r) => ({version: r.version, channel: r.channel, ...parseSummary(r.body)}));
 
