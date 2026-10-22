@@ -133,10 +133,10 @@ function Phone({shot, tone, tilt = 0}: {shot: {id: string; alt: string; capture:
 function Howto({video, tone}: {video: {id: string; note: string; brief: string}; tone: Tone}) {
   return (
     <figure style={{margin: 0, display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center'}}>
-      <Patch tone={tone} radius="40px" inset={6} className="phone" style={{width: 'min(100%, 300px)'}}>
-        <Media id={video.id} alt={video.note} hint={video.brief} aspect="9 / 16" />
+      <Patch tone={tone} radius="36px" inset={6} style={{width: 'min(100%, 300px)', padding: 12}}>
+        <Media id={video.id} alt={`How to: ${video.note}`} hint={video.brief} aspect="9 / 16" poster />
       </Patch>
-      <figcaption style={{fontSize: 15, color: 'var(--ground-ink-soft)', textAlign: 'center'}}>How to: {video.note.replace(/\.$/, '').toLowerCase()}</figcaption>
+      <figcaption style={{fontSize: 15, color: 'var(--ground-ink-soft)', textAlign: 'center'}}>How to: {video.note}</figcaption>
     </figure>
   );
 }
@@ -305,10 +305,8 @@ export default function Companion(): React.JSX.Element {
         media={
           <>
             <Desk shot={shots.workflow} tone="grape" tilt={0.5} />
-            <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 26}}>
-              <Howto video={videos.workflow} tone="rose" />
-              <Desk shot={shots.assign} tone="surface" tilt={-0.8} />
-            </div>
+            <Desk shot={shots.assign} tone="surface" tilt={-0.8} />
+            <Howto video={videos.workflow} tone="rose" />
           </>
         }>
         <p>
@@ -328,7 +326,7 @@ export default function Companion(): React.JSX.Element {
       <section id="compare" style={{display: 'flex', flexDirection: 'column', gap: 28}}>
         <Heading tone="periwinkle" kicker="Free or Companion" title="What you add" />
         <Patch tone="surface" radius="34px" inset={8} style={{padding: 'clamp(16px, 3vw, 28px)', ['--thread' as string]: '#6c6890', overflowX: 'auto'}}>
-          <table className="felt-table" style={{width: '100%', borderCollapse: 'collapse', fontSize: 16, lineHeight: 1.5}}>
+          <table className="felt-table" style={{display: 'table', width: '100%', borderCollapse: 'collapse', fontSize: 16, lineHeight: 1.5}}>
             <thead>
               <tr>
                 <th scope="col" style={{textAlign: 'left', padding: '10px 12px'}}></th>
