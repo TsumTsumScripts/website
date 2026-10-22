@@ -43,6 +43,7 @@ export default function FeltHeader(): React.JSX.Element {
     {label: 'Features', to: '/features', tone: 'rose', match: '/features'},
     {label: 'Changelog', to: '/changelog', tone: 'jade', match: '/changelog'},
     {label: 'Starter tool', to: '/starter', tone: 'marigold', match: '/starter'},
+    {label: 'Companion', to: '/companion', tone: 'jade', match: '/companion'},
     {label: 'Docs', to: '/docs', tone: 'periwinkle'},
     {label: 'Discord', href: discordUrl, tone: 'grape', icon: <DiscordMark />},
     {label: 'GitHub', href: repoUrl, tone: 'surface'},

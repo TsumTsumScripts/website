@@ -38,6 +38,8 @@ for (const c of landing.playClips) add({id: c.id, type: 'clip', what: c.capture,
 video(landing.trailer, 'Landing', landing.trailer.note);
 for (const s of landing.starterShots) shot(s, 'Starter');
 for (const s of landing.statsShots) shot(s, 'Tsum Tsum Stats');
+for (const s of Object.values(landing.companionShots)) shot(s, 'Companion');
+for (const v of Object.values(landing.companionVideos)) video(v, 'Companion', v.note);
 for (const f of features) {
   const page = `Features / ${f.title}`;
   if (f.hero) {

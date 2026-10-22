@@ -91,6 +91,7 @@ const config: Config = {
         {to: '/features', label: 'Features', position: 'left', activeBaseRegex: '^/features'},
         {to: '/changelog', label: 'Changelog', position: 'left'},
         {to: '/starter', label: 'Starter tool', position: 'left'},
+        {to: '/companion', label: 'Companion', position: 'left'},
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
         {href: discordUrl, label: 'Discord', position: 'right', className: 'discord-link'},
         {href: repoUrl, label: 'GitHub', position: 'right'},
@@ -114,6 +115,7 @@ const config: Config = {
             {label: 'Changelog', to: '/changelog'},
             {label: 'Starter tool', to: '/starter'},
             {label: 'Tsum Tsum Stats', to: '/stats-site'},
+            {label: 'GAP Companion', to: '/companion'},
           ],
         },
         {
