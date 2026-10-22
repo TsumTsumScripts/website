@@ -328,22 +328,41 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .felt-discord { display: inline-block; height: 1.25em; width: auto; vertical-align: -0.3em; margin-right: 0.4em; }
 .fbtn .felt-discord { height: 1.3em; margin-right: 0.5em; }
 
-/* YouTube video: our own poster until play, then the player (youtube-nocookie, so no tracking before the click). */
+/* Videos. Before it plays, every video shows a big play button and a "Video · 0:19" tag over its poster, so it
+   reads as something to press, not a picture. A YouTube video keeps our own poster until then (youtube-nocookie,
+   so no tracking before the click). Looping clips play on their own, with a pause button in the corner. */
 .media--yt { background: #141318; }
 .media--yt iframe { display: block; width: 100%; height: 100%; border: 0; }
-.media-yt-play { display: block; position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
-.media-yt-badge {
+.media-play {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer;
+  background: linear-gradient(to top, rgba(20, 19, 31, .55), rgba(20, 19, 31, 0) 45%);
+}
+.media-play--yt { position: relative; background: none; }
+.media-play-badge {
   position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%;
-  background: #ffb454; border: 5px solid #a5651a; box-shadow: 0 6px 0 #a5651a;
+  background: #ffb454; border: 5px solid #a5651a; box-shadow: 0 6px 0 #a5651a, 0 0 0 6px rgba(20, 19, 31, .45);
   transition: transform .15s;
 }
-.media-yt-badge::after {
+.media-play-badge::after {
   content: ''; position: absolute; left: 50%; top: 50%; margin: -17px 0 0 -9px;
   border-left: 28px solid #2e1a03; border-top: 17px solid transparent; border-bottom: 17px solid transparent;
 }
-.media-yt-play:hover .media-yt-badge, .media-yt-play:focus-visible .media-yt-badge { transform: scale(1.08); }
-.media-yt-play:focus-visible { outline: 3px solid #ffb454; outline-offset: -6px; }
-@media (prefers-reduced-motion: reduce) { .media-yt-badge { transition: none; } }
+.media-play-tag {
+  position: absolute; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 13px 6px 11px; border-radius: 999px; background: #14131f; color: #f4efe6; border: 2px solid #ffb454;
+  font: 700 14px/1.2 var(--font-body); letter-spacing: .02em;
+}
+.media-play-tag svg { color: #ffb454; }
+.media-play:hover .media-play-badge, .media-play:focus-visible .media-play-badge { transform: scale(1.08); }
+.media-play:focus-visible { outline: 3px solid #ffb454; outline-offset: -6px; }
+.media-pause {
+  position: absolute; right: 10px; bottom: 10px; width: 38px; height: 38px; display: flex; align-items: center;
+  justify-content: center; padding: 0; border-radius: 50%; cursor: pointer;
+  background: #14131f; color: #f4efe6; border: 2px solid #8e89b0;
+}
+.media-pause:hover { border-color: #ffb454; }
+.media-pause:focus-visible { outline: 3px solid #ffb454; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .media-play-badge { transition: none; } }
 
 /* Starter page: the set-up guide (src/pages/starter.tsx). */
 .st-guide { display: flex; flex-direction: column; gap: 26px; max-width: 820px; }

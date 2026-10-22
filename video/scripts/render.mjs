@@ -14,8 +14,9 @@ const args = process.argv.slice(2);
 const publish = args.includes('--publish');
 const ids = args.filter((a) => !a.startsWith('--'));
 const all = ['vid-trailer', 'vid-skills', 'vid-autoplay', 'vid-levels', 'vid-companion-fleet', 'vid-companion-presets', 'vid-companion-workflow', 'yt-skills', 'yt-autoplay', 'yt-boxes'];
-// Frame to use as the poster: the trailer's title card, settled, before it fades; a how-to's step mid-way.
-const posters = {'vid-trailer': 135, 'vid-companion-fleet': 216, 'vid-companion-presets': 190, 'vid-companion-workflow': 400};
+// Frame to use as the poster, where its play button covers no words: the trailer's cold open (a long chain
+// mid-draw); a how-to's step mid-way; the level-cap sweep's last frame (no caption under the tag).
+const posters = {'vid-trailer': 30, 'vid-companion-fleet': 216, 'vid-companion-presets': 190, 'vid-companion-workflow': 400, 'vid-levels': 600};
 const run = (cmd, a) => {
   const r = spawnSync(cmd, a, {cwd: root, stdio: 'inherit'});
   if (r.status !== 0) {

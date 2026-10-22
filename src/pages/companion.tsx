@@ -129,11 +129,11 @@ function Phone({shot, tone, tilt = 0}: {shot: {id: string; alt: string; capture:
 }
 
 /** A how-to video, 9:16. */
-function Howto({video, tone}: {video: {id: string; note: string; brief: string}; tone: Tone}) {
+function Howto({video, tone}: {video: {id: string; note: string; brief: string; seconds: number}; tone: Tone}) {
   return (
     <figure style={{margin: 0, display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center'}}>
       <Patch tone={tone} radius="36px" inset={6} style={{width: 'min(100%, 300px)', padding: 12}}>
-        <Media id={video.id} alt={`How to: ${video.note}`} hint={video.brief} aspect="9 / 16" poster />
+        <Media id={video.id} alt={`How to: ${video.note}`} hint={video.brief} aspect="9 / 16" seconds={video.seconds} poster />
       </Patch>
       <figcaption style={{fontSize: 15, color: 'var(--ground-ink-soft)', textAlign: 'center'}}>How to: {video.note}</figcaption>
     </figure>
@@ -236,7 +236,7 @@ export default function Companion(): React.JSX.Element {
               <span className="kicker kicker--surface">Currency</span>
               <OnlyBadge />
             </div>
-            <h2 style={{fontSize: 38}}>Your coins and rubies, always up to date</h2>
+            <h2 style={{fontSize: 38}}>Your currencies are always up to date</h2>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', gap: 14, fontSize: 17, lineHeight: 1.65}}>
             <p>

@@ -304,11 +304,11 @@ export default function FeaturesGuide(): React.JSX.Element {
             {tab === 'video' && f.video && (
               <Patch tone="grape" radius="40px" inset={9} style={{padding: 22, display: 'flex', flexDirection: 'column', gap: 16}}>
                 {f.video.youtube ? (
-                  <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="16 / 9" youtube={f.video.youtube} />
+                  <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="16 / 9" youtube={f.video.youtube} seconds={f.video.seconds} />
                 ) : (
                   // Our own clips are vertical (1080x1920): show them whole at 9:16, centred.
                   <div style={{width: 'min(100%, 360px)', marginInline: 'auto'}}>
-                    <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="9 / 16" />
+                    <Media id={f.video.id} alt={f.video.note} hint={f.video.brief} aspect="9 / 16" seconds={f.video.seconds} poster />
                   </div>
                 )}
                 <p style={{fontSize: 16}}>
