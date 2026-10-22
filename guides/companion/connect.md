@@ -14,9 +14,8 @@ browser.
 
 - **A device already running the script.** A phone, tablet or emulator with GAP and the Tsum Tsum script set up the
   usual way, with the [starter tool](/starter). Companion connects to GAP; it doesn't play on its own.
-- **A GAP Companion account.** Sign in at [companion.gapapp.app](https://companion.gapapp.app/) with Google, Discord or
-  your email. Every account starts with a 7-day free trial of everything, no card needed. After that it's $15 a month
-  for up to 3 linked devices.
+- **A GAP Companion account.** GAP Companion is coming soon. Once it opens, you sign in with Google, Discord or your
+  email; pricing will be announced at launch.
 - **The app or the browser.** Use the Android app or the web dashboard: they show the same devices, so you can switch
   between them at any time. The iOS app is on the way; until then, use the dashboard in Safari.
 
@@ -133,7 +132,7 @@ Signing out of Companion doesn't unlink anything: your devices keep running GAP 
 | The device stays **Offline** | Check GAP is running on the device and the device is online. GAP reconnects by itself once it can reach the server. |
 | "Update GAP on this device to …" | That part of Companion needs a newer GAP. Update GAP on the device. |
 | No Change My Tsum, or no Select Tsum step | These come as an add-on with Companion, sent to linked devices automatically. Open the device, tap **⋮** › **Check for scripts and add-ons**, or do the same from GAP's GAP Companion card. |
-| "Subscription inactive" | The trial or plan has ended. Check **Account** › Plan. The script keeps working on its own without Companion. |
+| "Subscription inactive" | Your plan has ended. Check **Account** › Plan. The script keeps working on its own without Companion. |
 
 ## Next
 

@@ -8,9 +8,6 @@ import DiscordMark from '@site/src/components/felt/DiscordMark';
 import Media from '@site/src/components/felt/Media';
 import landing from '@site/src/data/landing';
 
-const companionUrl = 'https://www.gapapp.app/companion/';
-const pricingUrl = 'https://www.gapapp.app/companion/pricing.html';
-const dashboardUrl = 'https://companion.gapapp.app/';
 
 const shots = landing.companionShots;
 const videos = landing.companionVideos;
@@ -148,18 +145,18 @@ export default function Companion(): React.JSX.Element {
     <FeltPage
       title="GAP Companion"
       description="Watch and steer every device running the Tsum Tsum script from your phone or browser: fleet controls, live stats, currency, presets and workflows.">
-      <PageHead tone="jade" kicker="GAP Companion" title="Every device, from" accent="your pocket.">
+      <PageHead tone="jade" kicker="GAP Companion · Coming soon" title="Every device, from" accent="your pocket.">
         <p>
           GAP Companion is a phone app and web dashboard for the devices running the Tsum Tsum script. See which ones are
           playing, how many coins each round made, and change a run without walking over to the device. Make a preset
           once and send it everywhere, swap Tsums from the couch, and leave a workflow running overnight.
         </p>
         <p style={{marginTop: 12}}>
-          The script and GAP stay free. Companion is the paid extra: try it free for 7 days, no card needed.
+          <b>Coming soon.</b> GAP Companion isn't open to everyone yet. The script and GAP stay free; Companion will be
+          a paid extra, with the price announced at launch.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8}}>
-          <Patch as="a" href={dashboardUrl} tone="marigold" className="fbtn">Start free trial</Patch>
-          <Patch as="a" href={pricingUrl} tone="surface" className="fbtn">See pricing</Patch>
+          <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Hear when it launches</Patch>
           <Patch as={Link} to="/guides/companion/connect" tone="jade" className="fbtn">How to connect</Patch>
         </div>
       </PageHead>
@@ -358,8 +355,8 @@ export default function Companion(): React.JSX.Element {
             script; it does not play on its own.
           </li>
           <li>
-            Start your free trial at <a href={dashboardUrl}>companion.gapapp.app</a> and sign in with Google, Discord or
-            your email. Use the Android app or the web dashboard: they show the same devices.
+            Once Companion opens, sign in with Google, Discord or your email. Use the Android app or the web dashboard:
+            they show the same devices.
           </li>
           <li>
             On each device, open GAP's <b>Settings › GAP Companion › Link to GAP Companion</b>. It shows a QR code and a
@@ -376,12 +373,11 @@ export default function Companion(): React.JSX.Element {
           <Link to="/guides/companion/connect">Connect GAP to GAP Companion</Link>.
         </p>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          7 days free with every feature, no card. Then $15 a month for up to 3 linked devices, cancel any time. Android
-          app and web dashboard; the iOS app is on the way. Details on the <a href={companionUrl}>GAP Companion page</a>.
-          Questions? Ask in the <a href={discord}><DiscordMark />Discord</a>.
+          GAP Companion is coming soon, as an Android app and a web dashboard, with iOS to follow. Pricing will be
+          announced at launch. Launch news and questions: the <a href={discord}><DiscordMark />Discord</a>.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 20}}>
-          <Patch as="a" href={dashboardUrl} tone="marigold" className="fbtn">Start free trial</Patch>
+          <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Hear when it launches</Patch>
           <Patch as={Link} to="/features" tone="jade" className="fbtn">What the script does</Patch>
         </div>
       </Patch>
