@@ -10,7 +10,7 @@
  */
 const guideShots = [
   // Connect GAP to GAP Companion
-  { id: 'shot-guide-gap-link', frame: 'phone', alt: 'GAP Settings on the device: the GAP Companion card with a QR code and a short link code', capture: 'GAP app, Settings tab scrolled to GAP Companion, after Link to GAP Companion: the code, the QR and the "expires in 10 min" hint. 540x960. Needs a GAP build with the Companion link.' },
+  { id: 'shot-guide-gap-link', frame: 'phone', alt: 'GAP Settings on the device: the GAP Companion card with a QR code and a short link code', capture: 'GAP app, Settings tab scrolled to GAP Companion, after Link to GAP Companion: the code, the QR and the "expires in" hint. 540x636 crop.' },
   { id: 'shot-guide-link-code', frame: 'phone', alt: 'Link a device in the phone app: Scan QR code, and the link code 5HN8-6XX2 typed in, ready to Link', capture: 'Companion phone app, Devices, + (Link a device) dialog with a code typed. 540x960.' },
   { id: 'shot-guide-linked', frame: 'phone', alt: 'The Devices list with the new device, Tsum Tab S9, linked and idle', capture: 'Companion phone app, Devices list scrolled to the newly linked device, idle. 540x960.' },
   { id: 'shot-guide-start', frame: 'phone', alt: 'Start a script on Tsum Tab S9: Tsum Tsum 5.4 picked, with Cancel and Start', capture: 'Companion phone app, a device page, Start a script dialog with Tsum Tsum picked. 540x960.' },
