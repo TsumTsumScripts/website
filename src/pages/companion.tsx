@@ -30,17 +30,18 @@ const exclusives: {title: string; tone: Tone; body: React.ReactNode}[] = [
     body: <>Save a set of settings once and apply it to one device or all of them. Settings the preset doesn't include stay as they are.</>,
   },
   {
-    title: 'Your balance after every round',
+    title: 'Coins and rubies after every round',
     tone: 'periwinkle',
     body: <>Your medals, coins, rubies and hearts, checked after every round and shown on the device's Stats tab.</>,
   },
   {
-    title: 'Help when it gets stuck',
+    title: 'Get the script unstuck from your phone',
     tone: 'grape',
     body: (
       <>
-        When the script reaches a screen it doesn't recognize, you get a screenshot of it. Tap or drag on the screenshot
-        to show what to do, then tap Continue. If nobody answers within 10 minutes, the script handles the screen as usual.
+        When the script hits a screen it doesn't recognize, it sends you a screenshot and waits. Tap or drag on the
+        screenshot to show it what to do, then tap Continue and it carries on. If nobody answers within 10 minutes, the
+        script handles the screen as usual.
       </>
     ),
   },
@@ -56,12 +57,12 @@ const compare: {what: string; free: string; companion: string}[] = [
   {what: 'Auto-play, skills, bubbles, chores', free: 'Yes', companion: 'Yes'},
   {what: 'Settings and presets', free: 'On the device', companion: 'From your phone or browser, on every device at once'},
   {what: 'Round stats', free: 'A file on the device', companion: 'Live totals, a coins chart and recent rounds'},
-  {what: 'Balance (medals, coins, rubies, hearts)', free: 'No', companion: 'Checked after every round'},
+  {what: 'Medals, coins, rubies and hearts', free: 'No', companion: 'Checked after every round'},
   {what: 'Start, pause and stop', free: 'From the Quick Bar on the device', companion: 'Any device, or all of them at once'},
   {what: 'Change My Tsum', free: 'No', companion: 'One tap, or automatically in a workflow'},
   {what: 'Workflows', free: 'No', companion: 'Yes'},
   {what: 'Alerts on your phone', free: 'No', companion: 'Yes'},
-  {what: 'Help on screens the script doesn\'t recognize', free: 'No', companion: 'Yes'},
+  {what: 'Get the script unstuck from your phone', free: 'No', companion: 'Yes'},
 ];
 
 function Heading({tone, kicker, title, only}: {tone: Tone; kicker: string; title: string; only?: boolean}) {
@@ -235,7 +236,7 @@ export default function Companion(): React.JSX.Element {
               <span className="kicker kicker--surface">Currency</span>
               <OnlyBadge />
             </div>
-            <h2 style={{fontSize: 38}}>Know your balance</h2>
+            <h2 style={{fontSize: 38}}>Your coins and rubies, always up to date</h2>
           </div>
           <div style={{display: 'flex', flexDirection: 'column', gap: 14, fontSize: 17, lineHeight: 1.65}}>
             <p>
