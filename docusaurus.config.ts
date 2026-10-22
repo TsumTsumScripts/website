@@ -48,7 +48,21 @@ const config: Config = {
     'https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700;800&display=swap',
   ],
 
-  plugins: ['./plugins/features-routes.js'],
+  plugins: [
+    './plugins/features-routes.js',
+    // Guides for players (/guides): a second docs set beside the contributor docs.
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'guides',
+        path: 'guides',
+        routeBasePath: 'guides',
+        sidebarPath: './sidebarsGuides.ts',
+        editUrl: 'https://github.com/TsumTsumScripts/website/tree/main/',
+        showLastUpdateTime: false,
+      },
+    ],
+  ],
 
   themes: ['@docusaurus/theme-mermaid', '@saucelabs/theme-github-codeblock'],
 
@@ -92,6 +106,7 @@ const config: Config = {
         {to: '/changelog', label: 'Changelog', position: 'left'},
         {to: '/starter', label: 'Starter tool', position: 'left'},
         {to: '/companion', label: 'Companion', position: 'left'},
+        {to: '/guides', label: 'Guides', position: 'left', activeBaseRegex: '^/guides'},
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
         {href: discordUrl, label: 'Discord', position: 'right', className: 'discord-link'},
         {href: repoUrl, label: 'GitHub', position: 'right'},
@@ -116,6 +131,7 @@ const config: Config = {
             {label: 'Starter tool', to: '/starter'},
             {label: 'Tsum Tsum Stats', to: '/stats-site'},
             {label: 'GAP Companion', to: '/companion'},
+            {label: 'Guides', to: '/guides'},
           ],
         },
         {

@@ -1,0 +1,55 @@
+.figure {
+  margin: 1.5rem auto;
+}
+
+.figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+  text-align: center;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* The app's screen at about phone size; the dashboard at the column's width. */
+.phone {
+  width: min(100%, 270px);
+  --shot-max: 480px;
+}
+
+.phone :global(.media) {
+  border-radius: 18px;
+}
+
+.desk {
+  --shot-max: none;
+}
+
+.desk :global(.media) {
+  border-radius: 12px;
+}
+
+.desk :global(.media--shot),
+.desk :global(.media-zoom),
+.desk :global(.media--shot img) {
+  width: 100%;
+}
+
+.panel {
+  width: fit-content;
+  max-width: 100%;
+  --shot-max: none;
+}
+
+.panel :global(.media) {
+  border-radius: 12px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 24px;
+}
+
+.row > .figure {
+  margin-inline: 0;
+}
