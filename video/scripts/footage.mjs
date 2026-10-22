@@ -25,4 +25,10 @@ const clips = readdirSync(media).filter((f) => f.startsWith('clip-play-') && f.e
 for (const f of clips) {
   copyFileSync(join(media, f), join(to, f));
 }
-console.log(`footage: ${files.length} cuts and ${clips.length} play clips copied to video/public/footage`);
+// GAP Companion phone recordings (OBS, test account, simulated devices) for vid-companion-*.
+const companion = join(here, '..', '..', 'capture', 'raw', 'companion');
+const recs = existsSync(companion) ? readdirSync(companion).filter((f) => f.endsWith('.mp4')) : [];
+for (const f of recs) {
+  copyFileSync(join(companion, f), join(to, f));
+}
+console.log(`footage: ${files.length} cuts, ${clips.length} play clips and ${recs.length} Companion recordings copied to video/public/footage`);

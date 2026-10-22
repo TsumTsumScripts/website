@@ -13,9 +13,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const publish = args.includes('--publish');
 const ids = args.filter((a) => !a.startsWith('--'));
-const all = ['vid-trailer', 'vid-skills', 'vid-autoplay', 'vid-levels', 'yt-skills', 'yt-autoplay', 'yt-boxes'];
-// Frame to use as the poster: the trailer's title card, settled, before it fades.
-const posters = {'vid-trailer': 135};
+const all = ['vid-trailer', 'vid-skills', 'vid-autoplay', 'vid-levels', 'vid-companion-fleet', 'vid-companion-presets', 'vid-companion-workflow', 'yt-skills', 'yt-autoplay', 'yt-boxes'];
+// Frame to use as the poster: the trailer's title card, settled, before it fades; a how-to's step mid-way.
+const posters = {'vid-trailer': 135, 'vid-companion-fleet': 216, 'vid-companion-presets': 190, 'vid-companion-workflow': 400};
 const run = (cmd, a) => {
   const r = spawnSync(cmd, a, {cwd: root, stdio: 'inherit'});
   if (r.status !== 0) {

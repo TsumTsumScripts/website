@@ -7,6 +7,8 @@ import {TRAILER_FRAMES, Trailer} from './compositions/Trailer';
 import {YtAutoplay, YtSkills} from './compositions/Wide';
 import {BOXES_FRAMES, YtBoxes} from './compositions/WideBoxes';
 import {ThumbAutoplay, ThumbBoxes, ThumbSkills} from './compositions/Thumbnails';
+import {CompanionHowto, howtoFrames} from './compositions/CompanionHowto';
+import {fleetHowto, presetsHowto, workflowHowto} from './compositions/companionHowtos';
 import {FPS, HEIGHT, WIDTH} from './theme';
 
 // One composition per vid-* id (MEDIA_PLAN.md), named the same as the id.
@@ -15,6 +17,10 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="vid-skills" component={Skills} durationInFrames={SKILLS_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="vid-autoplay" component={Autoplay} durationInFrames={AUTOPLAY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
     <Composition id="vid-levels" component={Levels} durationInFrames={LEVELS_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+    {/* The Companion page's how-to clips: phone recordings with step captions and tap rings. */}
+    <Composition id="vid-companion-fleet" component={CompanionHowto} defaultProps={{howto: fleetHowto}} durationInFrames={howtoFrames(fleetHowto)} fps={FPS} width={WIDTH} height={HEIGHT} />
+    <Composition id="vid-companion-presets" component={CompanionHowto} defaultProps={{howto: presetsHowto}} durationInFrames={howtoFrames(presetsHowto)} fps={FPS} width={WIDTH} height={HEIGHT} />
+    <Composition id="vid-companion-workflow" component={CompanionHowto} defaultProps={{howto: workflowHowto}} durationInFrames={howtoFrames(workflowHowto)} fps={FPS} width={WIDTH} height={HEIGHT} />
     {/* The landing trailer is 16:9: it plays in the site's wide video slot. */}
     <Composition id="vid-trailer" component={Trailer} durationInFrames={TRAILER_FRAMES} fps={FPS} width={1920} height={1080} />
     {/* 16:9 for YouTube regular videos: same cuts, words in a left panel. Not used on the site. */}
