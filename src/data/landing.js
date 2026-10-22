@@ -56,7 +56,7 @@ const companionShots = {
 const companionVideos = {
   fleet: { id: 'vid-companion-fleet', kind: 'remotion', seconds: 19, brief: '9:16. Phone app (OBS, 540x960): long-press a device card, Select all, open the menu, Pause all three devices, then Resume. Numbered step captions and tap rings.', note: 'pause or resume every device at once' },
   presets: { id: 'vid-companion-presets', kind: 'remotion', seconds: 28, brief: '9:16. Phone app (OBS, 540x960), two takes: Presets, New, name it Fever push, set Use fan, +Coin, Maximum chain and Skill type, Save; then Devices, select all, Apply preset, Applied on each. Numbered step captions and tap rings.', note: 'make a preset and apply it to every device' },
-  workflow: { id: 'vid-companion-workflow', kind: 'remotion', seconds: 32, brief: '9:16. Phone app (OBS, 540x960): Workflows, +, name it Tsum swap, add Select Tsum, Play rounds and Loop; Cinderella on loop 1 and Piglet on loop 2, copied to the other devices; Save; Assign to all three. Numbered step captions and tap rings.', note: 'a workflow that changes Tsum between loops' },
+  workflow: { id: 'vid-companion-workflow', kind: 'remotion', seconds: 32, brief: '9:16. Phone app (OBS, 540x960): Workflows, +, name it Tsum swap, add Select Tsum, Play rounds and Loop; Cinderella on loop 1 and Piglet on loop 2, copied to the other devices; Save; Assign to all three. Numbered step captions and tap rings.', note: 'build a workflow that changes Tsum between loops' },
 };
 
 /** Landing "What's in the sewing box" cards: feature keys, in order. */
