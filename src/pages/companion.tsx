@@ -160,7 +160,7 @@ export default function Companion(): React.JSX.Element {
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8}}>
           <Patch as="a" href={dashboardUrl} tone="marigold" className="fbtn">Start free trial</Patch>
           <Patch as="a" href={pricingUrl} tone="surface" className="fbtn">See pricing</Patch>
-          <Patch as="a" href="#start" tone="jade" className="fbtn">How to connect</Patch>
+          <Patch as={Link} to="/guides/companion/connect" tone="jade" className="fbtn">How to connect</Patch>
         </div>
       </PageHead>
 
@@ -321,6 +321,9 @@ export default function Companion(): React.JSX.Element {
           <li>Warnings before you save: a step that is never reached, a setting left empty, a device that can't run it.</li>
           <li>Each device card shows where it is, for example "Loop 2 · Step 4 of 5 · Play rounds · 4/10 rounds".</li>
         </ul>
+        <p>
+          Every step, loops and four workflows to copy: <Link to="/guides/companion/workflows">Workflows, step by step</Link>.
+        </p>
       </Feature>
 
       <section id="compare" style={{display: 'flex', flexDirection: 'column', gap: 28}}>
@@ -368,6 +371,10 @@ export default function Companion(): React.JSX.Element {
           </li>
           <li>Start the script. Stats, controls and the Companion-only features show up on their own.</li>
         </ol>
+        <p style={{marginTop: 18}}>
+          Each step with screenshots, and what to do when it doesn't link:{' '}
+          <Link to="/guides/companion/connect">Connect GAP to GAP Companion</Link>.
+        </p>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
           7 days free with every feature, no card. Then $15 a month for up to 3 linked devices, cancel any time. Android
           app and web dashboard; the iOS app is on the way. Details on the <a href={companionUrl}>GAP Companion page</a>.
