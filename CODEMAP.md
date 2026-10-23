@@ -11,7 +11,7 @@ tsum-tsum-website/
 ├── docs/                 contributor docs (/docs); reference/generated/ is synced, git-ignored
 ├── changelog/            prerelease.md, releases.md: Summary blocks the public script repo lacks
 ├── plugins/              features-routes.js: one route per feature
-├── scripts/              sync, refs, media-plan and contrast tools
+├── scripts/              sync, refs, media-plan, contrast and baseline tools
 ├── static/               media/<id>.<ext> (screenshots, clips), img/, CNAME
 ├── capture/              headless-Chrome renders of the script's settings page and Quick Bar
 ├── video/                Remotion project (own package.json): vid-*, yt-*, thumbnails
@@ -48,6 +48,7 @@ tsum-tsum-website/
 | Synced docs (`EVENTS.md`, `PAGE_DISPATCH.md`, `BACKLOG.md`) | `scripts/sync-docs.js` → `docs/reference/generated/` |
 | `reference` code blocks, image ids check | `scripts/check-refs.js` |
 | Contrast gate | `scripts/contrast-check.mjs` |
+| Baseline build and server (before/after shots) | `scripts/baseline.mjs` |
 | Capture scenes, host stub | `capture/scenes.mjs`, `capture/harness.mjs`, `capture/run.mjs` |
 | Video compositions | `video/src/Root.tsx`, `video/src/compositions/`; shared parts `video/src/shared/`; colours `video/src/theme.ts`; footage/render/thumbs `video/scripts/` |
 | Deploy workflow (`site_ref`, `script_ref`, `build/deploy.json`) | `.github/workflows/deploy.yml` |
@@ -61,6 +62,7 @@ tsum-tsum-website/
 | `npm run media:plan` | Regenerate `MEDIA_PLAN.md` and the media index after changing `static/media/` |
 | `npm run contrast` | Contrast gate over `build/` (paused: only when asked) |
 | `npm run capture [-- <id> ...] [--publish]` | Render scenes to `capture/out/`; `--publish` writes `static/media/<id>.webp` |
+| `npm run baseline [-- --at <ref>] [-- --stop]` | Build the tree (or a commit) into `.scratch/baseline/<stamp>/` and serve it on 3001 as the "before" for screenshots; `--stop` ends it |
 | `npm run video:studio` / `npm run video:render -- <id> [--publish]` | Remotion preview / render to `video/out/` (`npm install` in `video/` once) |
 | `npm --prefix video run thumbs` | YouTube thumbnails to `video/out/thumbs/` |
 | `node scripts/sync-changelog.js --prerelease` | Refresh `changelog/prerelease.md` from the script checkout |
