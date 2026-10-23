@@ -5,10 +5,11 @@ description: Which file owns what, condensed from the repository's CODEMAP.md.
 
 # Code map
 
-A condensed copy of [`CODEMAP.md`](https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/CODEMAP.md),
-which is the authority: it is checked against the tree by `npm run map:check`
-and also carries the "what a change has to touch" table and the rules the
-[conventions page](../contributing/conventions) summarises. Paths are under
+A condensed copy of [`CODEMAP.md`](https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/CODEMAP.md)
+and its detail half, [`app.gap.Tsum/SOURCEMAP.md`](https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/SOURCEMAP.md),
+which are the authority: both are checked against the tree by `npm run map:check`;
+SOURCEMAP.md also carries the "what a change has to touch" table, and CODEMAP.md the
+rules the [conventions page](../contributing/conventions) summarises. Paths are under
 `app.gap.Tsum/`. The long form of every row is the file's own header comment.
 
 ## Source — `src/`

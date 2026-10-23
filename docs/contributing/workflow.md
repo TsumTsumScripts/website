@@ -47,8 +47,9 @@ it:
   `### Added`, `### Changed`, `### Fixed`, `### Removed` below it. Keep it
   succinct.
 
-**A `CODEMAP.md` row** when the change adds a file, a tool, a document, a
-name family or a script. A row is one clause, never a paragraph; the reasoning
+**A `CODEMAP.md` or `SOURCEMAP.md` row** when the change adds a file, a tool, a
+document, a name family or a script (`SOURCEMAP.md`, beside the package, holds
+the per-file and skills tables; `CODEMAP.md` the index). A row is one clause, never a paragraph; the reasoning
 belongs in the file's own header comment. `map:check` enforces the rows.
 
 **Regenerated documents** where the change touches what they are generated

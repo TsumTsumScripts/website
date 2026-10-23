@@ -21,7 +21,7 @@ card cannot drift from what runs.
 | 4 | `src/index.ts` | A `case` in `taskBody` binding the name to the method. |
 | 5 | `src/settings.ts` | A `case` in `taskLabel` and `taskDetail` — what the Run order card calls it (a `UiText` each). |
 | 6 | `tools/dispatchEval/presets/` | A preset, if the job changes who goes first. |
-| 7 | `CODEMAP.md` | A row in the source map if it is a new file. |
+| 7 | `app.gap.Tsum/SOURCEMAP.md` | A row in the source map if it is a new file. |
 
 The two switches are exhaustive over `TaskName`, so a name without a body or
 a label is a build error. Then `npm run typecheck` and `npm run

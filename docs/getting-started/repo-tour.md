@@ -14,6 +14,8 @@ tsum-tsum-script/
 │                          starts GAP's helper service, installs the app, adds
 │                          the Tsum Tsum library and exports logs and stats
 └── app.gap.Tsum/          the only package: the Disney Tsum Tsum script
+    ├── SOURCEMAP.md       CODEMAP.md's detail half: one row per source file, the
+    │                      skills table, the tools, what a change has to touch
     ├── src/               the script -- concatenated into one bundle, no imports
     │   └── skills/        one file per skill, plus the shared core
     ├── tools/             the build and what runs inside it, the checks, the release
@@ -28,10 +30,12 @@ tsum-tsum-script/
 ## `CODEMAP.md` first
 
 The repository's own rule is **read `CODEMAP.md` before searching the tree**.
-It is a set of tables: one row per source file, one per skill, one per tool
-directory, one per name family (`Tsum#*`, `Page*`, `skill*`…), then the rules
-that are silent when broken and a table of *what a change has to touch*. Every
-row is checked against the tree by `npm run map:check`, so it is current. This
+It is the index: the repo shape, which document answers which question, one row
+per name family (`Tsum#*`, `Page*`, `skill*`…), and the rules that are silent
+when broken. Its detail half, `app.gap.Tsum/SOURCEMAP.md`, holds one row per
+source file, one per skill, one per tool directory and the table of *what a
+change has to touch*; grep it for the row you need. Every row in both is
+checked against the tree by `npm run map:check`, so they are current. This
 site's [code map](../reference/code-map) is a condensed copy; the original is
 the authority.
 

@@ -21,7 +21,7 @@ taps, the `useSkill` dispatch).
 | 3 | `tsconfig.json` | A line in `files`, **after** `src/skills/skillCore.ts`. |
 | 4 | `src/strings.d.ts` + `src/uiEn.ts` | A `UiText` key for the dropdown label, and its English text. |
 | 5 | `src/skillOptions.ts` | A `SkillOption` entry: group, share character, status. |
-| 6 | `CODEMAP.md` | A row in the skills table. |
+| 6 | `app.gap.Tsum/SOURCEMAP.md` | A row in the skills table. |
 | 7 | `CHANGELOG.md` | A `### Summary` line under the current version — a new skill is something a player sees. |
 
 Then `npm run typecheck`, `npm run i18n:check`, `npm run map:check`.
@@ -140,7 +140,8 @@ https://github.com/TsumTsumScripts/tsum-tsum-script/blob/main/app.gap.Tsum/src/s
 
 ## 6 and 7. Bookkeeping
 
-Add a row to the skills table in `CODEMAP.md` — one clause saying what makes
+Add a row to the skills table in `app.gap.Tsum/SOURCEMAP.md` (the detail half of
+`CODEMAP.md`) — one clause saying what makes
 this skill unlike the others; `map:check` fails on a skill file the table does
 not list. Add a Summary bullet in `CHANGELOG.md` under the version in
 `package.json`: `<Name> skill added`. Later work on the skill folds into that
