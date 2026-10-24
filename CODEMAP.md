@@ -12,7 +12,7 @@ tsum-tsum-website/
 ├── changelog/            prerelease.md, releases.md: Summary blocks the public script repo lacks
 ├── plugins/              features-routes.js: one route per feature
 ├── scripts/              sync, refs, media-plan, contrast and baseline tools
-├── static/               media/<id>.<ext> (screenshots, clips), img/, CNAME
+├── static/               media/<id>.<ext> (screenshots, clips), img/, CNAME, gap-start.sh
 ├── capture/              headless-Chrome renders of the script's settings page and Quick Bar
 ├── video/                Remotion project (own package.json): vid-*, yt-*, thumbnails
 └── .github/workflows/    deploy.yml: build + GitHub Pages
@@ -39,6 +39,7 @@ tsum-tsum-website/
 | Landing page, its hero and clips | `src/pages/index.tsx`; data `src/data/landing.js` |
 | Changelog page | `src/pages/changelog.tsx`; data `src/data/changelog.generated.json` from `scripts/sync-changelog.js`; line → feature `src/data/featureLinks.js` |
 | Starter tool page (per-OS guide, troubleshooting) | `src/pages/starter.tsx` |
+| Starting the service from the phone, no computer (Termux) | `guides/start-from-the-phone.md`; the `gap-start` command it installs is `static/gap-start.sh` |
 | Tsum Tsum Stats page | `src/pages/stats-site.tsx` |
 | `Media` (id → real file or placeholder) | `src/components/felt/Media.tsx`; index `src/data/mediaFiles.generated.json` from `scripts/media-plan.js` |
 | `ImagePlaceholder` (docs, global MDX) | `src/components/ImagePlaceholder.tsx`, registered in `src/theme/MDXComponents.tsx` |

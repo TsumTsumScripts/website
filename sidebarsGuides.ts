@@ -11,6 +11,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         {type: 'link', label: 'Set up with the starter tool', href: '/starter'},
+        'start-from-the-phone',
         {type: 'link', label: 'Features guide', href: '/features'},
       ],
     },

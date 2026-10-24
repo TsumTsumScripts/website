@@ -248,7 +248,8 @@ export default function Starter(): React.JSX.Element {
           GAP needs a helper service on the phone or emulator. Android only lets a computer start it, and it stops when
           the device restarts. The starter tool opens a page in your browser: pick your device and press Start service. The
           same page installs the app, exports your logs and round stats as one zip, clears them off the device, and runs
-          {' '}<Link to="/stats-site">Tsum Tsum Stats</Link> beside it. Rooted devices start the service themselves.
+          {' '}<Link to="/stats-site">Tsum Tsum Stats</Link> beside it. Rooted devices start the service themselves. No
+          computer? <Link to="/guides/start-from-the-phone">Start it from the phone</Link> instead.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
           <Patch as="a" href={`${download}/${zipName}`} tone="marigold" className="fbtn">Download for Windows</Patch>
