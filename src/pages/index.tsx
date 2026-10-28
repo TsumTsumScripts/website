@@ -28,7 +28,7 @@ const steps: {title: string; body: React.ReactNode; tone: Tone}[] = [
   },
   {
     title: 'Install GAP and the script',
-    body: 'No GAP yet? Press Download & install the latest APK on the same page and tap Add when GAP offers the Tsum Tsum library. Then add Tsum Tsum from GAP\'s Library.',
+    body: 'No GAP yet? Press Install the latest APK on the same page and tap Add when GAP offers the Tsum Tsum library. Then add Tsum Tsum from GAP\'s Library.',
     tone: 'rose',
   },
   {

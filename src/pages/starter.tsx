@@ -333,7 +333,7 @@ export default function Starter(): React.JSX.Element {
         <Step n={6} title="Install the app and the script">
           <ol>
             <li>
-              No GAP app yet? Press <b>Download &amp; install the latest APK</b>. It picks the build for your device's
+              No GAP app yet? Press <b>Install the latest APK</b>. It picks the build for your device's
               processor.
             </li>
             <li>GAP opens on the device and offers to add the Tsum Tsum library to its Sources: tap <b>Add</b>.</li>
@@ -521,7 +521,7 @@ export default function Starter(): React.JSX.Element {
             </Faq>
             <Faq title={'"wrong ABI" or "The installed APK carries ... only"'}>
               <p>
-                The app was built for another processor. Press <b>Download &amp; install the latest APK</b>: it fetches the
+                The app was built for another processor. Press <b>Install the latest APK</b>: it fetches the
                 build for the processor shown in the device list.
               </p>
             </Faq>
