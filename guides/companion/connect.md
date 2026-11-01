@@ -15,7 +15,7 @@ browser.
 - **A device already running the script.** A phone, tablet or emulator with GAP and the Tsum Tsum script set up the
   usual way, with the [starter tool](/starter). Companion connects to GAP; it doesn't play on its own.
 - **A GAP Companion account.** Sign in at [companion.gapapp.app](https://companion.gapapp.app/) with Google, Discord or
-  your email. Every account starts with a 7-day free trial of everything, no card needed. After that it's $15 a month
+  your email. Every account starts with a 7-day free trial of everything, no card needed. After that it's $10 a month
   for up to 3 linked devices.
 - **The app or the browser.** Use the Android app or the web dashboard: they show the same devices, so you can switch
   between them at any time. The iOS app is on the way; until then, use the dashboard in Safari.
