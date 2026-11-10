@@ -46,6 +46,8 @@ tsum-tsum-website/
 | Felt kit: `Patch` (`Tone`), `PageHead`, `FeltPage`, `FeltHeader`, `FeltFooter`, `FeltAccent`, `BestSetup`, `DiscordMark` | `src/components/felt/`; styles `src/css/felt.css` |
 | Felt vs docs chrome (`useIsDocs`) | `src/components/felt/useIsDocs.ts`, wrappers `src/theme/Navbar/`, `src/theme/Footer/` |
 | Docs colours, code colours | `src/css/custom.css` (Infima variables), `src/prism/themes.ts` |
+| Link underlines (every text link, felt and docs; WCAG 1.4.1) | `src/css/felt.css` (`.felt a:not(...)`), `src/css/custom.css` (`.markdown a`) |
+| Docs tables that scroll sideways (focusable wrapper) | `table` in `src/theme/MDXComponents.tsx`, `.table-scroll` in `src/css/custom.css` |
 | Synced docs (`EVENTS.md`, `PAGE_DISPATCH.md`, `BACKLOG.md`) | `scripts/sync-docs.js` → `docs/reference/generated/` |
 | `reference` code blocks, image ids check | `scripts/check-refs.js` |
 | Contrast gate | `scripts/contrast-check.mjs` |

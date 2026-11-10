@@ -49,6 +49,15 @@ body.felt-body::after {
 .felt h1, .felt h2, .felt h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; color: inherit; line-height: 1.1; }
 .felt p { margin: 0; text-wrap: pretty; }
 .felt a { color: inherit; }
+/* Every text link is underlined so it reads as a link at a glance, not by colour (WCAG 1.4.1).
+   Links drawn as patches, pills, buttons or menu rows are already shaped like controls and stay plain.
+   Hover thickens the line, so the hover state changes more than hue. */
+.felt a:not(.patch):not(.fbtn):not(.fg-item):not(.fg-pager):not(.felt-brand):not(.felt-pill):not(.cl-link):not(.hash-link) {
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px;
+}
+.felt a:not(.patch):not(.fbtn):not(.fg-item):not(.fg-pager):not(.felt-brand):not(.felt-pill):not(.cl-link):not(.hash-link):hover {
+  text-decoration-thickness: 4px;
+}
 .felt :focus-visible { outline: 3px solid #ffb454; outline-offset: 3px; }
 /* Focus rings need 3:1 against what they sit on. Marigold is fine on the ground and surface,
    but vanishes on the marigold and jade fills, so inside a patch the ring takes the patch's ink
@@ -287,8 +296,8 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .felt-footer__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 28px; }
 .felt-footer__col h3 { font-size: 21px; margin-bottom: 12px; color: var(--ink); }
 .felt-footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.felt-footer__col a { color: var(--ink); font-weight: 600; text-decoration: none; }
-.felt-footer__col a:hover { color: var(--ink); text-decoration: underline wavy; text-underline-offset: 4px; }
+.felt-footer__col a { color: var(--ink); font-weight: 600; }
+.felt-footer__col a:hover { color: var(--ink); text-decoration-style: wavy; }
 .felt-footer__copy { margin-top: 28px !important; font-size: 14px; }
 .felt-footer__copy a { text-decoration: underline; }
 .felt-pagehead { position: relative; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding-right: 130px; }
@@ -355,6 +364,8 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
 .media-play-tag svg { color: #ffb454; }
 .media-play:hover .media-play-badge, .media-play:focus-visible .media-play-badge { transform: scale(1.08); }
 .media-play:focus-visible { outline: 3px solid #ffb454; outline-offset: -6px; }
+/* Inside a patch the ring would take the patch's dark ink, but these controls sit on the dark video: keep marigold. */
+.felt .patch .media-play:focus-visible, .felt .patch .media-pause:focus-visible { outline-color: #ffb454; }
 .media-pause {
   position: absolute; right: 10px; bottom: 10px; width: 38px; height: 38px; display: flex; align-items: center;
   justify-content: center; padding: 0; border-radius: 50%; cursor: pointer;
@@ -404,3 +415,15 @@ dialog.lightbox::backdrop { background: rgba(12, 11, 20, .94); }
   .st-step__title { font-size: 22px; }
   .st-intro h2 { font-size: 30px; }
 }
+
+/* Companion page: the add-ons section (src/pages/companion.tsx). */
+.addon-tag { display: inline-block; margin-left: 10px; padding: 1px 10px; border-radius: 999px; vertical-align: 2px;
+  font-size: 13px; font-weight: 700; background: var(--periwinkle-fill); color: #1c1b2b; }
+.addon-chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.addon-chips li { padding: 6px 16px; border-radius: 999px; font-weight: 800; font-size: 16px;
+  background: var(--chip); color: var(--ink); border: 2px dashed var(--thread); }
+.addon-steps { list-style: none; counter-reset: step; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 17px; line-height: 1.5; }
+.addon-steps li { counter-increment: step; display: flex; gap: 12px; align-items: flex-start; }
+.addon-steps li::before { content: counter(step); flex: none; width: 32px; height: 32px; margin-top: -3px; border-radius: 50%; display: inline-flex;
+  align-items: center; justify-content: center; font-weight: 800; background: var(--chip); color: #1c1b2b; }
+.felt .addon-kicker { background: #1c1b2b; color: #f4efe6; }

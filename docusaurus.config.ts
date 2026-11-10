@@ -131,6 +131,7 @@ const config: Config = {
             {label: 'Starter tool', to: '/starter'},
             {label: 'Tsum Tsum Stats', to: '/stats-site'},
             {label: 'GAP Companion', to: '/companion'},
+            {label: 'Tsum Select add-on', to: '/companion/tsum-select'},
             {label: 'Guides', to: '/guides'},
           ],
         },

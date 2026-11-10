@@ -116,14 +116,14 @@ export default function TsumSelect(): React.JSX.Element {
     <FeltPage
       title="Tsum Select"
       description="Tsum Select for GAP Companion: change My Tsum from your phone, give each Tsum its own presets, and have the script put on the right skill whenever the Tsum changes.">
-      <PageHead tone="rose" kicker="GAP Companion · Tsum Select" title="Swap Tsums from your phone," accent="skill and all.">
+      <PageHead tone="rose" kicker="GAP Companion add-on" title="Swap Tsums from your phone," accent="skill and all.">
         <p>
           Tsum Select lets you change My Tsum from the GAP Companion app and keep a few presets for each Tsum. The
           script then switches to the right skill for whichever Tsum you're playing.
         </p>
         <p style={{marginTop: 12}}>
-          It comes with GAP Companion, which is <Link to="/companion">coming soon</Link>, and works the same in the
-          phone app and on the web dashboard.
+          It's an add-on that comes with <Link to="/companion">GAP Companion</Link> (coming soon): it reaches your linked
+          devices on its own and works the same in the phone app and on the web dashboard.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8}}>
           <Patch as={Link} to="#setup" tone="jade" className="fbtn">Set up auto skill</Patch>

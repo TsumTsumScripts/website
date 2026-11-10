@@ -11,20 +11,10 @@ import landing from '@site/src/data/landing';
 
 const shots = landing.companionShots;
 const videos = landing.companionVideos;
+const selectShots = landing.selectShots;
 
-/** What only Companion does, one patch each. */
+/** What only Companion does, one patch each. The add-ons have their own section. */
 const exclusives: {title: string; tone: Tone; body: React.ReactNode}[] = [
-  {
-    title: 'Change My Tsum',
-    tone: 'rose',
-    body: (
-      <>
-        Switch the Tsum a device plays without leaving your seat, or have a workflow switch it between loops. No walking
-        over, no scrolling through your collection. <Link to="/companion/tsum-select">Tsum Select</Link> can switch the skill
-        to match.
-      </>
-    ),
-  },
   {
     title: 'Workflows',
     tone: 'jade',
@@ -36,39 +26,24 @@ const exclusives: {title: string; tone: Tone; body: React.ReactNode}[] = [
     body: <>Save a set of settings once and apply it to one device or all of them. Settings the preset doesn't include stay as they are.</>,
   },
   {
-    title: 'Coins and rubies after every round',
-    tone: 'periwinkle',
-    body: <>Your medals, coins, rubies and hearts, checked after every round and shown on the device's Stats tab.</>,
-  },
-  {
-    title: 'Get the script unstuck from your phone',
-    tone: 'grape',
-    body: (
-      <>
-        When the script hits a screen it doesn't recognize, it sends you a screenshot and waits. Tap or drag on the
-        screenshot to show it what to do, then tap Continue and it carries on. If nobody answers within 10 minutes, the
-        script handles the screen as usual.
-      </>
-    ),
-  },
-  {
     title: 'Alerts on your phone',
-    tone: 'surface',
+    tone: 'periwinkle',
     body: <>Get notified when a device goes offline, a run stops, a chore finishes or a workflow ends. Choose which alerts you want.</>,
   },
 ];
 
 /** The free script next to the script with Companion. */
-const compare: {what: string; free: string; companion: string}[] = [
+const compare: {what: string; free: string; companion: string; addon?: boolean}[] = [
   {what: 'Auto-play, skills, bubbles, chores', free: 'Yes', companion: 'Yes'},
   {what: 'Settings and presets', free: 'On the device', companion: 'From your phone or browser, on every device at once'},
   {what: 'Round stats', free: 'A file on the device', companion: 'Live totals, a coins chart and recent rounds'},
-  {what: 'Medals, coins, rubies and hearts', free: 'No', companion: 'Checked after every round'},
+  {what: 'Medals, coins, rubies and hearts', free: 'No', companion: 'Checked after every round', addon: true},
   {what: 'Start, pause and stop', free: 'From the Quick Bar on the device', companion: 'Any device, or all of them at once'},
-  {what: 'Change My Tsum', free: 'No', companion: 'One tap, or automatically in a workflow'},
+  {what: 'Change My Tsum', free: 'No', companion: 'One tap, or automatically in a workflow', addon: true},
+  {what: 'The right skill for each Tsum', free: 'Set it by hand', companion: 'Switched for you when the Tsum changes', addon: true},
   {what: 'Workflows', free: 'No', companion: 'Yes'},
   {what: 'Alerts on your phone', free: 'No', companion: 'Yes'},
-  {what: 'Get the script unstuck from your phone', free: 'No', companion: 'Yes'},
+  {what: 'Get the script unstuck from your phone', free: 'No', companion: 'Yes', addon: true},
 ];
 
 function Heading({tone, kicker, title, only}: {tone: Tone; kicker: string; title: string; only?: boolean}) {
@@ -85,6 +60,21 @@ function Heading({tone, kicker, title, only}: {tone: Tone; kicker: string; title
 
 function OnlyBadge() {
   return <span className="kicker kicker--surface">Companion only</span>;
+}
+
+/** Marks a comparison row that an add-on provides. */
+function AddonTag() {
+  return <span className="addon-tag">Add-on</span>;
+}
+
+/** One add-on beside Tsum Select: a patch with its title and pitch. */
+function AddonCard({tone, title, children, tilt}: {tone: Tone; title: string; children: React.ReactNode; tilt: number}) {
+  return (
+    <Patch tone={tone} radius="34px" inset={8} tilt={tilt} style={{padding: '28px 30px', display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start'}}>
+      <h3 style={{fontSize: 28}}>{title}</h3>
+      {children}
+    </Patch>
+  );
 }
 
 /** A section: heading, then words beside the pictures. */
@@ -157,11 +147,15 @@ export default function Companion(): React.JSX.Element {
         <p>
           GAP Companion is a phone app and web dashboard for every device running the Tsum Tsum script. See which ones
           are playing and how many coins each round earned, and change settings without walking over to the device. Make
-          a preset once and apply it everywhere, switch Tsums from the couch, and leave a workflow running overnight.
+          a preset once and apply it everywhere, and leave a workflow running overnight.
+        </p>
+        <p style={{marginTop: 12}}>
+          It also comes with <a href="#addons">add-ons</a> that do things in the game for you: switch Tsums and skills,
+          keep track of your coins and rubies, and get a stuck device going again from your phone.
         </p>
         <p style={{marginTop: 12}}>
           <b>Coming soon.</b> GAP Companion isn't available to everyone yet. The script and GAP will stay free;
-          Companion will be a paid add-on, with pricing announced at launch.
+          Companion will be a paid subscription, with pricing announced at launch.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8}}>
           <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Hear when it launches</Patch>
@@ -169,8 +163,69 @@ export default function Companion(): React.JSX.Element {
         </div>
       </PageHead>
 
+      <section id="addons" style={{display: 'flex', flexDirection: 'column', gap: 36}}>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start'}}>
+          <div style={{display: 'flex', gap: 10, flexWrap: 'wrap'}}>
+            <Kicker tone="rose">Add-ons</Kicker>
+            <OnlyBadge />
+          </div>
+          <h2 style={{fontSize: 44}}>Add-ons that play along in the game</h2>
+          <p style={{fontSize: 18, lineHeight: 1.6, maxWidth: '40em', color: 'var(--ground-ink-soft)'}}>
+            Add-ons give the script new things to do in the game. They come with Companion and reach every linked
+            device on their own; there's nothing to install by hand.
+          </p>
+        </div>
+
+        <Patch tone="rose" radius="44px 110px 52px 120px" inset={10} style={{padding: 'clamp(26px, 4vw, 48px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 36, alignItems: 'center'}}>
+          <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start', fontSize: 17, lineHeight: 1.65}}>
+            <h3 style={{fontSize: 36}}>Tsum Select</h3>
+            <p>
+              Change My Tsum from your phone, without walking over to the device or scrolling through your collection.
+              Give each Tsum a default preset and the script puts on the right skill whenever the Tsum changes, with a
+              short notice over the Quick Bar saying what it did.
+            </p>
+            <ul style={{margin: 0, paddingLeft: 22}}>
+              <li>One tap to change My Tsum, from the app or the web dashboard</li>
+              <li>The right skill for each Tsum, switched for you</li>
+              <li>A different Tsum on every loop of a workflow</li>
+            </ul>
+            <Patch as={Link} to="/companion/tsum-select" tone="surface" className="fbtn" style={{marginTop: 6}}>See how Tsum Select works</Patch>
+          </div>
+          <div style={{display: 'flex', flexDirection: 'column', gap: 22, alignItems: 'center'}}>
+            <Phone shot={selectShots.dialog} tone="surface" tilt={-1} />
+            <Patch tone="surface" radius="26px" inset={6} tilt={1} style={{padding: 10, width: 'min(100%, 380px)'}}>
+              <Media id={selectShots.notice.id} alt={selectShots.notice.alt} hint={selectShots.notice.capture} />
+            </Patch>
+          </div>
+        </Patch>
+
+        <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: 32}}>
+          <AddonCard tone="marigold" title="Coins and rubies, checked after every round" tilt={-0.6}>
+            <p style={{fontSize: 17, lineHeight: 1.65}}>
+              After every round the device checks your medals, coins, rubies and hearts. The Stats tab shows them in a
+              Currency card with when they were last checked, so you can see whether you can afford a box or a new Tsum
+              without opening the game. Each day's balances are also saved to a file on the device.
+            </p>
+            <ul className="addon-chips" aria-label="What it checks">
+              <li>Medals</li><li>Coins</li><li>Rubies</li><li>Hearts</li>
+            </ul>
+          </AddonCard>
+          <AddonCard tone="grape" title="Get the script unstuck from your phone" tilt={0.6}>
+            <p style={{fontSize: 17, lineHeight: 1.65}}>
+              When the script hits a screen it doesn't recognize, it asks you what to do:
+            </p>
+            <ol className="addon-steps">
+              <li><span><b>A screenshot arrives</b> on your phone, and the script waits.</span></li>
+              <li><span><b>Tap or drag</b> on it to show what to do.</span></li>
+              <li><span><b>Tap Continue</b>, and the script carries on.</span></li>
+            </ol>
+            <p style={{fontSize: 16, lineHeight: 1.6}}>If nobody answers within 10 minutes, the script handles the screen as usual.</p>
+          </AddonCard>
+        </div>
+      </section>
+
       <section id="only" style={{display: 'flex', flexDirection: 'column', gap: 28}}>
-        <Heading tone="grape" kicker="Highlights" title="Only with Companion" />
+        <Heading tone="grape" kicker="More highlights" title="Only with Companion" />
         <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))'}}>
           {exclusives.map((e, i) => (
             <Patch key={e.title} tone={e.tone} radius="30px" inset={7} tilt={[-0.8, 0.6, -0.4][i % 3]} style={{padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 10}}>
@@ -234,28 +289,6 @@ export default function Companion(): React.JSX.Element {
           For long-term charts on your own computer, <Link to="/stats-site">Tsum Tsum Stats</Link> uses the same round data.
         </p>
       </Feature>
-
-      <section id="currency">
-        <Patch tone="marigold" radius="48px 120px 56px 140px" inset={11} style={{padding: 'clamp(30px, 5vw, 56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 32, alignItems: 'start'}}>
-          <div style={{display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-start'}}>
-            <div style={{display: 'flex', gap: 10, flexWrap: 'wrap'}}>
-              <span className="kicker kicker--surface">Currency</span>
-              <OnlyBadge />
-            </div>
-            <h2 style={{fontSize: 38}}>Your currencies are always up to date</h2>
-          </div>
-          <div style={{display: 'flex', flexDirection: 'column', gap: 14, fontSize: 17, lineHeight: 1.65}}>
-            <p>
-              After every round, the device checks your <b>medals</b>, <b>coins</b>, <b>rubies</b> and <b>hearts</b>.
-              The Stats tab shows them in a Currency card, along with when they were last checked.
-            </p>
-            <p>
-              See whether you can afford a box or a new Tsum without opening the game. Each day's balances are also
-              saved to a file on the device.
-            </p>
-          </div>
-        </Patch>
-      </section>
 
       <Feature
         id="settings"
@@ -347,7 +380,10 @@ export default function Companion(): React.JSX.Element {
             <tbody>
               {compare.map((r) => (
                 <tr key={r.what} style={{borderTop: '1px solid var(--surface-rule)'}}>
-                  <th scope="row" style={{textAlign: 'left', padding: '10px 12px', fontWeight: 700}}>{r.what}</th>
+                  <th scope="row" style={{textAlign: 'left', padding: '10px 12px', fontWeight: 700}}>
+                    {r.what}
+                    {r.addon && <AddonTag />}
+                  </th>
                   <td style={{padding: '10px 12px'}}>{r.free}</td>
                   <td style={{padding: '10px 12px'}}>{r.companion}</td>
                 </tr>

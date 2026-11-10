@@ -38,6 +38,13 @@ const steps: {title: string; body: React.ReactNode; tone: Tone}[] = [
   },
 ];
 
+/** The Companion teaser's add-ons, one card each. */
+const companionAddons: {title: string; body: string; tone: Tone}[] = [
+  {title: 'Tsum Select', tone: 'rose', body: 'Change My Tsum from your phone, and the script puts on the right skill for each Tsum.'},
+  {title: 'Currency', tone: 'marigold', body: 'Your medals, coins, rubies and hearts, checked after every round.'},
+  {title: 'Get unstuck', tone: 'grape', body: 'On a screen the script doesn\'t know, show it what to tap from your phone.'},
+];
+
 const tilts = ['felt-tilt-a', 'felt-tilt-b', 'felt-tilt-c', 'felt-tilt-d', 'felt-tilt-e', 'felt-tilt-f'];
 const cardTones: Tone[] = ['grape', 'rose', 'jade', 'marigold', 'periwinkle', 'grape'];
 
@@ -175,6 +182,27 @@ export default function Home(): React.JSX.Element {
         </div>
         <div>
           <Patch as={Link} to="/features" tone="surface" className="fbtn">All {features.length} features</Patch>
+        </div>
+      </section>
+
+      <section id="companion" style={section}>
+        <Heading tone="jade" kicker="GAP Companion · Coming soon" title="Run every device from your phone" />
+        <p style={{fontSize: 18, lineHeight: 1.6, maxWidth: '40em', marginTop: -12}}>
+          GAP Companion is a phone app and web dashboard for every device running the script: live stats, settings,
+          presets and workflows. It also comes with add-ons that give the script new things to do in the game.
+        </p>
+        <ul className="felt-grid" style={{listStyle: 'none', margin: 0, padding: 0, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 26}}>
+          {companionAddons.map((a, i) => (
+            <Patch as="li" key={a.title} tone={a.tone} radius="32px" inset={9} tilt={[-1.2, 0.9, -0.6][i]} style={{padding: '26px 26px', display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-start'}}>
+              <span className="kicker addon-kicker">Add-on</span>
+              <h3 style={{fontSize: 23}}>{a.title}</h3>
+              <p style={{fontSize: 16, lineHeight: 1.6}}>{a.body}</p>
+            </Patch>
+          ))}
+        </ul>
+        <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
+          <Patch as={Link} to="/companion" tone="jade" className="fbtn">Meet GAP Companion</Patch>
+          <Patch as={Link} to="/companion/tsum-select" tone="surface" className="fbtn">See Tsum Select</Patch>
         </div>
       </section>
 

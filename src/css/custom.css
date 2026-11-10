@@ -39,15 +39,22 @@
   --ifm-toc-link-color: #dfe2e6;
 }
 
-/* Footer links sit on a dark panel in both modes; underline them on hover so the cue isn't colour alone. */
-.footer__link-item:hover { text-decoration: underline; }
+/* Links in running text are underlined at rest, not only on hover, so they don't rely on colour (WCAG 1.4.1).
+   Navigation (navbar, sidebar, table of contents, pagination cards) is shaped like a menu and stays plain. */
+.markdown a:not(.hash-link), .footer__link-item, .alert a, .admonition a {
+  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+}
+.markdown a:not(.hash-link):hover, .footer__link-item:hover { text-decoration-thickness: 3px; }
 
-/* Wide tables scroll inside the page rather than pushing it sideways. */
-.markdown table {
-  display: block;
+/* Wide tables scroll inside the page rather than pushing it sideways. The scrolling box is the
+   focusable wrapper from src/theme/MDXComponents.tsx, so the keyboard can scroll it too. */
+.markdown .table-scroll {
   max-width: 100%;
   overflow-x: auto;
+  margin-bottom: var(--ifm-spacing-vertical);
 }
+.markdown .table-scroll > table { overflow: visible; margin-bottom: 0; }
+.markdown .table-scroll:focus-visible { outline: 3px solid var(--ifm-color-primary); outline-offset: 2px; }
 
 /* Mermaid diagrams: let them breathe and stay readable in both themes. */
 .docusaurus-mermaid-container {
