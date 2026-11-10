@@ -17,7 +17,13 @@ const exclusives: {title: string; tone: Tone; body: React.ReactNode}[] = [
   {
     title: 'Change My Tsum',
     tone: 'rose',
-    body: <>Switch the Tsum a device plays without leaving your seat, or have a workflow switch it between loops. No walking over, no scrolling through your collection.</>,
+    body: (
+      <>
+        Switch the Tsum a device plays without leaving your seat, or have a workflow switch it between loops. No walking
+        over, no scrolling through your collection. <Link to="/companion/tsum-select">Tsum Select</Link> can switch the skill
+        to match.
+      </>
+    ),
   },
   {
     title: 'Workflows',
@@ -222,7 +228,7 @@ export default function Companion(): React.JSX.Element {
           <li><b>This run</b>: rounds played, run time, average round length, and average coins before and after bonuses.</li>
           <li><b>Coins per round</b>: a chart of the last 20 rounds, with coins before and after bonuses side by side.</li>
           <li><b>Recent rounds</b>: the last 10 rounds, with each one's length, base coins and total coins.</li>
-          <li><b>My Tsum</b>: which Tsum is playing, with a <b>Change My Tsum</b> button right below.</li>
+          <li><b>My Tsum</b>: which Tsum is playing, with a <b>Change My Tsum</b> button right below (<Link to="/companion/tsum-select">Tsum Select</Link>).</li>
         </ul>
         <p>
           For long-term charts on your own computer, <Link to="/stats-site">Tsum Tsum Stats</Link> uses the same round data.

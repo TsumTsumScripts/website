@@ -40,6 +40,7 @@ video(landing.trailer, 'Landing', landing.trailer.note);
 for (const s of landing.starterShots) shot(s, 'Starter');
 for (const s of landing.statsShots) shot(s, 'Tsum Tsum Stats');
 for (const s of Object.values(landing.companionShots)) shot(s, 'Companion');
+for (const s of Object.values(landing.selectShots)) shot(s, 'Tsum Select');
 for (const v of Object.values(landing.companionVideos)) video(v, 'Companion', v.note);
 for (const s of guideShots) shot(s, 'Guides');
 for (const f of features) {

@@ -52,6 +52,21 @@ const companionShots = {
   assign: { id: 'shot-companion-assign', alt: 'Assign to devices: three devices ticked and synced, with Start now on idle devices', capture: 'Companion web dashboard, workflow Assign to devices dialog. 1280x800 at 2x.' },
 };
 
+/** The Tsum Select page (/companion/tsum-select): phone and web captures, and Quick Bar notice renders. */
+const selectShots = {
+  dialog: { id: 'shot-select-dialog', alt: 'Change My Tsum in the phone app: Mickey Mouse, with Coin farming, Gaston (default) and No preset to pick from, and the note "Coin farming" sets Burst. With No preset, it gets Gaston.', capture: 'Companion phone app, Change My Tsum dialog with a preset picked. 540x960.' },
+  device: { id: 'shot-select-device', alt: 'The My Tsum card in the phone app: My Tsum Mickey, with the Change My Tsum button', capture: 'Companion phone app, a device\'s My Tsum card, cropped. 540x240.' },
+  assign: { id: 'shot-select-assign', alt: 'Assign presets in the phone app: each Tsum with its presets and the skill it gets, such as Auto: Gaston, with a warning on Goofy and Mickey Mouse that "Coin farming" sets Burst, not Gaston', capture: 'Companion phone app, Assign presets, Assigned filter. 540x960.' },
+  assignWeb: { id: 'shot-select-assign-web', alt: 'Assign presets on the web: Auto: Gaston, Auto: Tiara Minnie+, Auto: Burst and Auto: none, with two warnings where presets disagree', capture: 'Companion web dashboard, Assign presets at phone width (393 at 2x).' },
+  dialogWeb: { id: 'shot-select-dialog-web', alt: 'Change My Tsum on the web dashboard, with the note "Coin farming" sets Burst. With No preset, it gets Gaston.', capture: 'Companion web dashboard, Change My Tsum dialog (393 at 2x).' },
+  linkCard: { id: 'shot-select-linkcard', alt: 'The preset editor\'s Tsums card: 2 Tsums with another preset that sets a different skill type, with the warning under Goofy and Mickey Mouse', capture: 'Companion web dashboard, preset editor Tsums card (393 at 2x).' },
+  workflow: { id: 'shot-select-workflow', alt: 'A workflow on the web: Select Tsum Mickey Mouse, Play rounds 10, Select Tsum Minnie Mouse, Play rounds 10', capture: 'Companion web dashboard, workflow editor, 1280 wide at 2x, top cropped.' },
+  notice: { id: 'shot-select-notice', alt: 'A notice over the Quick Bar: Auto skill, Goofy, Gaston, from preset "Gaston", in the Accessible style, dark', capture: 'Render: Quick Bar with a notice over the pre-round screen (capture harness), bottom crop.' },
+  noticeLight: { id: 'shot-select-notice-light', alt: 'The same notice in the Accessible style, light', capture: 'Render, as above, light theme.' },
+  noticeFelt: { id: 'shot-select-notice-felt', alt: 'The same notice in the Felt style', capture: 'Render, as above, felt style.' },
+  noticeMyTsum: { id: 'shot-select-notice-mytsum', alt: 'A notice over the Quick Bar: My Tsum changed, Mickey Mouse, with preset "Coin farming"', capture: 'Render, as above.' },
+};
+
 /** The Companion page's how-to videos: phone screen recordings with tap rings and captions (Remotion). */
 const companionVideos = {
   fleet: { id: 'vid-companion-fleet', kind: 'remotion', seconds: 19, brief: '9:16. Phone app (OBS, 540x960): long-press a device card, Select all, open the menu, Pause all three devices, then Resume. Numbered step captions and tap rings.', note: 'pause or resume every device at once' },
@@ -62,4 +77,4 @@ const companionVideos = {
 /** Landing "What's in the sewing box" cards: feature keys, in order. */
 const landingFeatureKeys = ['autoplay', 'skills', 'bubbles', 'hearts', 'boxes', 'quickbar'];
 
-module.exports = {hero, playClips, trailer, starterShots, statsShots, companionShots, companionVideos, landingFeatureKeys};
+module.exports = {hero, playClips, trailer, starterShots, statsShots, companionShots, selectShots, companionVideos, landingFeatureKeys};
