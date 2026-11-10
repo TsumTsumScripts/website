@@ -279,8 +279,8 @@ export default function TsumSelect(): React.JSX.Element {
           <li><b>Play.</b> Change Tsums however you like. The skill switches before the next round, and a notice lets you know.</li>
         </ol>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          Tsum Select needs GAP Companion and the Tsum Tsum script 6.0. Auto skill and the Quick Bar notices need 6.0b26
-          or newer.
+          Tsum Select needs GAP Companion and the Tsum Tsum script 6.0. Auto skill and the Quick Bar notices come with
+          an upcoming 6.0 update.
         </p>
         <p style={{marginTop: 12, color: 'var(--ground-ink-soft)'}}>
           Screenshots are from the GAP Companion app and the web dashboard with example Tsums and presets. The Quick Bar
