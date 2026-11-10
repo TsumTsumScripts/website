@@ -155,7 +155,8 @@ export default function Companion(): React.JSX.Element {
         </p>
         <p style={{marginTop: 12}}>
           <b>Coming soon.</b> GAP Companion isn't available to everyone yet. The script and GAP will stay free;
-          Companion will be a paid subscription, with pricing announced at launch.
+          Companion will be <b>$10 a month</b> for up to 3 linked devices, add-ons included, after a 7-day free trial
+          (no card needed).
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 8}}>
           <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Hear when it launches</Patch>
@@ -199,16 +200,16 @@ export default function Companion(): React.JSX.Element {
           </div>
         </Patch>
 
-        <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: 32}}>
+        <div className="felt-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: 32, alignItems: 'start'}}>
           <AddonCard tone="marigold" title="Coins and rubies, checked after every round" tilt={-0.6}>
             <p style={{fontSize: 17, lineHeight: 1.65}}>
               After every round the device checks your medals, coins, rubies and hearts. The Stats tab shows them in a
               Currency card with when they were last checked, so you can see whether you can afford a box or a new Tsum
               without opening the game. Each day's balances are also saved to a file on the device.
             </p>
-            <ul className="addon-chips" aria-label="What it checks">
-              <li>Medals</li><li>Coins</li><li>Rubies</li><li>Hearts</li>
-            </ul>
+            <Patch tone="surface" radius="24px" inset={6} style={{padding: 10, width: '100%', boxSizing: 'border-box'}}>
+              <Media id={shots.currency.id} alt={shots.currency.alt} hint={shots.currency.capture} />
+            </Patch>
           </AddonCard>
           <AddonCard tone="grape" title="Get the script unstuck from your phone" tilt={0.6}>
             <p style={{fontSize: 17, lineHeight: 1.65}}>
@@ -220,6 +221,7 @@ export default function Companion(): React.JSX.Element {
               <li><span><b>Tap Continue</b>, and the script carries on.</span></li>
             </ol>
             <p style={{fontSize: 16, lineHeight: 1.6}}>If nobody answers within 10 minutes, the script handles the screen as usual.</p>
+            <Phone shot={shots.direct} tone="surface" tilt={1} />
           </AddonCard>
         </div>
       </section>
@@ -419,8 +421,8 @@ export default function Companion(): React.JSX.Element {
           <Link to="/guides/companion/connect">Connect GAP to GAP Companion</Link>.
         </p>
         <p style={{marginTop: 18, color: 'var(--ground-ink-soft)'}}>
-          GAP Companion is coming soon as an Android app and a web dashboard, with iOS to follow. Pricing will be
-          announced at launch. For launch news or questions, join the <a href={discord}><DiscordMark />Discord</a>.
+          GAP Companion is coming soon as an Android app and a web dashboard, with iOS to follow. It's $10 a
+          month for up to 3 linked devices, after a 7-day free trial. For launch news or questions, join the <a href={discord}><DiscordMark />Discord</a>.
         </p>
         <div style={{display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 20}}>
           <Patch as="a" href={discord} tone="grape" className="fbtn"><DiscordMark />Hear when it launches</Patch>

@@ -49,6 +49,8 @@ const companionShots = {
   preset: { id: 'shot-companion-preset', alt: 'A preset named Fever push in the phone app: Use fan and +Coin on, Maximum chain 4 and Skill type Burst set, Skill level left unset', capture: 'Companion phone app, preset editor with four settings set. 540x960.' },
   applied: { id: 'shot-companion-applied', alt: 'Apply "Fever push" in the phone app: Applied on MuMu 1, Tsum Tablet and Tsum Phone', capture: 'Companion phone app, bulk Apply preset result dialog. 540x960.' },
   workflow: { id: 'shot-companion-workflow', alt: 'The workflow editor on the web: Restart app, Select Tsum, Skill, Play rounds and Loop forever, with the Select Tsum step set to Mickey Mouse on loop 1 and Daisy Duck on loop 2', capture: 'Companion web dashboard, workflow editor with the Select Tsum step sheet open (two loops). 1280x640 at 2x.' },
+  currency: { id: 'shot-companion-currency', alt: 'The Currency card on a device\'s Stats tab in the phone app: Medals 48,210, Coins 12,873,455, Rubies 1,260, Hearts 342, checked 2 minutes ago', capture: 'Companion phone app, a device\'s Stats tab, Currency card (currency add-on), cropped. 540x334.' },
+  direct: { id: 'shot-companion-direct', alt: 'Directing a device from the phone app: a screenshot of a mission pop-up the script doesn\'t know, "Making Magical Bubbles", with a tap placed on its Close button and Continue at the top', capture: 'Companion phone app, direction screen with one tap placed; the screenshot is our own capture of an event pop-up. 540x960.' },
   assign: { id: 'shot-companion-assign', alt: 'Assign to devices: three devices ticked and synced, with Start now on idle devices', capture: 'Companion web dashboard, workflow Assign to devices dialog. 1280x800 at 2x.' },
 };
 
